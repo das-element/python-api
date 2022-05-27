@@ -11,8 +11,6 @@ Download folder `daselement_api`
 
 ```
 from daselement_api import api as de
-# get-library
-from daselement_api import api as de
 libraries = de.get_libraries()
 for library, library_config_data in libraries.items():
    print(library)
