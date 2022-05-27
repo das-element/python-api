@@ -1,9 +1,8 @@
 # python-api
 
 Python API (beta)
-_Work in progress_
 
-Will be available in version **1.1.6**
+Will be available in version **1.1.6**  
 Beta Testing since version: *das-element-cli_1.1.6-daily.20220523*
 
 API works for both Pyhton 2 & 3

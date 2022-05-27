@@ -6,20 +6,42 @@
 #
 #                  Copyright (c) 2022 das element
 '''
-Documentation for the API  
+Documentation for the API (beta)
 
-In the background the CLI version of *das element* is exectued.  
-Please link the correct executable **das-element-cli** in the file **daselement_api/manager.py**  
+Will be available in version **1.1.6**  
+Beta Testing since version: **das-element-cli_1.1.6-daily.20220523**
+
+API works for both Pyhton 2 & 3
+
+---
+
+### Install
+
+[Download](https://github.com/das-element/python-api) folder: `daselement_api`
+
+In the background the CLI version of _das element_ is exectued.  
+Please link the correct executable **das-element-cli** in the file **daselement_api/manager.py**
+
+```
+from daselement_api import api as de
+libraries = de.get_libraries()
+for library, library_config_data in libraries.items():
+   print(library)
+   print(library_config_data)
+```
+
+---
 
 The library information is taken from the config file that is set for the current workstation.  
-Either defined in the `~/.das-element/setup.ini` file or by the environment variable `DASELEMENT_CONFIG_PATH`  
+Either defined in the `~/.das-element/setup.ini` file or by the environment variable `DASELEMENT_CONFIG_PATH`
 
 '''
 
 from .manager import execute_command, as_quoted_string
 
 config = None
-'''Variabel to define a custom config file path (.conf)
+'''
+Variabel to define a custom config file path (.conf)
 
 ---
 '''
@@ -68,7 +90,7 @@ def get_library_template_mappings(library_path):
         print(template_mapping)
     ```
 
-    **Example result**:  
+    **Example result**:
     `[{'key': 'copy & rename', 'value': {'extra': ['extra-job'], 'filmstrip': 'filmstrip', 'main': 'main', 'proxy': 'proxy mov', 'thumbnail': 'thumbnail'}}]`
     '''
     command = ['--config', config] if config else []
@@ -81,7 +103,7 @@ def get_library_template_mappings(library_path):
 
 def get_categories(library_path):
     '''
-    Get all categories from the database for the library.  
+    Get all categories from the database for the library.
 
     **Args**:
     > - **library_path** (str): *File path to the library file (.lib)*
@@ -100,7 +122,7 @@ def get_categories(library_path):
         print(category)
     ```
 
-    **Example result**:  
+    **Example result**:
     `[{'id': 'Q235544', 'type': 'default', 'name': 'flame', 'child_count': 5, 'child_counter': 5, 'parents': [{'description': 'rapid oxidation of a material; phenomenon that emits light and heat', 'id': 'Q3196', 'name': 'fire', 'synonyms': [{'language': 'en', 'value': 'fire'}, {'language': 'en', 'value': 'fires'}], 'type': 'default'}], 'children': [{'id': 'Q327954', 'name': 'torch'}], 'synonyms': [{'language': 'en', 'value': 'flame'}]}]`
     '''
     command = ['--config', config] if config else []
@@ -110,7 +132,7 @@ def get_categories(library_path):
 
 def get_tags(library_path):
     '''
-    Get all tags from the database for the library.  
+    Get all tags from the database for the library.
 
     **Args**:
     > - **library_path** (str): *File path to the library file (.lib)*
@@ -129,7 +151,7 @@ def get_tags(library_path):
         print(tag)
     ```
 
-    **Example result**:  
+    **Example result**:
     `[{'id': 'Q235544', 'name': 'flame', 'type': 'default', 'elements_count': 3, 'synonyms': [{'language': 'en', 'value': 'flame'}]}]`
     '''
     command = ['--config', config] if config else []
@@ -139,7 +161,7 @@ def get_tags(library_path):
 
 def get_elements(library_path):
     '''
-    Get all elements from the database for the library.  
+    Get all elements from the database for the library.
 
     **Args**:
     > - **library_path** (str): *File path to the library file (.lib)*
@@ -159,7 +181,7 @@ def get_elements(library_path):
         print(element.get('path'))
     ```
 
-    **Example result**:  
+    **Example result**:
     `[{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","popularity": "None","rating": "None","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}]`
     '''
     command = ['--config', config] if config else []
@@ -173,7 +195,7 @@ def get_element_by_id(library_path, element_id):
 
     **Args**:
     > - **library_path** (str): *File path to the library file (.lib)*
-    > - **element_id** (int): *Element ID in the database*    
+    > - **element_id** (int): *Element ID in the database*
 
     **Returns**:
     > - Dict
@@ -190,7 +212,7 @@ def get_element_by_id(library_path, element_id):
     print(element.get('path'))
     ```
 
-    **Example result**:  
+    **Example result**:
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","popularity": "None","rating": "None","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
     '''
     command = ['--config', config] if config else []
@@ -207,7 +229,7 @@ def get_element_by_uuid(library_path, element_uuid):
 
     **Args**:
     > - **library_path** (str): *File path to the library file (.lib)*
-    > - **element_uuid** (str): *Element UUID (unique ID) in the database*    
+    > - **element_uuid** (str): *Element UUID (unique ID) in the database*
 
     **Returns**:
     > - Dict
@@ -224,7 +246,7 @@ def get_element_by_uuid(library_path, element_uuid):
     print(element.get('path'))
     ```
 
-    **Example result**:  
+    **Example result**:
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","popularity": "None","rating": "None","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
     '''
     command = ['--config', config] if config else []
@@ -241,7 +263,7 @@ def get_element_by_name(library_path, element_name):
 
     **Args**:
     > - **library_path** (str): *File path to the library file (.lib)*
-    > - **element_name** (str): *Element name in the database*    
+    > - **element_name** (str): *Element name in the database*
 
     **Returns**:
     > - Dict
@@ -258,7 +280,7 @@ def get_element_by_name(library_path, element_name):
     print(element.get('path'))
     ```
 
-    **Example result**:  
+    **Example result**:
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","popularity": "None","rating": "None","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
     '''
     command = ['--config', config] if config else []
@@ -287,7 +309,7 @@ def ingest(library_path, mapping, path, category, tags=[]):
     > - **tags** (List[str]): *[optional] List of tags*
 
     **Returns**:
-    > - Dict: *Element entity for the newly created element*  
+    > - Dict: *Element entity for the newly created element*
 
     **Example code**:
     ```
@@ -304,10 +326,10 @@ def ingest(library_path, mapping, path, category, tags=[]):
     print(entity.get('path'))
     ```
 
-    **Example result**:  
+    **Example result**:
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","popularity": "None","rating": "None","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
 
-    **Example command line command**:  
+    **Example command line command**:
     `das-element-cli ingest --library /mnt/library/das-element.lib --mapping "copy & rename" --path /some/file/path.1001-1099#.exr --category Q235544 --tags Q3196,foo,bar`
     '''
     command = ['--config', config] if config else []
@@ -341,11 +363,11 @@ def predict(path, model=None, top=2, filmstrip_frames=36):
     > - Dict[str, List[Dict]]: *Key is the file path. The value a list of predicted categories*
 
 
-    **Example result**:  
+    **Example result**:
     `{"/some/file/path.1001-1099#.exr": [{"tag": "flame", "description": "visible, gaseous part of a fire", "id": "Q235544", "value": "Q235544", "parents": [{"description": "rapid oxidation of a material; phenomenon that emits light and heat", "id": "Q3196", "name": "fire", "synonyms": [{"language": "en", "value": "fire"}, {"language": "en", "value": "fires"}}]}]}`
 
 
-    **Example command line command**:  
+    **Example command line command**:
     `das-element-cli predict --top=2 /some/file/path`
 
     '''
