@@ -1,2 +1,4 @@
 # python-api
-Python API
+Python API (beta)
+
+Work in progress
