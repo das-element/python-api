@@ -17,5 +17,5 @@ for library, library_config_data in libraries.items():
    print(library_config_data)
 ```
 
-In the background the CLI version of _das element_ is exectued.
+In the background the CLI version of _das element_ is exectued.  
 Please link the correct executable **das-element-cli** in the file **daselement_api/manager.py**
