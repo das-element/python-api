@@ -37,7 +37,7 @@ Either defined in the `~/.das-element/setup.ini` file or by the environment vari
 
 '''
 
-from .manager import execute_command, as_quoted_string
+from .manager import execute_command, as_quoted_string, as_quoted_dict
 
 config = None
 '''
@@ -130,6 +130,37 @@ def get_categories(library_path):
     return execute_command(command)
 
 
+def get_category(library_path, category_value):
+    '''
+    Get category entity from the database for the library.
+
+    **Args**:
+    > - **library_path** (str): *File path to the library file (.lib)*
+    > - **category_value** (str): *the ID ('Q3196') or name ('fire') of the category in the database*
+
+    **Returns**:
+    > - Dict[str, Union[str, int]]: *child_count: actual number of children - child_counter: increasing counter, even if children get deleted*
+
+
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    library_path = '/some/path/das-element.lib'
+
+    category_entity = de.get_category(library_path, 'Q3196')
+    category_entity = de.get_category(library_path, 'fire')
+    ```
+
+    **Example result**:
+    `{"id": "Q3196", "type": "default", "name": "fire", "child_count": 130, "child_counter": 135}`
+    '''
+    command = ['--config', config] if config else []
+    command += ['get-category', as_quoted_string(library_path), as_quoted_string(category_value)]
+    return execute_command(command)
+
+
 def get_tags(library_path):
     '''
     Get all tags from the database for the library.
@@ -156,6 +187,34 @@ def get_tags(library_path):
     '''
     command = ['--config', config] if config else []
     command += ['get-tags', as_quoted_string(library_path)]
+    return execute_command(command)
+
+def get_tag(library_path, tag_value):
+    '''
+    Get tag entity from the database for the library.
+
+    **Args**:
+    > - **library_path** (str): *File path to the library file (.lib)*
+    > - **tag_value** (str): *the ID ('Q3196') or name ('fire') of the tag in the database*
+
+    **Returns**:
+    > - Dict[str, Union[str, int]]
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    library_path = '/some/path/das-element.lib'
+
+    tag_entity = de.get_tag(library_path, 'Q3196')
+    tag_entity = de.get_tag(library_path, 'fire')
+    ```
+
+    **Example result**:
+    `{"id": "Q3196", "name": "fire", "type": "default", "elements_count": 130}`
+    '''
+    command = ['--config', config] if config else []
+    command += ['get-tag', as_quoted_string(library_path), as_quoted_string(tag_value)]
     return execute_command(command)
 
 
@@ -287,6 +346,56 @@ def get_element_by_name(library_path, element_name):
     command += [
         'get-element-by-name',
         as_quoted_string(library_path), element_name
+    ]
+    return execute_command(command)
+
+
+def update(library_path, entity_type, entity_id, data):
+    '''
+    Updates database entity with new data
+
+
+    **Args**:
+    > - **library_path** (str): *File path to the library file (.lib)*
+    > - **entity_type** (str): *Type of entity to update. Options: [Category, Element, Tag]*
+    > - **entity_id** (Union[str, int]): *the ID of the entity to update in the database*
+    > - **data** (Dict): *data to update. Dictionary with key/value pairs formated as JSON.*  
+        *Example:* `"{\\\"rating\\\": 3}"`
+
+    **Returns**:
+    > - Dict: *Entity of the updated entity*
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    library_path = '/some/path/das-element.lib'
+    entity_type = 'Element'
+    entity_id = 23
+    new_data = {'category_id': 'Q327954',  # or: 'category': 'torch',
+                'tags': ['flame', 'fire', 'torch', 'something custom tag']}
+
+    entity = de.update(library_path, entity_type, entity_id, new_data)
+    print(entity)
+    print(entity.get('rating'))
+    ```
+
+    **Example result**:
+    `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","popularity": "None","rating": "None","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}, {"id": "something","name": "something custom tag", "type": "custom", "elements_count": 1}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
+
+    **Example command line command**:  
+    ##### Windows  
+    `das-element-cli.exe update C:\\mnt\\library\\das-element.lib element 1 "{\\\"rating\\\": 3}"`  
+    ##### Linux/MacOS  
+    `das-element-cli update /mnt/library/das-element.lib element 1 '{\"rating\": 3}'`
+    '''
+    command = ['--config', config] if config else []
+    command += [
+        'update',
+        as_quoted_string(library_path),
+        as_quoted_string(entity_type),
+        as_quoted_string(entity_id),
+        as_quoted_dict(data)
     ]
     return execute_command(command)
 

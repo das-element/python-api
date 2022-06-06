@@ -24,8 +24,10 @@ EXECUTABLE = '/path/to/das-element-cli_1.1.6_lin'
 
 def as_quoted_string(value):
     # wraps string into double quotes string
-    return '"{}"'.format(value.strip(' "'))
+    return '"{}"'.format(str(value).strip(' "'))
 
+def as_quoted_dict(value):
+    return json.dumps(value)
 
 def execute_command(arguments):
     command = [EXECUTABLE] + [str(argument) for argument in arguments]
