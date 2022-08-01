@@ -1,6 +1,7 @@
 ## Python API
 
-API works for both Pyhton 2 & 3
+API works for both Python 2 & 3  
+
 Available in version **1.2+**  
 
 
