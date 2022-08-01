@@ -6,12 +6,12 @@
 #
 #                  Copyright (c) 2022 das element
 '''
-Documentation for the API (beta)
+## Documentation for the API
 
-Will be available in version **1.1.6**  
-Beta Testing since version: **das-element-cli_1.1.6-daily.20220523**
+API works for both Python 2 & 3
 
-API works for both Pyhton 2 & 3
+Available in version **1.2+**
+
 
 ---
 
