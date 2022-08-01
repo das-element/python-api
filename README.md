@@ -24,5 +24,5 @@ for library, library_config_data in libraries.items():
 ## Documentation
 
 Check out the documentation at:
-docu.api.das-element.com
+[docu.api.das-element.com} docu.api.das-element.com
 
