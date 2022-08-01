@@ -1,11 +1,8 @@
-# python-api
-
-Python API (beta)
-
-Will be available in version **1.1.6**  
-Beta Testing since version: *das-element-cli_1.1.6-daily.20220523*
+## Python API
 
 API works for both Pyhton 2 & 3
+Available in version **1.2+**  
+
 
 ## Install
 
@@ -21,3 +18,10 @@ for library, library_config_data in libraries.items():
    print(library)
    print(library_config_data)
 ```
+
+
+## Documentation
+
+Check out the documentation at:
+docu.api.das-element.com
+
