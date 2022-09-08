@@ -14,8 +14,7 @@ import subprocess
 import json
 import sys
 
-# This feature will be availabel in version 1.1.6
-# For testing please use Daily Builds from May 23th onwards
+# This feature is availabel since version 1.1.6
 
 EXECUTABLE = '/path/to/das-element-cli_1.1.6_lin'
 # EXECUTABLE = '/path/to/das-element-cli_1.1.6_mac'
