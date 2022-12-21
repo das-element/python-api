@@ -406,34 +406,34 @@ Either defined in the <code>~/.das-element/setup.ini</code> file or by the envir
 </span><span id="L-285"><a href="#L-285"><span class="linenos">285</span></a><span class="k">def</span> <span class="nf">get_element_by_uuid</span><span class="p">(</span><span class="n">library_path</span><span class="p">,</span> <span class="n">element_uuid</span><span class="p">):</span>
 </span><span id="L-286"><a href="#L-286"><span class="linenos">286</span></a>    <span class="sd">&#39;&#39;&#39;</span>
 </span><span id="L-287"><a href="#L-287"><span class="linenos">287</span></a><span class="sd">    Get element entity based on the **element UUID** from the database for the library.</span>
-</span><span id="L-288"><a href="#L-288"><span class="linenos">288</span></a>
-</span><span id="L-289"><a href="#L-289"><span class="linenos">289</span></a><span class="sd">    **Args**:</span>
-</span><span id="L-290"><a href="#L-290"><span class="linenos">290</span></a><span class="sd">    &gt; - **library_path** (str): *File path to the library file (.lib)*</span>
+</span><span id="L-288"><a href="#L-288"><span class="linenos">288</span></a><span class="sd">    If no library path is provided, all libraries of the current config will be searched.</span>
+</span><span id="L-289"><a href="#L-289"><span class="linenos">289</span></a>
+</span><span id="L-290"><a href="#L-290"><span class="linenos">290</span></a><span class="sd">    **Args**:</span>
 </span><span id="L-291"><a href="#L-291"><span class="linenos">291</span></a><span class="sd">    &gt; - **element_uuid** (str): *Element UUID (unique ID) in the database*</span>
-</span><span id="L-292"><a href="#L-292"><span class="linenos">292</span></a>
-</span><span id="L-293"><a href="#L-293"><span class="linenos">293</span></a><span class="sd">    **Returns**:</span>
-</span><span id="L-294"><a href="#L-294"><span class="linenos">294</span></a><span class="sd">    &gt; - Dict</span>
-</span><span id="L-295"><a href="#L-295"><span class="linenos">295</span></a>
-</span><span id="L-296"><a href="#L-296"><span class="linenos">296</span></a><span class="sd">    **Example code**:</span>
-</span><span id="L-297"><a href="#L-297"><span class="linenos">297</span></a><span class="sd">    ```</span>
-</span><span id="L-298"><a href="#L-298"><span class="linenos">298</span></a><span class="sd">    from daselement_api import api as de</span>
-</span><span id="L-299"><a href="#L-299"><span class="linenos">299</span></a>
-</span><span id="L-300"><a href="#L-300"><span class="linenos">300</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;</span>
+</span><span id="L-292"><a href="#L-292"><span class="linenos">292</span></a><span class="sd">    &gt; - **library_path** (str): **[optional] File path to the library file (.lib)*</span>
+</span><span id="L-293"><a href="#L-293"><span class="linenos">293</span></a>
+</span><span id="L-294"><a href="#L-294"><span class="linenos">294</span></a><span class="sd">    **Returns**:</span>
+</span><span id="L-295"><a href="#L-295"><span class="linenos">295</span></a><span class="sd">    &gt; - Dict</span>
+</span><span id="L-296"><a href="#L-296"><span class="linenos">296</span></a>
+</span><span id="L-297"><a href="#L-297"><span class="linenos">297</span></a><span class="sd">    **Example code**:</span>
+</span><span id="L-298"><a href="#L-298"><span class="linenos">298</span></a><span class="sd">    ```</span>
+</span><span id="L-299"><a href="#L-299"><span class="linenos">299</span></a><span class="sd">    from daselement_api import api as de</span>
+</span><span id="L-300"><a href="#L-300"><span class="linenos">300</span></a>
 </span><span id="L-301"><a href="#L-301"><span class="linenos">301</span></a><span class="sd">    element_uuid = &#39;9947c549c6014a3ca831983275884051&#39;</span>
-</span><span id="L-302"><a href="#L-302"><span class="linenos">302</span></a>
-</span><span id="L-303"><a href="#L-303"><span class="linenos">303</span></a><span class="sd">    element = de.get_element_by_uuid(library_path, element_uuid)</span>
-</span><span id="L-304"><a href="#L-304"><span class="linenos">304</span></a><span class="sd">    print(element)</span>
-</span><span id="L-305"><a href="#L-305"><span class="linenos">305</span></a><span class="sd">    print(element.get(&#39;path&#39;))</span>
-</span><span id="L-306"><a href="#L-306"><span class="linenos">306</span></a><span class="sd">    ```</span>
-</span><span id="L-307"><a href="#L-307"><span class="linenos">307</span></a>
-</span><span id="L-308"><a href="#L-308"><span class="linenos">308</span></a><span class="sd">    **Example result**:</span>
-</span><span id="L-309"><a href="#L-309"><span class="linenos">309</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
-</span><span id="L-310"><a href="#L-310"><span class="linenos">310</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="L-311"><a href="#L-311"><span class="linenos">311</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="L-312"><a href="#L-312"><span class="linenos">312</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
-</span><span id="L-313"><a href="#L-313"><span class="linenos">313</span></a>        <span class="s1">&#39;get-element-by-uuid&#39;</span><span class="p">,</span> <span class="n">element_uuid</span><span class="p">,</span>
-</span><span id="L-314"><a href="#L-314"><span class="linenos">314</span></a>        <span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">)</span>
-</span><span id="L-315"><a href="#L-315"><span class="linenos">315</span></a>    <span class="p">]</span>
+</span><span id="L-302"><a href="#L-302"><span class="linenos">302</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;  # optional</span>
+</span><span id="L-303"><a href="#L-303"><span class="linenos">303</span></a>
+</span><span id="L-304"><a href="#L-304"><span class="linenos">304</span></a><span class="sd">    element = de.get_element_by_uuid(element_uuid, library_path=library_path)</span>
+</span><span id="L-305"><a href="#L-305"><span class="linenos">305</span></a><span class="sd">    print(element)</span>
+</span><span id="L-306"><a href="#L-306"><span class="linenos">306</span></a><span class="sd">    print(element.get(&#39;path&#39;))</span>
+</span><span id="L-307"><a href="#L-307"><span class="linenos">307</span></a><span class="sd">    ```</span>
+</span><span id="L-308"><a href="#L-308"><span class="linenos">308</span></a>
+</span><span id="L-309"><a href="#L-309"><span class="linenos">309</span></a><span class="sd">    **Example result**:</span>
+</span><span id="L-310"><a href="#L-310"><span class="linenos">310</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
+</span><span id="L-311"><a href="#L-311"><span class="linenos">311</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-312"><a href="#L-312"><span class="linenos">312</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="L-313"><a href="#L-313"><span class="linenos">313</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;get-element-by-uuid&#39;</span><span class="p">,</span> <span class="n">element_uuid</span><span class="p">,]</span>
+</span><span id="L-314"><a href="#L-314"><span class="linenos">314</span></a>    <span class="k">if</span> <span class="n">library_path</span><span class="p">:</span>
+</span><span id="L-315"><a href="#L-315"><span class="linenos">315</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">)]</span>
 </span><span id="L-316"><a href="#L-316"><span class="linenos">316</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 </span><span id="L-317"><a href="#L-317"><span class="linenos">317</span></a>
 </span><span id="L-318"><a href="#L-318"><span class="linenos">318</span></a>
@@ -1244,46 +1244,47 @@ print(element.get('path'))
             <div class="pdoc-code codehilite"><pre><span></span><span id="get_element_by_uuid-286"><a href="#get_element_by_uuid-286"><span class="linenos">286</span></a><span class="k">def</span> <span class="nf">get_element_by_uuid</span><span class="p">(</span><span class="n">library_path</span><span class="p">,</span> <span class="n">element_uuid</span><span class="p">):</span>
 </span><span id="get_element_by_uuid-287"><a href="#get_element_by_uuid-287"><span class="linenos">287</span></a>    <span class="sd">&#39;&#39;&#39;</span>
 </span><span id="get_element_by_uuid-288"><a href="#get_element_by_uuid-288"><span class="linenos">288</span></a><span class="sd">    Get element entity based on the **element UUID** from the database for the library.</span>
-</span><span id="get_element_by_uuid-289"><a href="#get_element_by_uuid-289"><span class="linenos">289</span></a>
-</span><span id="get_element_by_uuid-290"><a href="#get_element_by_uuid-290"><span class="linenos">290</span></a><span class="sd">    **Args**:</span>
-</span><span id="get_element_by_uuid-291"><a href="#get_element_by_uuid-291"><span class="linenos">291</span></a><span class="sd">    &gt; - **library_path** (str): *File path to the library file (.lib)*</span>
+</span><span id="get_element_by_uuid-289"><a href="#get_element_by_uuid-289"><span class="linenos">289</span></a><span class="sd">    If no library path is provided, all libraries of the current config will be searched.</span>
+</span><span id="get_element_by_uuid-290"><a href="#get_element_by_uuid-290"><span class="linenos">290</span></a>
+</span><span id="get_element_by_uuid-291"><a href="#get_element_by_uuid-291"><span class="linenos">291</span></a><span class="sd">    **Args**:</span>
 </span><span id="get_element_by_uuid-292"><a href="#get_element_by_uuid-292"><span class="linenos">292</span></a><span class="sd">    &gt; - **element_uuid** (str): *Element UUID (unique ID) in the database*</span>
-</span><span id="get_element_by_uuid-293"><a href="#get_element_by_uuid-293"><span class="linenos">293</span></a>
-</span><span id="get_element_by_uuid-294"><a href="#get_element_by_uuid-294"><span class="linenos">294</span></a><span class="sd">    **Returns**:</span>
-</span><span id="get_element_by_uuid-295"><a href="#get_element_by_uuid-295"><span class="linenos">295</span></a><span class="sd">    &gt; - Dict</span>
-</span><span id="get_element_by_uuid-296"><a href="#get_element_by_uuid-296"><span class="linenos">296</span></a>
-</span><span id="get_element_by_uuid-297"><a href="#get_element_by_uuid-297"><span class="linenos">297</span></a><span class="sd">    **Example code**:</span>
-</span><span id="get_element_by_uuid-298"><a href="#get_element_by_uuid-298"><span class="linenos">298</span></a><span class="sd">    ```</span>
-</span><span id="get_element_by_uuid-299"><a href="#get_element_by_uuid-299"><span class="linenos">299</span></a><span class="sd">    from daselement_api import api as de</span>
-</span><span id="get_element_by_uuid-300"><a href="#get_element_by_uuid-300"><span class="linenos">300</span></a>
-</span><span id="get_element_by_uuid-301"><a href="#get_element_by_uuid-301"><span class="linenos">301</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;</span>
+</span><span id="get_element_by_uuid-293"><a href="#get_element_by_uuid-293"><span class="linenos">293</span></a><span class="sd">    &gt; - **library_path** (str): **[optional] File path to the library file (.lib)*</span>
+</span><span id="get_element_by_uuid-294"><a href="#get_element_by_uuid-294"><span class="linenos">294</span></a>
+</span><span id="get_element_by_uuid-295"><a href="#get_element_by_uuid-295"><span class="linenos">295</span></a><span class="sd">    **Returns**:</span>
+</span><span id="get_element_by_uuid-296"><a href="#get_element_by_uuid-296"><span class="linenos">296</span></a><span class="sd">    &gt; - Dict</span>
+</span><span id="get_element_by_uuid-297"><a href="#get_element_by_uuid-297"><span class="linenos">297</span></a>
+</span><span id="get_element_by_uuid-298"><a href="#get_element_by_uuid-298"><span class="linenos">298</span></a><span class="sd">    **Example code**:</span>
+</span><span id="get_element_by_uuid-299"><a href="#get_element_by_uuid-299"><span class="linenos">299</span></a><span class="sd">    ```</span>
+</span><span id="get_element_by_uuid-300"><a href="#get_element_by_uuid-300"><span class="linenos">300</span></a><span class="sd">    from daselement_api import api as de</span>
+</span><span id="get_element_by_uuid-301"><a href="#get_element_by_uuid-301"><span class="linenos">301</span></a>
 </span><span id="get_element_by_uuid-302"><a href="#get_element_by_uuid-302"><span class="linenos">302</span></a><span class="sd">    element_uuid = &#39;9947c549c6014a3ca831983275884051&#39;</span>
-</span><span id="get_element_by_uuid-303"><a href="#get_element_by_uuid-303"><span class="linenos">303</span></a>
-</span><span id="get_element_by_uuid-304"><a href="#get_element_by_uuid-304"><span class="linenos">304</span></a><span class="sd">    element = de.get_element_by_uuid(library_path, element_uuid)</span>
-</span><span id="get_element_by_uuid-305"><a href="#get_element_by_uuid-305"><span class="linenos">305</span></a><span class="sd">    print(element)</span>
-</span><span id="get_element_by_uuid-306"><a href="#get_element_by_uuid-306"><span class="linenos">306</span></a><span class="sd">    print(element.get(&#39;path&#39;))</span>
-</span><span id="get_element_by_uuid-307"><a href="#get_element_by_uuid-307"><span class="linenos">307</span></a><span class="sd">    ```</span>
-</span><span id="get_element_by_uuid-308"><a href="#get_element_by_uuid-308"><span class="linenos">308</span></a>
-</span><span id="get_element_by_uuid-309"><a href="#get_element_by_uuid-309"><span class="linenos">309</span></a><span class="sd">    **Example result**:</span>
-</span><span id="get_element_by_uuid-310"><a href="#get_element_by_uuid-310"><span class="linenos">310</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
-</span><span id="get_element_by_uuid-311"><a href="#get_element_by_uuid-311"><span class="linenos">311</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="get_element_by_uuid-312"><a href="#get_element_by_uuid-312"><span class="linenos">312</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="get_element_by_uuid-313"><a href="#get_element_by_uuid-313"><span class="linenos">313</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
-</span><span id="get_element_by_uuid-314"><a href="#get_element_by_uuid-314"><span class="linenos">314</span></a>        <span class="s1">&#39;get-element-by-uuid&#39;</span><span class="p">,</span> <span class="n">element_uuid</span><span class="p">,</span>
-</span><span id="get_element_by_uuid-315"><a href="#get_element_by_uuid-315"><span class="linenos">315</span></a>        <span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">)</span>
-</span><span id="get_element_by_uuid-316"><a href="#get_element_by_uuid-316"><span class="linenos">316</span></a>    <span class="p">]</span>
+</span><span id="get_element_by_uuid-303"><a href="#get_element_by_uuid-303"><span class="linenos">303</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;  # optional</span>
+</span><span id="get_element_by_uuid-304"><a href="#get_element_by_uuid-304"><span class="linenos">304</span></a>
+</span><span id="get_element_by_uuid-305"><a href="#get_element_by_uuid-305"><span class="linenos">305</span></a><span class="sd">    element = de.get_element_by_uuid(element_uuid, library_path=library_path)</span>
+</span><span id="get_element_by_uuid-306"><a href="#get_element_by_uuid-306"><span class="linenos">306</span></a><span class="sd">    print(element)</span>
+</span><span id="get_element_by_uuid-307"><a href="#get_element_by_uuid-307"><span class="linenos">307</span></a><span class="sd">    print(element.get(&#39;path&#39;))</span>
+</span><span id="get_element_by_uuid-308"><a href="#get_element_by_uuid-308"><span class="linenos">308</span></a><span class="sd">    ```</span>
+</span><span id="get_element_by_uuid-309"><a href="#get_element_by_uuid-309"><span class="linenos">309</span></a>
+</span><span id="get_element_by_uuid-310"><a href="#get_element_by_uuid-310"><span class="linenos">310</span></a><span class="sd">    **Example result**:</span>
+</span><span id="get_element_by_uuid-311"><a href="#get_element_by_uuid-311"><span class="linenos">311</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
+</span><span id="get_element_by_uuid-312"><a href="#get_element_by_uuid-312"><span class="linenos">312</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="get_element_by_uuid-313"><a href="#get_element_by_uuid-313"><span class="linenos">313</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="get_element_by_uuid-314"><a href="#get_element_by_uuid-314"><span class="linenos">314</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;get-element-by-uuid&#39;</span><span class="p">,</span> <span class="n">element_uuid</span><span class="p">,]</span>
+</span><span id="get_element_by_uuid-315"><a href="#get_element_by_uuid-315"><span class="linenos">315</span></a>    <span class="k">if</span> <span class="n">library_path</span><span class="p">:</span>
+</span><span id="get_element_by_uuid-316"><a href="#get_element_by_uuid-316"><span class="linenos">316</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">)]</span>
 </span><span id="get_element_by_uuid-317"><a href="#get_element_by_uuid-317"><span class="linenos">317</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>Get element entity based on the <strong>element UUID</strong> from the database for the library.</p>
+            <div class="docstring"><p>Get element entity based on the <strong>element UUID</strong> from the database for the library.
+If no library path is provided, all libraries of the current config will be searched.</p>
 
 <p><strong>Args</strong>:</p>
 
 <blockquote>
   <ul>
-  <li><strong>library_path</strong> (str): <em>File path to the library file (.lib)</em></li>
   <li><strong>element_uuid</strong> (str): <em>Element UUID (unique ID) in the database</em></li>
+  <li><strong>library_path</strong> (str): <em>*[optional] File path to the library file (.lib)</em></li>
   </ul>
 </blockquote>
 
@@ -1299,10 +1300,10 @@ print(element.get('path'))
 
 <pre><code>from daselement_api import api as de
 
-library_path = '/some/path/das-element.lib'
 element_uuid = '9947c549c6014a3ca831983275884051'
+library_path = '/some/path/das-element.lib'  # optional
 
-element = de.get_element_by_uuid(library_path, element_uuid)
+element = de.get_element_by_uuid(element_uuid, library_path=library_path)
 print(element)
 print(element.get('path'))
 </code></pre>
