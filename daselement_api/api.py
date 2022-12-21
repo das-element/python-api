@@ -310,8 +310,8 @@ def get_element_by_uuid(library_path, element_uuid):
     '''
     command = ['--config', config] if config else []
     command += [
-        'get-element-by-uuid',
-        as_quoted_string(library_path), element_uuid
+        'get-element-by-uuid', element_uuid,
+        '--library', as_quoted_string(library_path)
     ]
     return execute_command(command)
 
