@@ -285,10 +285,11 @@ def get_element_by_id(library_path, element_id):
 def get_element_by_uuid(library_path, element_uuid):
     '''
     Get element entity based on the **element UUID** from the database for the library.
+    If no library path is provided, all libraries of the current config will be searched.
 
     **Args**:
-    > - **library_path** (str): *File path to the library file (.lib)*
     > - **element_uuid** (str): *Element UUID (unique ID) in the database*
+    > - **library_path** (str): **[optional] File path to the library file (.lib)*
 
     **Returns**:
     > - Dict
@@ -297,10 +298,10 @@ def get_element_by_uuid(library_path, element_uuid):
     ```
     from daselement_api import api as de
 
-    library_path = '/some/path/das-element.lib'
     element_uuid = '9947c549c6014a3ca831983275884051'
+    library_path = '/some/path/das-element.lib'  # optional
 
-    element = de.get_element_by_uuid(library_path, element_uuid)
+    element = de.get_element_by_uuid(element_uuid, library_path=library_path)
     print(element)
     print(element.get('path'))
     ```
@@ -309,10 +310,9 @@ def get_element_by_uuid(library_path, element_uuid):
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","popularity": "None","rating": "None","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
     '''
     command = ['--config', config] if config else []
-    command += [
-        'get-element-by-uuid', element_uuid,
-        '--library', as_quoted_string(library_path)
-    ]
+    command += ['get-element-by-uuid', element_uuid,]
+    if library_path:
+        command += ['--library', as_quoted_string(library_path)]
     return execute_command(command)
 
 
