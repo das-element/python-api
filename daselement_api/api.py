@@ -491,7 +491,7 @@ def predict(path, model=None, top=2, filmstrip_frames=36):
 
 def get_paths_from_disk(path, as_sequence=True):
     '''
-    Recursivly searches for files and sequences in a given directory.
+    Recursivly searches for files and sequences in a given directory. Since version 1.2.5
 
     The give path can be a file or a directory.  
     If a directory is provided, all sub-directories will be searched for files and sequences.
