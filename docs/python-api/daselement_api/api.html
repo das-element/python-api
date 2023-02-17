@@ -71,6 +71,9 @@
             <li>
                     <a class="function" href="#predict">predict</a>
             </li>
+            <li>
+                    <a class="function" href="#get_paths_from_disk">get_paths_from_disk</a>
+            </li>
     </ul>
 
 
@@ -608,6 +611,42 @@ Either defined in the <code>~/.das-element/setup.ini</code> file or by the envir
 </span><span id="L-487"><a href="#L-487"><span class="linenos">487</span></a>
 </span><span id="L-488"><a href="#L-488"><span class="linenos">488</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span>
 </span><span id="L-489"><a href="#L-489"><span class="linenos">489</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</span><span id="L-490"><a href="#L-490"><span class="linenos">490</span></a>
+</span><span id="L-491"><a href="#L-491"><span class="linenos">491</span></a>
+</span><span id="L-492"><a href="#L-492"><span class="linenos">492</span></a><span class="k">def</span> <span class="nf">get_paths_from_disk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">as_sequence</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span><span id="L-493"><a href="#L-493"><span class="linenos">493</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="L-494"><a href="#L-494"><span class="linenos">494</span></a><span class="sd">    Recursivly searches for files and sequences in a given directory.</span>
+</span><span id="L-495"><a href="#L-495"><span class="linenos">495</span></a>
+</span><span id="L-496"><a href="#L-496"><span class="linenos">496</span></a><span class="sd">    The give path can be a file or a directory.  </span>
+</span><span id="L-497"><a href="#L-497"><span class="linenos">497</span></a><span class="sd">    If a directory is provided, all sub-directories will be searched for files and sequences.</span>
+</span><span id="L-498"><a href="#L-498"><span class="linenos">498</span></a>
+</span><span id="L-499"><a href="#L-499"><span class="linenos">499</span></a>
+</span><span id="L-500"><a href="#L-500"><span class="linenos">500</span></a><span class="sd">    **Args**:</span>
+</span><span id="L-501"><a href="#L-501"><span class="linenos">501</span></a>
+</span><span id="L-502"><a href="#L-502"><span class="linenos">502</span></a><span class="sd">    &gt; - **as_sequence / as_single_files** (bool): [optional] defines if files with a sequential naming should be detected as a file sequence or individual files**</span>
+</span><span id="L-503"><a href="#L-503"><span class="linenos">503</span></a>
+</span><span id="L-504"><a href="#L-504"><span class="linenos">504</span></a>
+</span><span id="L-505"><a href="#L-505"><span class="linenos">505</span></a><span class="sd">    **Returns**:</span>
+</span><span id="L-506"><a href="#L-506"><span class="linenos">506</span></a><span class="sd">    &gt; - List[str]: *List of file paths found in the give directory*</span>
+</span><span id="L-507"><a href="#L-507"><span class="linenos">507</span></a>
+</span><span id="L-508"><a href="#L-508"><span class="linenos">508</span></a>
+</span><span id="L-509"><a href="#L-509"><span class="linenos">509</span></a><span class="sd">    **Example result**:</span>
+</span><span id="L-510"><a href="#L-510"><span class="linenos">510</span></a><span class="sd">    `[&quot;/some/file/path.1001-1099#.exr&quot;, &quot;/other/path.mov&quot;]`</span>
+</span><span id="L-511"><a href="#L-511"><span class="linenos">511</span></a>
+</span><span id="L-512"><a href="#L-512"><span class="linenos">512</span></a>
+</span><span id="L-513"><a href="#L-513"><span class="linenos">513</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="L-514"><a href="#L-514"><span class="linenos">514</span></a><span class="sd">    `das-element-cli get-paths-from-disk --as_sequence /some/file/path`</span>
+</span><span id="L-515"><a href="#L-515"><span class="linenos">515</span></a>
+</span><span id="L-516"><a href="#L-516"><span class="linenos">516</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-517"><a href="#L-517"><span class="linenos">517</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get-paths-from-disk&#39;</span><span class="p">]</span>
+</span><span id="L-518"><a href="#L-518"><span class="linenos">518</span></a>
+</span><span id="L-519"><a href="#L-519"><span class="linenos">519</span></a>    <span class="k">if</span> <span class="n">as_sequence</span><span class="p">:</span>
+</span><span id="L-520"><a href="#L-520"><span class="linenos">520</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--as_sequence&#39;</span><span class="p">]</span>
+</span><span id="L-521"><a href="#L-521"><span class="linenos">521</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="L-522"><a href="#L-522"><span class="linenos">522</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--as_single_files&#39;</span><span class="p">]</span>
+</span><span id="L-523"><a href="#L-523"><span class="linenos">523</span></a>
+</span><span id="L-524"><a href="#L-524"><span class="linenos">524</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span>
+</span><span id="L-525"><a href="#L-525"><span class="linenos">525</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1704,6 +1743,84 @@ If a directory is provided, all sub-directories will be searched for files and s
 
 <p><strong>Example command line command</strong>:
 <code>das-element-cli predict --top=2 /some/file/path</code></p>
+</div>
+
+
+                </section>
+                <section id="get_paths_from_disk">
+                            <input id="get_paths_from_disk-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_paths_from_disk</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">as_sequence</span><span class="o">=</span><span class="kc">True</span></span>)</span>
+
+                <label class="view-source-button" for="get_paths_from_disk-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#get_paths_from_disk"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_paths_from_disk-493"><a href="#get_paths_from_disk-493"><span class="linenos">493</span></a><span class="k">def</span> <span class="nf">get_paths_from_disk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">as_sequence</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span><span id="get_paths_from_disk-494"><a href="#get_paths_from_disk-494"><span class="linenos">494</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="get_paths_from_disk-495"><a href="#get_paths_from_disk-495"><span class="linenos">495</span></a><span class="sd">    Recursivly searches for files and sequences in a given directory.</span>
+</span><span id="get_paths_from_disk-496"><a href="#get_paths_from_disk-496"><span class="linenos">496</span></a>
+</span><span id="get_paths_from_disk-497"><a href="#get_paths_from_disk-497"><span class="linenos">497</span></a><span class="sd">    The give path can be a file or a directory.  </span>
+</span><span id="get_paths_from_disk-498"><a href="#get_paths_from_disk-498"><span class="linenos">498</span></a><span class="sd">    If a directory is provided, all sub-directories will be searched for files and sequences.</span>
+</span><span id="get_paths_from_disk-499"><a href="#get_paths_from_disk-499"><span class="linenos">499</span></a>
+</span><span id="get_paths_from_disk-500"><a href="#get_paths_from_disk-500"><span class="linenos">500</span></a>
+</span><span id="get_paths_from_disk-501"><a href="#get_paths_from_disk-501"><span class="linenos">501</span></a><span class="sd">    **Args**:</span>
+</span><span id="get_paths_from_disk-502"><a href="#get_paths_from_disk-502"><span class="linenos">502</span></a>
+</span><span id="get_paths_from_disk-503"><a href="#get_paths_from_disk-503"><span class="linenos">503</span></a><span class="sd">    &gt; - **as_sequence / as_single_files** (bool): [optional] defines if files with a sequential naming should be detected as a file sequence or individual files**</span>
+</span><span id="get_paths_from_disk-504"><a href="#get_paths_from_disk-504"><span class="linenos">504</span></a>
+</span><span id="get_paths_from_disk-505"><a href="#get_paths_from_disk-505"><span class="linenos">505</span></a>
+</span><span id="get_paths_from_disk-506"><a href="#get_paths_from_disk-506"><span class="linenos">506</span></a><span class="sd">    **Returns**:</span>
+</span><span id="get_paths_from_disk-507"><a href="#get_paths_from_disk-507"><span class="linenos">507</span></a><span class="sd">    &gt; - List[str]: *List of file paths found in the give directory*</span>
+</span><span id="get_paths_from_disk-508"><a href="#get_paths_from_disk-508"><span class="linenos">508</span></a>
+</span><span id="get_paths_from_disk-509"><a href="#get_paths_from_disk-509"><span class="linenos">509</span></a>
+</span><span id="get_paths_from_disk-510"><a href="#get_paths_from_disk-510"><span class="linenos">510</span></a><span class="sd">    **Example result**:</span>
+</span><span id="get_paths_from_disk-511"><a href="#get_paths_from_disk-511"><span class="linenos">511</span></a><span class="sd">    `[&quot;/some/file/path.1001-1099#.exr&quot;, &quot;/other/path.mov&quot;]`</span>
+</span><span id="get_paths_from_disk-512"><a href="#get_paths_from_disk-512"><span class="linenos">512</span></a>
+</span><span id="get_paths_from_disk-513"><a href="#get_paths_from_disk-513"><span class="linenos">513</span></a>
+</span><span id="get_paths_from_disk-514"><a href="#get_paths_from_disk-514"><span class="linenos">514</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="get_paths_from_disk-515"><a href="#get_paths_from_disk-515"><span class="linenos">515</span></a><span class="sd">    `das-element-cli get-paths-from-disk --as_sequence /some/file/path`</span>
+</span><span id="get_paths_from_disk-516"><a href="#get_paths_from_disk-516"><span class="linenos">516</span></a>
+</span><span id="get_paths_from_disk-517"><a href="#get_paths_from_disk-517"><span class="linenos">517</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="get_paths_from_disk-518"><a href="#get_paths_from_disk-518"><span class="linenos">518</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get-paths-from-disk&#39;</span><span class="p">]</span>
+</span><span id="get_paths_from_disk-519"><a href="#get_paths_from_disk-519"><span class="linenos">519</span></a>
+</span><span id="get_paths_from_disk-520"><a href="#get_paths_from_disk-520"><span class="linenos">520</span></a>    <span class="k">if</span> <span class="n">as_sequence</span><span class="p">:</span>
+</span><span id="get_paths_from_disk-521"><a href="#get_paths_from_disk-521"><span class="linenos">521</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--as_sequence&#39;</span><span class="p">]</span>
+</span><span id="get_paths_from_disk-522"><a href="#get_paths_from_disk-522"><span class="linenos">522</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="get_paths_from_disk-523"><a href="#get_paths_from_disk-523"><span class="linenos">523</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--as_single_files&#39;</span><span class="p">]</span>
+</span><span id="get_paths_from_disk-524"><a href="#get_paths_from_disk-524"><span class="linenos">524</span></a>
+</span><span id="get_paths_from_disk-525"><a href="#get_paths_from_disk-525"><span class="linenos">525</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span>
+</span><span id="get_paths_from_disk-526"><a href="#get_paths_from_disk-526"><span class="linenos">526</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Recursivly searches for files and sequences in a given directory.</p>
+
+<p>The give path can be a file or a directory. <br />
+If a directory is provided, all sub-directories will be searched for files and sequences.</p>
+
+<p><strong>Args</strong>:</p>
+
+<blockquote>
+  <ul>
+  <li><strong>as_sequence / as_single_files</strong> (bool): [optional] defines if files with a sequential naming should be detected as a file sequence or individual files**</li>
+  </ul>
+</blockquote>
+
+<p><strong>Returns</strong>:</p>
+
+<blockquote>
+  <ul>
+  <li>List[str]: <em>List of file paths found in the give directory</em></li>
+  </ul>
+</blockquote>
+
+<p><strong>Example result</strong>:
+<code>["/some/file/path.1001-1099#.exr", "/other/path.mov"]</code></p>
+
+<p><strong>Example command line command</strong>:
+<code>das-element-cli get-paths-from-disk --as_sequence /some/file/path</code></p>
 </div>
 
 
