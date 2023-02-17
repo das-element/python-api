@@ -487,3 +487,39 @@ def predict(path, model=None, top=2, filmstrip_frames=36):
 
     command += [path]
     return execute_command(command)
+
+
+def get_paths_from_disk(path, as_sequence=True):
+    '''
+    Recursivly searches for files and sequences in a given directory.
+
+    The give path can be a file or a directory.  
+    If a directory is provided, all sub-directories will be searched for files and sequences.
+
+
+    **Args**:
+
+    > - **as_sequence / as_single_files** (bool): [optional] defines if files with a sequential naming should be detected as a file sequence or individual files**
+
+
+    **Returns**:
+    > - List[str]: *List of file paths found in the give directory*
+
+
+    **Example result**:
+    `["/some/file/path.1001-1099#.exr", "/other/path.mov"]`
+
+
+    **Example command line command**:
+    `das-element-cli get-paths-from-disk --as_sequence /some/file/path`
+
+    '''
+    command = ['get-paths-from-disk']
+
+    if as_sequence:
+        command += ['--as_sequence']
+    else:
+        command += ['--as_single_files']
+
+    command += [path]
+    return execute_command(command)
