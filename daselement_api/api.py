@@ -4,7 +4,7 @@
 #    / /_/ / /_/ (__  )  /  __/ /  __/ / / / / /  __/ / / / /_
 #    \__,_/\__,_/____/   \___/_/\___/_/ /_/ /_/\___/_/ /_/\__/
 #
-#                  Copyright (c) 2022 das element
+#                  Copyright (c) 2023 das element
 '''
 ## Documentation for the API
 
