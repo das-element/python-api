@@ -413,6 +413,53 @@ def update(library_path, entity_type, entity_id, data):
     return execute_command(command)
 
 
+def delete_element(element_uuid,
+                   delete_from_database=False,
+                   delete_from_disk=False,
+                   library_path=None):
+    '''
+    Deletes an element entity based on the **element UUID**.
+    The options are to delete the element data from the database, delete the element files on disk or delete from both the database and files on disk.
+
+    **Args**:
+    > - **element_uuid** (str): *Element UUID (unique ID) in the database*
+    > - **delete_from_database** (bool): *[optional] delete data from the database*
+    > - **delete_from_disk** (bool): *[optional] delete all element files from disk*
+    > - **library_path** (str): *[optional] File path to the library file (.lib)*
+
+    **Returns**:
+    > - bool
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    element_uuid = '9947c549c6014a3ca831983275884051'
+    delete_from_database = True
+    delete_from_disk = True
+    library_path = '/some/path/das-element.lib'  # optional
+
+    de.delete_element(element_uuid, delete_from_database, delete_from_disk, library_path=library_path)
+
+    ```
+
+    **Example result**:
+    `true`
+    '''
+    command = ['--config', config] if config else []
+    command += [
+        'delete-element',
+        element_uuid,
+    ]
+    if delete_from_database:
+        command += ['--database']
+    if delete_from_disk:
+        command += ['--disk']
+    if library_path:
+        command += ['--library', as_quoted_string(library_path)]
+    return execute_command(command)
+
+
 def ingest(library_path, mapping, path, category, tags=[]):
     '''
     Ingest a new element to the library
