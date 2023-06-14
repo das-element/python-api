@@ -17,5 +17,8 @@ print(entity)
 
 # get element by element unique ID (uuid)
 element_uuid = '33f685064c1740b1986932cf8f3cf1f4'
-entity = de.get_element_by_uuid(library_path, element_uuid)
+entity = de.get_element_by_uuid(element_uuid, library_path)
+print(entity)
+# without the library path each linked library in the config file will searched
+entity = de.get_element_by_uuid(element_uuid)
 print(entity)

@@ -291,7 +291,7 @@ def get_element_by_id(library_path, element_id):
     return execute_command(command)
 
 
-def get_element_by_uuid(library_path, element_uuid):
+def get_element_by_uuid(element_uuid, library_path=None):
     '''
     Get element entity based on the **element UUID** from the database for the library.
     If no library path is provided, all libraries of the current config will be searched.
@@ -310,7 +310,11 @@ def get_element_by_uuid(library_path, element_uuid):
     element_uuid = '9947c549c6014a3ca831983275884051'
     library_path = '/some/path/das-element.lib'  # optional
 
-    element = de.get_element_by_uuid(library_path, element_uuid)
+    element = de.get_element_by_uuid(element_uuid, library_path=library_path)
+
+    # without the library path each linked library in the config file will searched
+    element = de.get_element_by_uuid(element_uuid)
+
     print(element)
     print(element.get('path'))
     ```
