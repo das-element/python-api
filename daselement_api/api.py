@@ -297,7 +297,7 @@ def get_element_by_uuid(library_path, element_uuid):
     If no library path is provided, all libraries of the current config will be searched.
 
     **Args**:
-    > - **library_path** (str): **[optional] File path to the library file (.lib)*
+    > - **library_path** (str): *[optional] File path to the library file (.lib)*
     > - **element_uuid** (str): *Element UUID (unique ID) in the database*
 
     **Returns**:
@@ -508,7 +508,7 @@ def get_paths_from_disk(path, as_sequence=True):
 
     **Args**:
 
-    > - **as_sequence / as_single_files** (bool): [optional] defines if files with a sequential naming should be detected as a file sequence or individual files**
+    > - **as_sequence / as_single_files** (bool): [optional] defines if files with a sequential naming should be detected as a file sequence or individual files
 
 
     **Returns**:
