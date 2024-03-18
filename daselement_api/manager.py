@@ -16,9 +16,13 @@ import sys
 
 # This feature is available since version 1.1.6
 
-EXECUTABLE = '/path/to/das-element-cli_1.1.6_lin'
-# EXECUTABLE = '/path/to/das-element-cli_1.1.6_mac'
-# EXECUTABLE = '/path/to/das-element-cli_1.1.6_win.exe'
+EXECUTABLE_CLI = '/path/to/das-element-cli_2.0.3_lin'
+# EXECUTABLE_CLI = '/path/to/das-element-cli_2.0.3_mac'
+# EXECUTABLE_CLI = '/path/to/das-element-cli_2.0.3_win.exe'
+
+EXECUTABLE_CLI_FULL = '/path/to/das-element-cli-full_2.0.3_lin'
+# EXECUTABLE_CLI_FULL = '/path/to/das-element-cli-full_2.0.3_mac'
+# EXECUTABLE_CLI_FULL = '/path/to/das-element-cli-full_2.0.3_win.exe'
 
 
 def as_quoted_string(value):
@@ -30,8 +34,9 @@ def as_quoted_dict(value):
     return json.dumps(value)
 
 
-def execute_command(arguments):
-    command = [EXECUTABLE] + [str(argument) for argument in arguments]
+def execute_command(arguments, cli_full=False):
+    executable = EXECUTABLE_CLI_FULL if cli_full else EXECUTABLE_CLI
+    command = [executable] + [str(argument) for argument in arguments]
 
     if sys.version_info <= (3, 4):
         process = subprocess.Popen(command,

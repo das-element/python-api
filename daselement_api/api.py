@@ -457,7 +457,7 @@ def delete_element(element_uuid,
         command += ['--disk']
     if library_path:
         command += ['--library', as_quoted_string(library_path)]
-    return execute_command(command)
+    return execute_command(command, cli_full=True)
 
 
 def ingest(library_path, mapping, path, category, tags=[]):
@@ -510,7 +510,7 @@ def ingest(library_path, mapping, path, category, tags=[]):
         as_quoted_string(category), '--tags',
         as_quoted_string(','.join(tags))
     ]
-    return execute_command(command)
+    return execute_command(command, cli_full=True)
 
 
 def predict(path, model=None, top=2, filmstrip_frames=36):
@@ -546,7 +546,7 @@ def predict(path, model=None, top=2, filmstrip_frames=36):
         command += ['--model', as_quoted_string(model)]
 
     command += [path]
-    return execute_command(command)
+    return execute_command(command, cli_full=True)
 
 
 def get_paths_from_disk(path, as_sequence=True):
@@ -582,4 +582,4 @@ def get_paths_from_disk(path, as_sequence=True):
         command += ['--as_single_files']
 
     command += [path]
-    return execute_command(command)
+    return execute_command(command, cli_full=True)
