@@ -4,7 +4,7 @@
 #    / /_/ / /_/ (__  )  /  __/ /  __/ / / / / /  __/ / / / /_
 #    \__,_/\__,_/____/   \___/_/\___/_/ /_/ /_/\___/_/ /_/\__/
 #
-#                  Copyright (c) 2023 das element
+#                  Copyright (c) 2024 das element
 '''
 Documentation for the API for das element
 Make sure to link the correct executable 'das-element-cli' in the manager.py
@@ -25,8 +25,10 @@ def as_quoted_string(value):
     # wraps string into double quotes string
     return '"{}"'.format(str(value).strip(' "'))
 
+
 def as_quoted_dict(value):
     return json.dumps(value)
+
 
 def execute_command(arguments):
     command = [EXECUTABLE] + [str(argument) for argument in arguments]
