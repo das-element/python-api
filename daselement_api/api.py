@@ -386,7 +386,8 @@ def update(library_path, entity_type, entity_id, data):
     entity_type = 'Element'
     entity_id = 23
     new_data = {'category_id': 'Q327954',  # or: 'category': 'torch',
-                'tags': ['flame', 'fire', 'torch', 'something custom tag']}
+                'tags': ['flame', 'fire', 'torch', 'something custom tag'],
+                'metadata': {'foo': 'bar'}}
 
     entity = de.update(library_path, entity_type, entity_id, new_data)
     print(entity)
