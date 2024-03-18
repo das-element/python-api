@@ -583,3 +583,33 @@ def get_paths_from_disk(path, as_sequence=True):
 
     command += [path]
     return execute_command(command, cli_full=True)
+
+
+def get_meaningful_frame(path):
+    '''
+    Validate meaningful thumbnail frame number for movie file or image sequence
+
+
+    **Args**:
+
+    > - **path** (str): *file path to movie file or image sequence - single frame of a file sequence can be provided*
+
+
+    **Returns**:
+    > - int: *Returns frame number of meaningful thumbnail frame*
+
+
+    **Example result**:
+    `1042`
+
+
+    **Example command line command**:
+    `das-element-cli get-meaningful-frame /folder/some_file.mov`
+    `das-element-cli get-meaningful-frame /folder/frame_sequence.1001.exr`
+    `das-element-cli get-meaningful-frame /folder/frame_sequence.####.exr`
+    `das-element-cli get-meaningful-frame /folder/frame_sequence.%04d.exr`
+
+    '''
+    command = ['get-meaningful-frame', path]
+
+    return execute_command(command, cli_full=True)
