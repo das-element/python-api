@@ -514,7 +514,7 @@ def ingest(library_path, mapping, path, category, tags=[]):
     return execute_command(command, cli_full=True)
 
 
-def predict(path, model=None, top=2, filmstrip_frames=36):
+def predict(path, model, top=2, filmstrip_frames=36):
     '''
     Predict the category for a give file path.
 
@@ -524,7 +524,7 @@ def predict(path, model=None, top=2, filmstrip_frames=36):
 
     **Args**:
 
-    > - **model** (str): [optional] *Define a custom model file path (.wit)*
+    > - **model** (str): *Define a custom model file path (.wit)*
     > - **filmstrip_frames** (int): [optional] *Number of frames to validated for a movie file or sequence. The higher the number, the better the result might be, but it also takes longer*
     > - **top** (int): [optional] *Return the top X predictions*
 
@@ -542,10 +542,9 @@ def predict(path, model=None, top=2, filmstrip_frames=36):
 
     '''
     command = ['predict', '--top', top, '--filmstrip_frames', filmstrip_frames]
-
-    if model:
-        command += ['--model', as_quoted_string(model)]
-
+    command += ['--model', as_quoted_string(model)]
+    command += ['--filmstrip_frames', filmstrip_frames]
+    command += ['--top', top]
     command += [path]
     return execute_command(command, cli_full=True)
 
