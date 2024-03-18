@@ -613,3 +613,35 @@ def get_meaningful_frame(path):
     command = ['get-meaningful-frame', path]
 
     return execute_command(command, cli_full=True)
+
+
+def render_element_proxies(element_uuid, mapping, library_path=None):
+    '''
+    Render the proxy files for an element based on a template mapping
+
+    If the library is provided it will directly try to get to element for that library.
+    Otherwise it tries to get the entity each library that's defined in the config.
+
+    **Args**:
+    > - **element_uuid** (str): *Element UUID (unique ID) in the database*
+    > - **mapping** (str): *name of the template mapping that gets rendered*
+    > - **library_path** (str): *[optional] File path to the library file (.lib)*
+
+    **Returns**:
+    > - bool: *Result of render jobs*
+
+
+    **Example result**:
+    `true`
+
+
+    **Example command line command**:
+    `das-element-cli render-element-proxies 9947c549c6014a3ca831983275884051 "render proxies" --library /some/path/das-element.lib`
+
+    '''
+    command = ['render-element-proxies', element_uuid, mapping]
+
+    if library_path:
+        command += ['--library', library_path]
+
+    return execute_command(command, cli_full=True)
