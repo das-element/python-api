@@ -545,7 +545,7 @@ def predict(path, model, top=2, filmstrip_frames=36):
     command += ['--model', as_quoted_string(model)]
     command += ['--filmstrip_frames', filmstrip_frames]
     command += ['--top', top]
-    command += [path]
+    command += [as_quoted_string(path)]
     return execute_command(command, cli_full=True)
 
 
