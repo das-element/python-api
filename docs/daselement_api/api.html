@@ -77,6 +77,12 @@
             <li>
                     <a class="function" href="#get_paths_from_disk">get_paths_from_disk</a>
             </li>
+            <li>
+                    <a class="function" href="#get_meaningful_frame">get_meaningful_frame</a>
+            </li>
+            <li>
+                    <a class="function" href="#render_element_proxies">render_element_proxies</a>
+            </li>
     </ul>
 
 
@@ -131,7 +137,7 @@ Either defined in the <code>~/.das-element/setup.ini</code> file or by the envir
 </span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a><span class="c1">#    / /_/ / /_/ (__  )  /  __/ /  __/ / / / / /  __/ / / / /_</span>
 </span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a><span class="c1">#    \__,_/\__,_/____/   \___/_/\___/_/ /_/ /_/\___/_/ /_/\__/</span>
 </span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="c1">#</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="c1">#                  Copyright (c) 2023 das element</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="c1">#                  Copyright (c) 2024 das element</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="sd">&#39;&#39;&#39;</span>
 </span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a><span class="sd">## Documentation for the API</span>
 </span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>
@@ -513,167 +519,167 @@ Either defined in the <code>~/.das-element/setup.ini</code> file or by the envir
 </span><span id="L-386"><a href="#L-386"><span class="linenos">386</span></a><span class="sd">    entity_type = &#39;Element&#39;</span>
 </span><span id="L-387"><a href="#L-387"><span class="linenos">387</span></a><span class="sd">    entity_id = 23</span>
 </span><span id="L-388"><a href="#L-388"><span class="linenos">388</span></a><span class="sd">    new_data = {&#39;category_id&#39;: &#39;Q327954&#39;,  # or: &#39;category&#39;: &#39;torch&#39;,</span>
-</span><span id="L-389"><a href="#L-389"><span class="linenos">389</span></a><span class="sd">                &#39;tags&#39;: [&#39;flame&#39;, &#39;fire&#39;, &#39;torch&#39;, &#39;something custom tag&#39;]}</span>
-</span><span id="L-390"><a href="#L-390"><span class="linenos">390</span></a>
-</span><span id="L-391"><a href="#L-391"><span class="linenos">391</span></a><span class="sd">    entity = de.update(library_path, entity_type, entity_id, new_data)</span>
-</span><span id="L-392"><a href="#L-392"><span class="linenos">392</span></a><span class="sd">    print(entity)</span>
-</span><span id="L-393"><a href="#L-393"><span class="linenos">393</span></a><span class="sd">    print(entity.get(&#39;rating&#39;))</span>
-</span><span id="L-394"><a href="#L-394"><span class="linenos">394</span></a><span class="sd">    ```</span>
-</span><span id="L-395"><a href="#L-395"><span class="linenos">395</span></a>
-</span><span id="L-396"><a href="#L-396"><span class="linenos">396</span></a><span class="sd">    **Example result**:</span>
-</span><span id="L-397"><a href="#L-397"><span class="linenos">397</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}, {&quot;id&quot;: &quot;something&quot;,&quot;name&quot;: &quot;something custom tag&quot;, &quot;type&quot;: &quot;custom&quot;, &quot;elements_count&quot;: 1}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
-</span><span id="L-398"><a href="#L-398"><span class="linenos">398</span></a>
-</span><span id="L-399"><a href="#L-399"><span class="linenos">399</span></a><span class="sd">    **Example command line command**:  </span>
-</span><span id="L-400"><a href="#L-400"><span class="linenos">400</span></a><span class="sd">    ##### Windows  </span>
-</span><span id="L-401"><a href="#L-401"><span class="linenos">401</span></a><span class="sd">    `das-element-cli.exe update C:\\mnt\\library\\das-element.lib element 1 &quot;{\\\&quot;rating\\\&quot;: 3}&quot;`  </span>
-</span><span id="L-402"><a href="#L-402"><span class="linenos">402</span></a><span class="sd">    ##### Linux/MacOS  </span>
-</span><span id="L-403"><a href="#L-403"><span class="linenos">403</span></a><span class="sd">    `das-element-cli update /mnt/library/das-element.lib element 1 &#39;{\&quot;rating\&quot;: 3}&#39;`</span>
-</span><span id="L-404"><a href="#L-404"><span class="linenos">404</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="L-405"><a href="#L-405"><span class="linenos">405</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="L-406"><a href="#L-406"><span class="linenos">406</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
-</span><span id="L-407"><a href="#L-407"><span class="linenos">407</span></a>        <span class="s1">&#39;update&#39;</span><span class="p">,</span>
-</span><span id="L-408"><a href="#L-408"><span class="linenos">408</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">),</span>
-</span><span id="L-409"><a href="#L-409"><span class="linenos">409</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">entity_type</span><span class="p">),</span>
-</span><span id="L-410"><a href="#L-410"><span class="linenos">410</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">entity_id</span><span class="p">),</span>
-</span><span id="L-411"><a href="#L-411"><span class="linenos">411</span></a>        <span class="n">as_quoted_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span><span id="L-412"><a href="#L-412"><span class="linenos">412</span></a>    <span class="p">]</span>
-</span><span id="L-413"><a href="#L-413"><span class="linenos">413</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-</span><span id="L-414"><a href="#L-414"><span class="linenos">414</span></a>
+</span><span id="L-389"><a href="#L-389"><span class="linenos">389</span></a><span class="sd">                &#39;tags&#39;: [&#39;flame&#39;, &#39;fire&#39;, &#39;torch&#39;, &#39;something custom tag&#39;],</span>
+</span><span id="L-390"><a href="#L-390"><span class="linenos">390</span></a><span class="sd">                &#39;metadata&#39;: {&#39;foo&#39;: &#39;bar&#39;}}</span>
+</span><span id="L-391"><a href="#L-391"><span class="linenos">391</span></a>
+</span><span id="L-392"><a href="#L-392"><span class="linenos">392</span></a><span class="sd">    entity = de.update(library_path, entity_type, entity_id, new_data)</span>
+</span><span id="L-393"><a href="#L-393"><span class="linenos">393</span></a><span class="sd">    print(entity)</span>
+</span><span id="L-394"><a href="#L-394"><span class="linenos">394</span></a><span class="sd">    print(entity.get(&#39;rating&#39;))</span>
+</span><span id="L-395"><a href="#L-395"><span class="linenos">395</span></a><span class="sd">    ```</span>
+</span><span id="L-396"><a href="#L-396"><span class="linenos">396</span></a>
+</span><span id="L-397"><a href="#L-397"><span class="linenos">397</span></a><span class="sd">    **Example result**:</span>
+</span><span id="L-398"><a href="#L-398"><span class="linenos">398</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}, {&quot;id&quot;: &quot;something&quot;,&quot;name&quot;: &quot;something custom tag&quot;, &quot;type&quot;: &quot;custom&quot;, &quot;elements_count&quot;: 1}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
+</span><span id="L-399"><a href="#L-399"><span class="linenos">399</span></a>
+</span><span id="L-400"><a href="#L-400"><span class="linenos">400</span></a><span class="sd">    **Example command line command**:  </span>
+</span><span id="L-401"><a href="#L-401"><span class="linenos">401</span></a><span class="sd">    ##### Windows  </span>
+</span><span id="L-402"><a href="#L-402"><span class="linenos">402</span></a><span class="sd">    `das-element-cli.exe update C:\\mnt\\library\\das-element.lib element 1 &quot;{\\\&quot;rating\\\&quot;: 3}&quot;`  </span>
+</span><span id="L-403"><a href="#L-403"><span class="linenos">403</span></a><span class="sd">    ##### Linux/MacOS  </span>
+</span><span id="L-404"><a href="#L-404"><span class="linenos">404</span></a><span class="sd">    `das-element-cli update /mnt/library/das-element.lib element 1 &#39;{\&quot;rating\&quot;: 3}&#39;`</span>
+</span><span id="L-405"><a href="#L-405"><span class="linenos">405</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-406"><a href="#L-406"><span class="linenos">406</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="L-407"><a href="#L-407"><span class="linenos">407</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
+</span><span id="L-408"><a href="#L-408"><span class="linenos">408</span></a>        <span class="s1">&#39;update&#39;</span><span class="p">,</span>
+</span><span id="L-409"><a href="#L-409"><span class="linenos">409</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">),</span>
+</span><span id="L-410"><a href="#L-410"><span class="linenos">410</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">entity_type</span><span class="p">),</span>
+</span><span id="L-411"><a href="#L-411"><span class="linenos">411</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">entity_id</span><span class="p">),</span>
+</span><span id="L-412"><a href="#L-412"><span class="linenos">412</span></a>        <span class="n">as_quoted_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span id="L-413"><a href="#L-413"><span class="linenos">413</span></a>    <span class="p">]</span>
+</span><span id="L-414"><a href="#L-414"><span class="linenos">414</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 </span><span id="L-415"><a href="#L-415"><span class="linenos">415</span></a>
-</span><span id="L-416"><a href="#L-416"><span class="linenos">416</span></a><span class="k">def</span> <span class="nf">delete_element</span><span class="p">(</span><span class="n">element_uuid</span><span class="p">,</span>
-</span><span id="L-417"><a href="#L-417"><span class="linenos">417</span></a>                   <span class="n">delete_from_database</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="L-418"><a href="#L-418"><span class="linenos">418</span></a>                   <span class="n">delete_from_disk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="L-419"><a href="#L-419"><span class="linenos">419</span></a>                   <span class="n">library_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="L-420"><a href="#L-420"><span class="linenos">420</span></a>    <span class="sd">&#39;&#39;&#39;</span>
-</span><span id="L-421"><a href="#L-421"><span class="linenos">421</span></a><span class="sd">    Deletes an element entity based on the **element UUID**.</span>
-</span><span id="L-422"><a href="#L-422"><span class="linenos">422</span></a><span class="sd">    The options are to delete the element data from the database, delete the element files on disk or delete from both the database and files on disk.</span>
-</span><span id="L-423"><a href="#L-423"><span class="linenos">423</span></a>
-</span><span id="L-424"><a href="#L-424"><span class="linenos">424</span></a><span class="sd">    **Args**:</span>
-</span><span id="L-425"><a href="#L-425"><span class="linenos">425</span></a><span class="sd">    &gt; - **element_uuid** (str): *Element UUID (unique ID) in the database*</span>
-</span><span id="L-426"><a href="#L-426"><span class="linenos">426</span></a><span class="sd">    &gt; - **delete_from_database** (bool): *[optional] delete data from the database*</span>
-</span><span id="L-427"><a href="#L-427"><span class="linenos">427</span></a><span class="sd">    &gt; - **delete_from_disk** (bool): *[optional] delete all element files from disk*</span>
-</span><span id="L-428"><a href="#L-428"><span class="linenos">428</span></a><span class="sd">    &gt; - **library_path** (str): *[optional] File path to the library file (.lib)*</span>
-</span><span id="L-429"><a href="#L-429"><span class="linenos">429</span></a>
-</span><span id="L-430"><a href="#L-430"><span class="linenos">430</span></a><span class="sd">    **Returns**:</span>
-</span><span id="L-431"><a href="#L-431"><span class="linenos">431</span></a><span class="sd">    &gt; - bool</span>
-</span><span id="L-432"><a href="#L-432"><span class="linenos">432</span></a>
-</span><span id="L-433"><a href="#L-433"><span class="linenos">433</span></a><span class="sd">    **Example code**:</span>
-</span><span id="L-434"><a href="#L-434"><span class="linenos">434</span></a><span class="sd">    ```</span>
-</span><span id="L-435"><a href="#L-435"><span class="linenos">435</span></a><span class="sd">    from daselement_api import api as de</span>
-</span><span id="L-436"><a href="#L-436"><span class="linenos">436</span></a>
-</span><span id="L-437"><a href="#L-437"><span class="linenos">437</span></a><span class="sd">    element_uuid = &#39;9947c549c6014a3ca831983275884051&#39;</span>
-</span><span id="L-438"><a href="#L-438"><span class="linenos">438</span></a><span class="sd">    delete_from_database = True</span>
-</span><span id="L-439"><a href="#L-439"><span class="linenos">439</span></a><span class="sd">    delete_from_disk = True</span>
-</span><span id="L-440"><a href="#L-440"><span class="linenos">440</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;  # optional</span>
-</span><span id="L-441"><a href="#L-441"><span class="linenos">441</span></a>
-</span><span id="L-442"><a href="#L-442"><span class="linenos">442</span></a><span class="sd">    de.delete_element(element_uuid, delete_from_database, delete_from_disk, library_path=library_path)</span>
-</span><span id="L-443"><a href="#L-443"><span class="linenos">443</span></a>
-</span><span id="L-444"><a href="#L-444"><span class="linenos">444</span></a><span class="sd">    ```</span>
-</span><span id="L-445"><a href="#L-445"><span class="linenos">445</span></a>
-</span><span id="L-446"><a href="#L-446"><span class="linenos">446</span></a><span class="sd">    **Example result**:</span>
-</span><span id="L-447"><a href="#L-447"><span class="linenos">447</span></a><span class="sd">    `true`</span>
-</span><span id="L-448"><a href="#L-448"><span class="linenos">448</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="L-449"><a href="#L-449"><span class="linenos">449</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="L-450"><a href="#L-450"><span class="linenos">450</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
-</span><span id="L-451"><a href="#L-451"><span class="linenos">451</span></a>        <span class="s1">&#39;delete-element&#39;</span><span class="p">,</span>
-</span><span id="L-452"><a href="#L-452"><span class="linenos">452</span></a>        <span class="n">element_uuid</span><span class="p">,</span>
-</span><span id="L-453"><a href="#L-453"><span class="linenos">453</span></a>    <span class="p">]</span>
-</span><span id="L-454"><a href="#L-454"><span class="linenos">454</span></a>    <span class="k">if</span> <span class="n">delete_from_database</span><span class="p">:</span>
-</span><span id="L-455"><a href="#L-455"><span class="linenos">455</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--database&#39;</span><span class="p">]</span>
-</span><span id="L-456"><a href="#L-456"><span class="linenos">456</span></a>    <span class="k">if</span> <span class="n">delete_from_disk</span><span class="p">:</span>
-</span><span id="L-457"><a href="#L-457"><span class="linenos">457</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--disk&#39;</span><span class="p">]</span>
-</span><span id="L-458"><a href="#L-458"><span class="linenos">458</span></a>    <span class="k">if</span> <span class="n">library_path</span><span class="p">:</span>
-</span><span id="L-459"><a href="#L-459"><span class="linenos">459</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">)]</span>
-</span><span id="L-460"><a href="#L-460"><span class="linenos">460</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-</span><span id="L-461"><a href="#L-461"><span class="linenos">461</span></a>
+</span><span id="L-416"><a href="#L-416"><span class="linenos">416</span></a>
+</span><span id="L-417"><a href="#L-417"><span class="linenos">417</span></a><span class="k">def</span> <span class="nf">delete_element</span><span class="p">(</span><span class="n">element_uuid</span><span class="p">,</span>
+</span><span id="L-418"><a href="#L-418"><span class="linenos">418</span></a>                   <span class="n">delete_from_database</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="L-419"><a href="#L-419"><span class="linenos">419</span></a>                   <span class="n">delete_from_disk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="L-420"><a href="#L-420"><span class="linenos">420</span></a>                   <span class="n">library_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-421"><a href="#L-421"><span class="linenos">421</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="L-422"><a href="#L-422"><span class="linenos">422</span></a><span class="sd">    Deletes an element entity based on the **element UUID**.</span>
+</span><span id="L-423"><a href="#L-423"><span class="linenos">423</span></a><span class="sd">    The options are to delete the element data from the database, delete the element files on disk or delete from both the database and files on disk.</span>
+</span><span id="L-424"><a href="#L-424"><span class="linenos">424</span></a>
+</span><span id="L-425"><a href="#L-425"><span class="linenos">425</span></a><span class="sd">    **Args**:</span>
+</span><span id="L-426"><a href="#L-426"><span class="linenos">426</span></a><span class="sd">    &gt; - **element_uuid** (str): *Element UUID (unique ID) in the database*</span>
+</span><span id="L-427"><a href="#L-427"><span class="linenos">427</span></a><span class="sd">    &gt; - **delete_from_database** (bool): *[optional] delete data from the database*</span>
+</span><span id="L-428"><a href="#L-428"><span class="linenos">428</span></a><span class="sd">    &gt; - **delete_from_disk** (bool): *[optional] delete all element files from disk*</span>
+</span><span id="L-429"><a href="#L-429"><span class="linenos">429</span></a><span class="sd">    &gt; - **library_path** (str): *[optional] File path to the library file (.lib)*</span>
+</span><span id="L-430"><a href="#L-430"><span class="linenos">430</span></a>
+</span><span id="L-431"><a href="#L-431"><span class="linenos">431</span></a><span class="sd">    **Returns**:</span>
+</span><span id="L-432"><a href="#L-432"><span class="linenos">432</span></a><span class="sd">    &gt; - bool</span>
+</span><span id="L-433"><a href="#L-433"><span class="linenos">433</span></a>
+</span><span id="L-434"><a href="#L-434"><span class="linenos">434</span></a><span class="sd">    **Example code**:</span>
+</span><span id="L-435"><a href="#L-435"><span class="linenos">435</span></a><span class="sd">    ```</span>
+</span><span id="L-436"><a href="#L-436"><span class="linenos">436</span></a><span class="sd">    from daselement_api import api as de</span>
+</span><span id="L-437"><a href="#L-437"><span class="linenos">437</span></a>
+</span><span id="L-438"><a href="#L-438"><span class="linenos">438</span></a><span class="sd">    element_uuid = &#39;9947c549c6014a3ca831983275884051&#39;</span>
+</span><span id="L-439"><a href="#L-439"><span class="linenos">439</span></a><span class="sd">    delete_from_database = True</span>
+</span><span id="L-440"><a href="#L-440"><span class="linenos">440</span></a><span class="sd">    delete_from_disk = True</span>
+</span><span id="L-441"><a href="#L-441"><span class="linenos">441</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;  # optional</span>
+</span><span id="L-442"><a href="#L-442"><span class="linenos">442</span></a>
+</span><span id="L-443"><a href="#L-443"><span class="linenos">443</span></a><span class="sd">    de.delete_element(element_uuid, delete_from_database, delete_from_disk, library_path=library_path)</span>
+</span><span id="L-444"><a href="#L-444"><span class="linenos">444</span></a>
+</span><span id="L-445"><a href="#L-445"><span class="linenos">445</span></a><span class="sd">    ```</span>
+</span><span id="L-446"><a href="#L-446"><span class="linenos">446</span></a>
+</span><span id="L-447"><a href="#L-447"><span class="linenos">447</span></a><span class="sd">    **Example result**:</span>
+</span><span id="L-448"><a href="#L-448"><span class="linenos">448</span></a><span class="sd">    `true`</span>
+</span><span id="L-449"><a href="#L-449"><span class="linenos">449</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-450"><a href="#L-450"><span class="linenos">450</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="L-451"><a href="#L-451"><span class="linenos">451</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
+</span><span id="L-452"><a href="#L-452"><span class="linenos">452</span></a>        <span class="s1">&#39;delete-element&#39;</span><span class="p">,</span>
+</span><span id="L-453"><a href="#L-453"><span class="linenos">453</span></a>        <span class="n">element_uuid</span><span class="p">,</span>
+</span><span id="L-454"><a href="#L-454"><span class="linenos">454</span></a>    <span class="p">]</span>
+</span><span id="L-455"><a href="#L-455"><span class="linenos">455</span></a>    <span class="k">if</span> <span class="n">delete_from_database</span><span class="p">:</span>
+</span><span id="L-456"><a href="#L-456"><span class="linenos">456</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--database&#39;</span><span class="p">]</span>
+</span><span id="L-457"><a href="#L-457"><span class="linenos">457</span></a>    <span class="k">if</span> <span class="n">delete_from_disk</span><span class="p">:</span>
+</span><span id="L-458"><a href="#L-458"><span class="linenos">458</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--disk&#39;</span><span class="p">]</span>
+</span><span id="L-459"><a href="#L-459"><span class="linenos">459</span></a>    <span class="k">if</span> <span class="n">library_path</span><span class="p">:</span>
+</span><span id="L-460"><a href="#L-460"><span class="linenos">460</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">)]</span>
+</span><span id="L-461"><a href="#L-461"><span class="linenos">461</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="L-462"><a href="#L-462"><span class="linenos">462</span></a>
-</span><span id="L-463"><a href="#L-463"><span class="linenos">463</span></a><span class="k">def</span> <span class="nf">ingest</span><span class="p">(</span><span class="n">library_path</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[]):</span>
-</span><span id="L-464"><a href="#L-464"><span class="linenos">464</span></a>    <span class="sd">&#39;&#39;&#39;</span>
-</span><span id="L-465"><a href="#L-465"><span class="linenos">465</span></a><span class="sd">    Ingest a new element to the library</span>
-</span><span id="L-466"><a href="#L-466"><span class="linenos">466</span></a>
-</span><span id="L-467"><a href="#L-467"><span class="linenos">467</span></a><span class="sd">    Ingesting a file sequence requires the path to be in a [fileseq.FileSequence notation](https://github.com/justinfx/fileseq#filesequence)  </span>
-</span><span id="L-468"><a href="#L-468"><span class="linenos">468</span></a><span class="sd">    Thank you to the developers of [fileseq](https://github.com/justinfx/fileseq)!</span>
-</span><span id="L-469"><a href="#L-469"><span class="linenos">469</span></a>
-</span><span id="L-470"><a href="#L-470"><span class="linenos">470</span></a><span class="sd">    Example: `/some/folder/files.1001-1099#.exr`</span>
-</span><span id="L-471"><a href="#L-471"><span class="linenos">471</span></a>
+</span><span id="L-463"><a href="#L-463"><span class="linenos">463</span></a>
+</span><span id="L-464"><a href="#L-464"><span class="linenos">464</span></a><span class="k">def</span> <span class="nf">ingest</span><span class="p">(</span><span class="n">library_path</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[]):</span>
+</span><span id="L-465"><a href="#L-465"><span class="linenos">465</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="L-466"><a href="#L-466"><span class="linenos">466</span></a><span class="sd">    Ingest a new element to the library</span>
+</span><span id="L-467"><a href="#L-467"><span class="linenos">467</span></a>
+</span><span id="L-468"><a href="#L-468"><span class="linenos">468</span></a><span class="sd">    Ingesting a file sequence requires the path to be in a [fileseq.FileSequence notation](https://github.com/justinfx/fileseq#filesequence)  </span>
+</span><span id="L-469"><a href="#L-469"><span class="linenos">469</span></a><span class="sd">    Thank you to the developers of [fileseq](https://github.com/justinfx/fileseq)!</span>
+</span><span id="L-470"><a href="#L-470"><span class="linenos">470</span></a>
+</span><span id="L-471"><a href="#L-471"><span class="linenos">471</span></a><span class="sd">    Example: `/some/folder/files.1001-1099#.exr`</span>
 </span><span id="L-472"><a href="#L-472"><span class="linenos">472</span></a>
-</span><span id="L-473"><a href="#L-473"><span class="linenos">473</span></a><span class="sd">    **Args**:</span>
-</span><span id="L-474"><a href="#L-474"><span class="linenos">474</span></a><span class="sd">    &gt; - **library_path** (str): *File path to the library file (.lib)*</span>
-</span><span id="L-475"><a href="#L-475"><span class="linenos">475</span></a><span class="sd">    &gt; - **mapping** (str): *Name of the transcoding mapping used to ingest*</span>
-</span><span id="L-476"><a href="#L-476"><span class="linenos">476</span></a><span class="sd">    &gt; - **path** (str): *File path to the new element*</span>
-</span><span id="L-477"><a href="#L-477"><span class="linenos">477</span></a><span class="sd">    &gt; - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*</span>
-</span><span id="L-478"><a href="#L-478"><span class="linenos">478</span></a><span class="sd">    &gt; - **tags** (List[str]): *[optional] List of tags*</span>
-</span><span id="L-479"><a href="#L-479"><span class="linenos">479</span></a>
-</span><span id="L-480"><a href="#L-480"><span class="linenos">480</span></a><span class="sd">    **Returns**:</span>
-</span><span id="L-481"><a href="#L-481"><span class="linenos">481</span></a><span class="sd">    &gt; - Dict: *Element entity for the newly created element*</span>
-</span><span id="L-482"><a href="#L-482"><span class="linenos">482</span></a>
-</span><span id="L-483"><a href="#L-483"><span class="linenos">483</span></a><span class="sd">    **Example code**:</span>
-</span><span id="L-484"><a href="#L-484"><span class="linenos">484</span></a><span class="sd">    ```</span>
-</span><span id="L-485"><a href="#L-485"><span class="linenos">485</span></a><span class="sd">    from daselement_api import api as de</span>
-</span><span id="L-486"><a href="#L-486"><span class="linenos">486</span></a>
-</span><span id="L-487"><a href="#L-487"><span class="linenos">487</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;</span>
-</span><span id="L-488"><a href="#L-488"><span class="linenos">488</span></a><span class="sd">    mapping = &#39;copy &amp; rename&#39;</span>
-</span><span id="L-489"><a href="#L-489"><span class="linenos">489</span></a><span class="sd">    path = &#39;/some/folder/files.1001-1099#.exr&#39;</span>
-</span><span id="L-490"><a href="#L-490"><span class="linenos">490</span></a><span class="sd">    category = &#39;Q235544&#39;  #  or: &#39;flame&#39;</span>
-</span><span id="L-491"><a href="#L-491"><span class="linenos">491</span></a><span class="sd">    tags = [&#39;Q3196&#39;, &#39;foo&#39;, &#39;bar&#39;]</span>
-</span><span id="L-492"><a href="#L-492"><span class="linenos">492</span></a>
-</span><span id="L-493"><a href="#L-493"><span class="linenos">493</span></a><span class="sd">    entity = de.ingest(library_path, mapping, path, category, tags)</span>
-</span><span id="L-494"><a href="#L-494"><span class="linenos">494</span></a><span class="sd">    print(entity)</span>
-</span><span id="L-495"><a href="#L-495"><span class="linenos">495</span></a><span class="sd">    print(entity.get(&#39;path&#39;))</span>
-</span><span id="L-496"><a href="#L-496"><span class="linenos">496</span></a><span class="sd">    ```</span>
-</span><span id="L-497"><a href="#L-497"><span class="linenos">497</span></a>
-</span><span id="L-498"><a href="#L-498"><span class="linenos">498</span></a><span class="sd">    **Example result**:</span>
-</span><span id="L-499"><a href="#L-499"><span class="linenos">499</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
-</span><span id="L-500"><a href="#L-500"><span class="linenos">500</span></a>
-</span><span id="L-501"><a href="#L-501"><span class="linenos">501</span></a><span class="sd">    **Example command line command**:</span>
-</span><span id="L-502"><a href="#L-502"><span class="linenos">502</span></a><span class="sd">    `das-element-cli ingest --library /mnt/library/das-element.lib --mapping &quot;copy &amp; rename&quot; --path /some/file/path.1001-1099#.exr --category Q235544 --tags Q3196,foo,bar`</span>
-</span><span id="L-503"><a href="#L-503"><span class="linenos">503</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="L-504"><a href="#L-504"><span class="linenos">504</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="L-505"><a href="#L-505"><span class="linenos">505</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
-</span><span id="L-506"><a href="#L-506"><span class="linenos">506</span></a>        <span class="s1">&#39;ingest&#39;</span><span class="p">,</span> <span class="s1">&#39;--library&#39;</span><span class="p">,</span>
-</span><span id="L-507"><a href="#L-507"><span class="linenos">507</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">),</span> <span class="s1">&#39;--mapping&#39;</span><span class="p">,</span>
-</span><span id="L-508"><a href="#L-508"><span class="linenos">508</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">mapping</span><span class="p">),</span> <span class="s1">&#39;--path&#39;</span><span class="p">,</span>
-</span><span id="L-509"><a href="#L-509"><span class="linenos">509</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="s1">&#39;--category&#39;</span><span class="p">,</span>
-</span><span id="L-510"><a href="#L-510"><span class="linenos">510</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">category</span><span class="p">),</span> <span class="s1">&#39;--tags&#39;</span><span class="p">,</span>
-</span><span id="L-511"><a href="#L-511"><span class="linenos">511</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">))</span>
-</span><span id="L-512"><a href="#L-512"><span class="linenos">512</span></a>    <span class="p">]</span>
-</span><span id="L-513"><a href="#L-513"><span class="linenos">513</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-</span><span id="L-514"><a href="#L-514"><span class="linenos">514</span></a>
+</span><span id="L-473"><a href="#L-473"><span class="linenos">473</span></a>
+</span><span id="L-474"><a href="#L-474"><span class="linenos">474</span></a><span class="sd">    **Args**:</span>
+</span><span id="L-475"><a href="#L-475"><span class="linenos">475</span></a><span class="sd">    &gt; - **library_path** (str): *File path to the library file (.lib)*</span>
+</span><span id="L-476"><a href="#L-476"><span class="linenos">476</span></a><span class="sd">    &gt; - **mapping** (str): *Name of the transcoding mapping used to ingest*</span>
+</span><span id="L-477"><a href="#L-477"><span class="linenos">477</span></a><span class="sd">    &gt; - **path** (str): *File path to the new element*</span>
+</span><span id="L-478"><a href="#L-478"><span class="linenos">478</span></a><span class="sd">    &gt; - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*</span>
+</span><span id="L-479"><a href="#L-479"><span class="linenos">479</span></a><span class="sd">    &gt; - **tags** (List[str]): *[optional] List of tags*</span>
+</span><span id="L-480"><a href="#L-480"><span class="linenos">480</span></a>
+</span><span id="L-481"><a href="#L-481"><span class="linenos">481</span></a><span class="sd">    **Returns**:</span>
+</span><span id="L-482"><a href="#L-482"><span class="linenos">482</span></a><span class="sd">    &gt; - Dict: *Element entity for the newly created element*</span>
+</span><span id="L-483"><a href="#L-483"><span class="linenos">483</span></a>
+</span><span id="L-484"><a href="#L-484"><span class="linenos">484</span></a><span class="sd">    **Example code**:</span>
+</span><span id="L-485"><a href="#L-485"><span class="linenos">485</span></a><span class="sd">    ```</span>
+</span><span id="L-486"><a href="#L-486"><span class="linenos">486</span></a><span class="sd">    from daselement_api import api as de</span>
+</span><span id="L-487"><a href="#L-487"><span class="linenos">487</span></a>
+</span><span id="L-488"><a href="#L-488"><span class="linenos">488</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;</span>
+</span><span id="L-489"><a href="#L-489"><span class="linenos">489</span></a><span class="sd">    mapping = &#39;copy &amp; rename&#39;</span>
+</span><span id="L-490"><a href="#L-490"><span class="linenos">490</span></a><span class="sd">    path = &#39;/some/folder/files.1001-1099#.exr&#39;</span>
+</span><span id="L-491"><a href="#L-491"><span class="linenos">491</span></a><span class="sd">    category = &#39;Q235544&#39;  #  or: &#39;flame&#39;</span>
+</span><span id="L-492"><a href="#L-492"><span class="linenos">492</span></a><span class="sd">    tags = [&#39;Q3196&#39;, &#39;foo&#39;, &#39;bar&#39;]</span>
+</span><span id="L-493"><a href="#L-493"><span class="linenos">493</span></a>
+</span><span id="L-494"><a href="#L-494"><span class="linenos">494</span></a><span class="sd">    entity = de.ingest(library_path, mapping, path, category, tags)</span>
+</span><span id="L-495"><a href="#L-495"><span class="linenos">495</span></a><span class="sd">    print(entity)</span>
+</span><span id="L-496"><a href="#L-496"><span class="linenos">496</span></a><span class="sd">    print(entity.get(&#39;path&#39;))</span>
+</span><span id="L-497"><a href="#L-497"><span class="linenos">497</span></a><span class="sd">    ```</span>
+</span><span id="L-498"><a href="#L-498"><span class="linenos">498</span></a>
+</span><span id="L-499"><a href="#L-499"><span class="linenos">499</span></a><span class="sd">    **Example result**:</span>
+</span><span id="L-500"><a href="#L-500"><span class="linenos">500</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
+</span><span id="L-501"><a href="#L-501"><span class="linenos">501</span></a>
+</span><span id="L-502"><a href="#L-502"><span class="linenos">502</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="L-503"><a href="#L-503"><span class="linenos">503</span></a><span class="sd">    `das-element-cli ingest --library /mnt/library/das-element.lib --mapping &quot;copy &amp; rename&quot; --path /some/file/path.1001-1099#.exr --category Q235544 --tags Q3196,foo,bar`</span>
+</span><span id="L-504"><a href="#L-504"><span class="linenos">504</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-505"><a href="#L-505"><span class="linenos">505</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="L-506"><a href="#L-506"><span class="linenos">506</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
+</span><span id="L-507"><a href="#L-507"><span class="linenos">507</span></a>        <span class="s1">&#39;ingest&#39;</span><span class="p">,</span> <span class="s1">&#39;--library&#39;</span><span class="p">,</span>
+</span><span id="L-508"><a href="#L-508"><span class="linenos">508</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">),</span> <span class="s1">&#39;--mapping&#39;</span><span class="p">,</span>
+</span><span id="L-509"><a href="#L-509"><span class="linenos">509</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">mapping</span><span class="p">),</span> <span class="s1">&#39;--path&#39;</span><span class="p">,</span>
+</span><span id="L-510"><a href="#L-510"><span class="linenos">510</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="s1">&#39;--category&#39;</span><span class="p">,</span>
+</span><span id="L-511"><a href="#L-511"><span class="linenos">511</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">category</span><span class="p">),</span> <span class="s1">&#39;--tags&#39;</span><span class="p">,</span>
+</span><span id="L-512"><a href="#L-512"><span class="linenos">512</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">))</span>
+</span><span id="L-513"><a href="#L-513"><span class="linenos">513</span></a>    <span class="p">]</span>
+</span><span id="L-514"><a href="#L-514"><span class="linenos">514</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="L-515"><a href="#L-515"><span class="linenos">515</span></a>
-</span><span id="L-516"><a href="#L-516"><span class="linenos">516</span></a><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="o">=</span><span class="mi">36</span><span class="p">):</span>
-</span><span id="L-517"><a href="#L-517"><span class="linenos">517</span></a>    <span class="sd">&#39;&#39;&#39;</span>
-</span><span id="L-518"><a href="#L-518"><span class="linenos">518</span></a><span class="sd">    Predict the category for a give file path.</span>
-</span><span id="L-519"><a href="#L-519"><span class="linenos">519</span></a>
-</span><span id="L-520"><a href="#L-520"><span class="linenos">520</span></a><span class="sd">    The give path can be a file or a directory.  </span>
-</span><span id="L-521"><a href="#L-521"><span class="linenos">521</span></a><span class="sd">    If a directory is provided, all sub-directories will be searched for files and sequences.</span>
-</span><span id="L-522"><a href="#L-522"><span class="linenos">522</span></a>
+</span><span id="L-516"><a href="#L-516"><span class="linenos">516</span></a>
+</span><span id="L-517"><a href="#L-517"><span class="linenos">517</span></a><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="o">=</span><span class="mi">36</span><span class="p">):</span>
+</span><span id="L-518"><a href="#L-518"><span class="linenos">518</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="L-519"><a href="#L-519"><span class="linenos">519</span></a><span class="sd">    Predict the category for a give file path.</span>
+</span><span id="L-520"><a href="#L-520"><span class="linenos">520</span></a>
+</span><span id="L-521"><a href="#L-521"><span class="linenos">521</span></a><span class="sd">    The give path can be a file or a directory.  </span>
+</span><span id="L-522"><a href="#L-522"><span class="linenos">522</span></a><span class="sd">    If a directory is provided, all sub-directories will be searched for files and sequences.</span>
 </span><span id="L-523"><a href="#L-523"><span class="linenos">523</span></a>
-</span><span id="L-524"><a href="#L-524"><span class="linenos">524</span></a><span class="sd">    **Args**:</span>
-</span><span id="L-525"><a href="#L-525"><span class="linenos">525</span></a>
-</span><span id="L-526"><a href="#L-526"><span class="linenos">526</span></a><span class="sd">    &gt; - **model** (str): [optional] *Define a custom model file path (.wit)*</span>
-</span><span id="L-527"><a href="#L-527"><span class="linenos">527</span></a><span class="sd">    &gt; - **filmstrip_frames** (int): [optional] *Number of frames to validated for a movie file or sequence. The higher the number, the better the result might be, but it also takes longer*</span>
-</span><span id="L-528"><a href="#L-528"><span class="linenos">528</span></a><span class="sd">    &gt; - **top** (int): [optional] *Return the top X predictions*</span>
-</span><span id="L-529"><a href="#L-529"><span class="linenos">529</span></a>
+</span><span id="L-524"><a href="#L-524"><span class="linenos">524</span></a>
+</span><span id="L-525"><a href="#L-525"><span class="linenos">525</span></a><span class="sd">    **Args**:</span>
+</span><span id="L-526"><a href="#L-526"><span class="linenos">526</span></a>
+</span><span id="L-527"><a href="#L-527"><span class="linenos">527</span></a><span class="sd">    &gt; - **model** (str): *Define a custom model file path (.wit)*</span>
+</span><span id="L-528"><a href="#L-528"><span class="linenos">528</span></a><span class="sd">    &gt; - **filmstrip_frames** (int): [optional] *Number of frames to validated for a movie file or sequence. The higher the number, the better the result might be, but it also takes longer*</span>
+</span><span id="L-529"><a href="#L-529"><span class="linenos">529</span></a><span class="sd">    &gt; - **top** (int): [optional] *Return the top X predictions*</span>
 </span><span id="L-530"><a href="#L-530"><span class="linenos">530</span></a>
-</span><span id="L-531"><a href="#L-531"><span class="linenos">531</span></a><span class="sd">    **Returns**:</span>
-</span><span id="L-532"><a href="#L-532"><span class="linenos">532</span></a><span class="sd">    &gt; - Dict[str, List[Dict]]: *Key is the file path. The value a list of predicted categories*</span>
-</span><span id="L-533"><a href="#L-533"><span class="linenos">533</span></a>
+</span><span id="L-531"><a href="#L-531"><span class="linenos">531</span></a>
+</span><span id="L-532"><a href="#L-532"><span class="linenos">532</span></a><span class="sd">    **Returns**:</span>
+</span><span id="L-533"><a href="#L-533"><span class="linenos">533</span></a><span class="sd">    &gt; - Dict[str, List[Dict]]: *Key is the file path. The value a list of predicted categories*</span>
 </span><span id="L-534"><a href="#L-534"><span class="linenos">534</span></a>
-</span><span id="L-535"><a href="#L-535"><span class="linenos">535</span></a><span class="sd">    **Example result**:</span>
-</span><span id="L-536"><a href="#L-536"><span class="linenos">536</span></a><span class="sd">    `{&quot;/some/file/path.1001-1099#.exr&quot;: [{&quot;tag&quot;: &quot;flame&quot;, &quot;description&quot;: &quot;visible, gaseous part of a fire&quot;, &quot;id&quot;: &quot;Q235544&quot;, &quot;value&quot;: &quot;Q235544&quot;, &quot;parents&quot;: [{&quot;description&quot;: &quot;rapid oxidation of a material; phenomenon that emits light and heat&quot;, &quot;id&quot;: &quot;Q3196&quot;, &quot;name&quot;: &quot;fire&quot;, &quot;synonyms&quot;: [{&quot;language&quot;: &quot;en&quot;, &quot;value&quot;: &quot;fire&quot;}, {&quot;language&quot;: &quot;en&quot;, &quot;value&quot;: &quot;fires&quot;}}]}]}`</span>
-</span><span id="L-537"><a href="#L-537"><span class="linenos">537</span></a>
+</span><span id="L-535"><a href="#L-535"><span class="linenos">535</span></a>
+</span><span id="L-536"><a href="#L-536"><span class="linenos">536</span></a><span class="sd">    **Example result**:</span>
+</span><span id="L-537"><a href="#L-537"><span class="linenos">537</span></a><span class="sd">    `{&quot;/some/file/path.1001-1099#.exr&quot;: [{&quot;tag&quot;: &quot;flame&quot;, &quot;description&quot;: &quot;visible, gaseous part of a fire&quot;, &quot;id&quot;: &quot;Q235544&quot;, &quot;value&quot;: &quot;Q235544&quot;, &quot;parents&quot;: [{&quot;description&quot;: &quot;rapid oxidation of a material; phenomenon that emits light and heat&quot;, &quot;id&quot;: &quot;Q3196&quot;, &quot;name&quot;: &quot;fire&quot;, &quot;synonyms&quot;: [{&quot;language&quot;: &quot;en&quot;, &quot;value&quot;: &quot;fire&quot;}, {&quot;language&quot;: &quot;en&quot;, &quot;value&quot;: &quot;fires&quot;}}]}]}`</span>
 </span><span id="L-538"><a href="#L-538"><span class="linenos">538</span></a>
-</span><span id="L-539"><a href="#L-539"><span class="linenos">539</span></a><span class="sd">    **Example command line command**:</span>
-</span><span id="L-540"><a href="#L-540"><span class="linenos">540</span></a><span class="sd">    `das-element-cli predict --top=2 /some/file/path`</span>
-</span><span id="L-541"><a href="#L-541"><span class="linenos">541</span></a>
-</span><span id="L-542"><a href="#L-542"><span class="linenos">542</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="L-543"><a href="#L-543"><span class="linenos">543</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">,</span> <span class="s1">&#39;--top&#39;</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="s1">&#39;--filmstrip_frames&#39;</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="p">]</span>
-</span><span id="L-544"><a href="#L-544"><span class="linenos">544</span></a>
-</span><span id="L-545"><a href="#L-545"><span class="linenos">545</span></a>    <span class="k">if</span> <span class="n">model</span><span class="p">:</span>
-</span><span id="L-546"><a href="#L-546"><span class="linenos">546</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--model&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">model</span><span class="p">)]</span>
-</span><span id="L-547"><a href="#L-547"><span class="linenos">547</span></a>
-</span><span id="L-548"><a href="#L-548"><span class="linenos">548</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span>
-</span><span id="L-549"><a href="#L-549"><span class="linenos">549</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</span><span id="L-539"><a href="#L-539"><span class="linenos">539</span></a>
+</span><span id="L-540"><a href="#L-540"><span class="linenos">540</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="L-541"><a href="#L-541"><span class="linenos">541</span></a><span class="sd">    `das-element-cli predict --top=2 /some/file/path`</span>
+</span><span id="L-542"><a href="#L-542"><span class="linenos">542</span></a>
+</span><span id="L-543"><a href="#L-543"><span class="linenos">543</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-544"><a href="#L-544"><span class="linenos">544</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">,</span> <span class="s1">&#39;--top&#39;</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="s1">&#39;--filmstrip_frames&#39;</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="p">]</span>
+</span><span id="L-545"><a href="#L-545"><span class="linenos">545</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--model&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">model</span><span class="p">)]</span>
+</span><span id="L-546"><a href="#L-546"><span class="linenos">546</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--filmstrip_frames&#39;</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="p">]</span>
+</span><span id="L-547"><a href="#L-547"><span class="linenos">547</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--top&#39;</span><span class="p">,</span> <span class="n">top</span><span class="p">]</span>
+</span><span id="L-548"><a href="#L-548"><span class="linenos">548</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">as_quoted_string</span><span class="p">(</span><span class="n">path</span><span class="p">)]</span>
+</span><span id="L-549"><a href="#L-549"><span class="linenos">549</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="L-550"><a href="#L-550"><span class="linenos">550</span></a>
 </span><span id="L-551"><a href="#L-551"><span class="linenos">551</span></a>
 </span><span id="L-552"><a href="#L-552"><span class="linenos">552</span></a><span class="k">def</span> <span class="nf">get_paths_from_disk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">as_sequence</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -709,7 +715,69 @@ Either defined in the <code>~/.das-element/setup.ini</code> file or by the envir
 </span><span id="L-582"><a href="#L-582"><span class="linenos">582</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--as_single_files&#39;</span><span class="p">]</span>
 </span><span id="L-583"><a href="#L-583"><span class="linenos">583</span></a>
 </span><span id="L-584"><a href="#L-584"><span class="linenos">584</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span>
-</span><span id="L-585"><a href="#L-585"><span class="linenos">585</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</span><span id="L-585"><a href="#L-585"><span class="linenos">585</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-586"><a href="#L-586"><span class="linenos">586</span></a>
+</span><span id="L-587"><a href="#L-587"><span class="linenos">587</span></a>
+</span><span id="L-588"><a href="#L-588"><span class="linenos">588</span></a><span class="k">def</span> <span class="nf">get_meaningful_frame</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+</span><span id="L-589"><a href="#L-589"><span class="linenos">589</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="L-590"><a href="#L-590"><span class="linenos">590</span></a><span class="sd">    Validate meaningful thumbnail frame number for movie file or image sequence</span>
+</span><span id="L-591"><a href="#L-591"><span class="linenos">591</span></a>
+</span><span id="L-592"><a href="#L-592"><span class="linenos">592</span></a>
+</span><span id="L-593"><a href="#L-593"><span class="linenos">593</span></a><span class="sd">    **Args**:</span>
+</span><span id="L-594"><a href="#L-594"><span class="linenos">594</span></a>
+</span><span id="L-595"><a href="#L-595"><span class="linenos">595</span></a><span class="sd">    &gt; - **path** (str): *file path to movie file or image sequence - single frame of a file sequence can be provided*</span>
+</span><span id="L-596"><a href="#L-596"><span class="linenos">596</span></a>
+</span><span id="L-597"><a href="#L-597"><span class="linenos">597</span></a>
+</span><span id="L-598"><a href="#L-598"><span class="linenos">598</span></a><span class="sd">    **Returns**:</span>
+</span><span id="L-599"><a href="#L-599"><span class="linenos">599</span></a><span class="sd">    &gt; - int: *Returns frame number of meaningful thumbnail frame*</span>
+</span><span id="L-600"><a href="#L-600"><span class="linenos">600</span></a>
+</span><span id="L-601"><a href="#L-601"><span class="linenos">601</span></a>
+</span><span id="L-602"><a href="#L-602"><span class="linenos">602</span></a><span class="sd">    **Example result**:</span>
+</span><span id="L-603"><a href="#L-603"><span class="linenos">603</span></a><span class="sd">    `1042`</span>
+</span><span id="L-604"><a href="#L-604"><span class="linenos">604</span></a>
+</span><span id="L-605"><a href="#L-605"><span class="linenos">605</span></a>
+</span><span id="L-606"><a href="#L-606"><span class="linenos">606</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="L-607"><a href="#L-607"><span class="linenos">607</span></a><span class="sd">    `das-element-cli get-meaningful-frame /folder/some_file.mov`</span>
+</span><span id="L-608"><a href="#L-608"><span class="linenos">608</span></a><span class="sd">    `das-element-cli get-meaningful-frame /folder/frame_sequence.1001.exr`</span>
+</span><span id="L-609"><a href="#L-609"><span class="linenos">609</span></a><span class="sd">    `das-element-cli get-meaningful-frame /folder/frame_sequence.####.exr`</span>
+</span><span id="L-610"><a href="#L-610"><span class="linenos">610</span></a><span class="sd">    `das-element-cli get-meaningful-frame /folder/frame_sequence.%04d.exr`</span>
+</span><span id="L-611"><a href="#L-611"><span class="linenos">611</span></a>
+</span><span id="L-612"><a href="#L-612"><span class="linenos">612</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-613"><a href="#L-613"><span class="linenos">613</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get-meaningful-frame&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">]</span>
+</span><span id="L-614"><a href="#L-614"><span class="linenos">614</span></a>
+</span><span id="L-615"><a href="#L-615"><span class="linenos">615</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-616"><a href="#L-616"><span class="linenos">616</span></a>
+</span><span id="L-617"><a href="#L-617"><span class="linenos">617</span></a>
+</span><span id="L-618"><a href="#L-618"><span class="linenos">618</span></a><span class="k">def</span> <span class="nf">render_element_proxies</span><span class="p">(</span><span class="n">element_uuid</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">library_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-619"><a href="#L-619"><span class="linenos">619</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="L-620"><a href="#L-620"><span class="linenos">620</span></a><span class="sd">    Render the proxy files for an element based on a template mapping</span>
+</span><span id="L-621"><a href="#L-621"><span class="linenos">621</span></a>
+</span><span id="L-622"><a href="#L-622"><span class="linenos">622</span></a><span class="sd">    If the library is provided it will directly try to get to element for that library.</span>
+</span><span id="L-623"><a href="#L-623"><span class="linenos">623</span></a><span class="sd">    Otherwise it tries to get the entity each library that&#39;s defined in the config.</span>
+</span><span id="L-624"><a href="#L-624"><span class="linenos">624</span></a>
+</span><span id="L-625"><a href="#L-625"><span class="linenos">625</span></a><span class="sd">    **Args**:</span>
+</span><span id="L-626"><a href="#L-626"><span class="linenos">626</span></a><span class="sd">    &gt; - **element_uuid** (str): *Element UUID (unique ID) in the database*</span>
+</span><span id="L-627"><a href="#L-627"><span class="linenos">627</span></a><span class="sd">    &gt; - **mapping** (str): *name of the template mapping that gets rendered*</span>
+</span><span id="L-628"><a href="#L-628"><span class="linenos">628</span></a><span class="sd">    &gt; - **library_path** (str): *[optional] File path to the library file (.lib)*</span>
+</span><span id="L-629"><a href="#L-629"><span class="linenos">629</span></a>
+</span><span id="L-630"><a href="#L-630"><span class="linenos">630</span></a><span class="sd">    **Returns**:</span>
+</span><span id="L-631"><a href="#L-631"><span class="linenos">631</span></a><span class="sd">    &gt; - bool: *Result of render jobs*</span>
+</span><span id="L-632"><a href="#L-632"><span class="linenos">632</span></a>
+</span><span id="L-633"><a href="#L-633"><span class="linenos">633</span></a>
+</span><span id="L-634"><a href="#L-634"><span class="linenos">634</span></a><span class="sd">    **Example result**:</span>
+</span><span id="L-635"><a href="#L-635"><span class="linenos">635</span></a><span class="sd">    `true`</span>
+</span><span id="L-636"><a href="#L-636"><span class="linenos">636</span></a>
+</span><span id="L-637"><a href="#L-637"><span class="linenos">637</span></a>
+</span><span id="L-638"><a href="#L-638"><span class="linenos">638</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="L-639"><a href="#L-639"><span class="linenos">639</span></a><span class="sd">    `das-element-cli render-element-proxies 9947c549c6014a3ca831983275884051 &quot;render proxies&quot; --library /some/path/das-element.lib`</span>
+</span><span id="L-640"><a href="#L-640"><span class="linenos">640</span></a>
+</span><span id="L-641"><a href="#L-641"><span class="linenos">641</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-642"><a href="#L-642"><span class="linenos">642</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;render-element-proxies&#39;</span><span class="p">,</span> <span class="n">element_uuid</span><span class="p">,</span> <span class="n">mapping</span><span class="p">]</span>
+</span><span id="L-643"><a href="#L-643"><span class="linenos">643</span></a>
+</span><span id="L-644"><a href="#L-644"><span class="linenos">644</span></a>    <span class="k">if</span> <span class="n">library_path</span><span class="p">:</span>
+</span><span id="L-645"><a href="#L-645"><span class="linenos">645</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">library_path</span><span class="p">]</span>
+</span><span id="L-646"><a href="#L-646"><span class="linenos">646</span></a>
+</span><span id="L-647"><a href="#L-647"><span class="linenos">647</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1549,31 +1617,32 @@ print(element.get('path'))
 </span><span id="update-387"><a href="#update-387"><span class="linenos">387</span></a><span class="sd">    entity_type = &#39;Element&#39;</span>
 </span><span id="update-388"><a href="#update-388"><span class="linenos">388</span></a><span class="sd">    entity_id = 23</span>
 </span><span id="update-389"><a href="#update-389"><span class="linenos">389</span></a><span class="sd">    new_data = {&#39;category_id&#39;: &#39;Q327954&#39;,  # or: &#39;category&#39;: &#39;torch&#39;,</span>
-</span><span id="update-390"><a href="#update-390"><span class="linenos">390</span></a><span class="sd">                &#39;tags&#39;: [&#39;flame&#39;, &#39;fire&#39;, &#39;torch&#39;, &#39;something custom tag&#39;]}</span>
-</span><span id="update-391"><a href="#update-391"><span class="linenos">391</span></a>
-</span><span id="update-392"><a href="#update-392"><span class="linenos">392</span></a><span class="sd">    entity = de.update(library_path, entity_type, entity_id, new_data)</span>
-</span><span id="update-393"><a href="#update-393"><span class="linenos">393</span></a><span class="sd">    print(entity)</span>
-</span><span id="update-394"><a href="#update-394"><span class="linenos">394</span></a><span class="sd">    print(entity.get(&#39;rating&#39;))</span>
-</span><span id="update-395"><a href="#update-395"><span class="linenos">395</span></a><span class="sd">    ```</span>
-</span><span id="update-396"><a href="#update-396"><span class="linenos">396</span></a>
-</span><span id="update-397"><a href="#update-397"><span class="linenos">397</span></a><span class="sd">    **Example result**:</span>
-</span><span id="update-398"><a href="#update-398"><span class="linenos">398</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}, {&quot;id&quot;: &quot;something&quot;,&quot;name&quot;: &quot;something custom tag&quot;, &quot;type&quot;: &quot;custom&quot;, &quot;elements_count&quot;: 1}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
-</span><span id="update-399"><a href="#update-399"><span class="linenos">399</span></a>
-</span><span id="update-400"><a href="#update-400"><span class="linenos">400</span></a><span class="sd">    **Example command line command**:  </span>
-</span><span id="update-401"><a href="#update-401"><span class="linenos">401</span></a><span class="sd">    ##### Windows  </span>
-</span><span id="update-402"><a href="#update-402"><span class="linenos">402</span></a><span class="sd">    `das-element-cli.exe update C:\\mnt\\library\\das-element.lib element 1 &quot;{\\\&quot;rating\\\&quot;: 3}&quot;`  </span>
-</span><span id="update-403"><a href="#update-403"><span class="linenos">403</span></a><span class="sd">    ##### Linux/MacOS  </span>
-</span><span id="update-404"><a href="#update-404"><span class="linenos">404</span></a><span class="sd">    `das-element-cli update /mnt/library/das-element.lib element 1 &#39;{\&quot;rating\&quot;: 3}&#39;`</span>
-</span><span id="update-405"><a href="#update-405"><span class="linenos">405</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="update-406"><a href="#update-406"><span class="linenos">406</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="update-407"><a href="#update-407"><span class="linenos">407</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
-</span><span id="update-408"><a href="#update-408"><span class="linenos">408</span></a>        <span class="s1">&#39;update&#39;</span><span class="p">,</span>
-</span><span id="update-409"><a href="#update-409"><span class="linenos">409</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">),</span>
-</span><span id="update-410"><a href="#update-410"><span class="linenos">410</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">entity_type</span><span class="p">),</span>
-</span><span id="update-411"><a href="#update-411"><span class="linenos">411</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">entity_id</span><span class="p">),</span>
-</span><span id="update-412"><a href="#update-412"><span class="linenos">412</span></a>        <span class="n">as_quoted_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span><span id="update-413"><a href="#update-413"><span class="linenos">413</span></a>    <span class="p">]</span>
-</span><span id="update-414"><a href="#update-414"><span class="linenos">414</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</span><span id="update-390"><a href="#update-390"><span class="linenos">390</span></a><span class="sd">                &#39;tags&#39;: [&#39;flame&#39;, &#39;fire&#39;, &#39;torch&#39;, &#39;something custom tag&#39;],</span>
+</span><span id="update-391"><a href="#update-391"><span class="linenos">391</span></a><span class="sd">                &#39;metadata&#39;: {&#39;foo&#39;: &#39;bar&#39;}}</span>
+</span><span id="update-392"><a href="#update-392"><span class="linenos">392</span></a>
+</span><span id="update-393"><a href="#update-393"><span class="linenos">393</span></a><span class="sd">    entity = de.update(library_path, entity_type, entity_id, new_data)</span>
+</span><span id="update-394"><a href="#update-394"><span class="linenos">394</span></a><span class="sd">    print(entity)</span>
+</span><span id="update-395"><a href="#update-395"><span class="linenos">395</span></a><span class="sd">    print(entity.get(&#39;rating&#39;))</span>
+</span><span id="update-396"><a href="#update-396"><span class="linenos">396</span></a><span class="sd">    ```</span>
+</span><span id="update-397"><a href="#update-397"><span class="linenos">397</span></a>
+</span><span id="update-398"><a href="#update-398"><span class="linenos">398</span></a><span class="sd">    **Example result**:</span>
+</span><span id="update-399"><a href="#update-399"><span class="linenos">399</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}, {&quot;id&quot;: &quot;something&quot;,&quot;name&quot;: &quot;something custom tag&quot;, &quot;type&quot;: &quot;custom&quot;, &quot;elements_count&quot;: 1}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
+</span><span id="update-400"><a href="#update-400"><span class="linenos">400</span></a>
+</span><span id="update-401"><a href="#update-401"><span class="linenos">401</span></a><span class="sd">    **Example command line command**:  </span>
+</span><span id="update-402"><a href="#update-402"><span class="linenos">402</span></a><span class="sd">    ##### Windows  </span>
+</span><span id="update-403"><a href="#update-403"><span class="linenos">403</span></a><span class="sd">    `das-element-cli.exe update C:\\mnt\\library\\das-element.lib element 1 &quot;{\\\&quot;rating\\\&quot;: 3}&quot;`  </span>
+</span><span id="update-404"><a href="#update-404"><span class="linenos">404</span></a><span class="sd">    ##### Linux/MacOS  </span>
+</span><span id="update-405"><a href="#update-405"><span class="linenos">405</span></a><span class="sd">    `das-element-cli update /mnt/library/das-element.lib element 1 &#39;{\&quot;rating\&quot;: 3}&#39;`</span>
+</span><span id="update-406"><a href="#update-406"><span class="linenos">406</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="update-407"><a href="#update-407"><span class="linenos">407</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="update-408"><a href="#update-408"><span class="linenos">408</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
+</span><span id="update-409"><a href="#update-409"><span class="linenos">409</span></a>        <span class="s1">&#39;update&#39;</span><span class="p">,</span>
+</span><span id="update-410"><a href="#update-410"><span class="linenos">410</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">),</span>
+</span><span id="update-411"><a href="#update-411"><span class="linenos">411</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">entity_type</span><span class="p">),</span>
+</span><span id="update-412"><a href="#update-412"><span class="linenos">412</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">entity_id</span><span class="p">),</span>
+</span><span id="update-413"><a href="#update-413"><span class="linenos">413</span></a>        <span class="n">as_quoted_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span id="update-414"><a href="#update-414"><span class="linenos">414</span></a>    <span class="p">]</span>
+</span><span id="update-415"><a href="#update-415"><span class="linenos">415</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1607,7 +1676,8 @@ library_path = '/some/path/das-element.lib'
 entity_type = 'Element'
 entity_id = 23
 new_data = {'category_id': 'Q327954',  # or: 'category': 'torch',
-            'tags': ['flame', 'fire', 'torch', 'something custom tag']}
+            'tags': ['flame', 'fire', 'torch', 'something custom tag'],
+            'metadata': {'foo': 'bar'}}
 
 entity = de.update(library_path, entity_type, entity_id, new_data)
 print(entity)
@@ -1641,51 +1711,51 @@ print(entity.get('rating'))
 
     </div>
     <a class="headerlink" href="#delete_element"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="delete_element-417"><a href="#delete_element-417"><span class="linenos">417</span></a><span class="k">def</span> <span class="nf">delete_element</span><span class="p">(</span><span class="n">element_uuid</span><span class="p">,</span>
-</span><span id="delete_element-418"><a href="#delete_element-418"><span class="linenos">418</span></a>                   <span class="n">delete_from_database</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="delete_element-419"><a href="#delete_element-419"><span class="linenos">419</span></a>                   <span class="n">delete_from_disk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="delete_element-420"><a href="#delete_element-420"><span class="linenos">420</span></a>                   <span class="n">library_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="delete_element-421"><a href="#delete_element-421"><span class="linenos">421</span></a>    <span class="sd">&#39;&#39;&#39;</span>
-</span><span id="delete_element-422"><a href="#delete_element-422"><span class="linenos">422</span></a><span class="sd">    Deletes an element entity based on the **element UUID**.</span>
-</span><span id="delete_element-423"><a href="#delete_element-423"><span class="linenos">423</span></a><span class="sd">    The options are to delete the element data from the database, delete the element files on disk or delete from both the database and files on disk.</span>
-</span><span id="delete_element-424"><a href="#delete_element-424"><span class="linenos">424</span></a>
-</span><span id="delete_element-425"><a href="#delete_element-425"><span class="linenos">425</span></a><span class="sd">    **Args**:</span>
-</span><span id="delete_element-426"><a href="#delete_element-426"><span class="linenos">426</span></a><span class="sd">    &gt; - **element_uuid** (str): *Element UUID (unique ID) in the database*</span>
-</span><span id="delete_element-427"><a href="#delete_element-427"><span class="linenos">427</span></a><span class="sd">    &gt; - **delete_from_database** (bool): *[optional] delete data from the database*</span>
-</span><span id="delete_element-428"><a href="#delete_element-428"><span class="linenos">428</span></a><span class="sd">    &gt; - **delete_from_disk** (bool): *[optional] delete all element files from disk*</span>
-</span><span id="delete_element-429"><a href="#delete_element-429"><span class="linenos">429</span></a><span class="sd">    &gt; - **library_path** (str): *[optional] File path to the library file (.lib)*</span>
-</span><span id="delete_element-430"><a href="#delete_element-430"><span class="linenos">430</span></a>
-</span><span id="delete_element-431"><a href="#delete_element-431"><span class="linenos">431</span></a><span class="sd">    **Returns**:</span>
-</span><span id="delete_element-432"><a href="#delete_element-432"><span class="linenos">432</span></a><span class="sd">    &gt; - bool</span>
-</span><span id="delete_element-433"><a href="#delete_element-433"><span class="linenos">433</span></a>
-</span><span id="delete_element-434"><a href="#delete_element-434"><span class="linenos">434</span></a><span class="sd">    **Example code**:</span>
-</span><span id="delete_element-435"><a href="#delete_element-435"><span class="linenos">435</span></a><span class="sd">    ```</span>
-</span><span id="delete_element-436"><a href="#delete_element-436"><span class="linenos">436</span></a><span class="sd">    from daselement_api import api as de</span>
-</span><span id="delete_element-437"><a href="#delete_element-437"><span class="linenos">437</span></a>
-</span><span id="delete_element-438"><a href="#delete_element-438"><span class="linenos">438</span></a><span class="sd">    element_uuid = &#39;9947c549c6014a3ca831983275884051&#39;</span>
-</span><span id="delete_element-439"><a href="#delete_element-439"><span class="linenos">439</span></a><span class="sd">    delete_from_database = True</span>
-</span><span id="delete_element-440"><a href="#delete_element-440"><span class="linenos">440</span></a><span class="sd">    delete_from_disk = True</span>
-</span><span id="delete_element-441"><a href="#delete_element-441"><span class="linenos">441</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;  # optional</span>
-</span><span id="delete_element-442"><a href="#delete_element-442"><span class="linenos">442</span></a>
-</span><span id="delete_element-443"><a href="#delete_element-443"><span class="linenos">443</span></a><span class="sd">    de.delete_element(element_uuid, delete_from_database, delete_from_disk, library_path=library_path)</span>
-</span><span id="delete_element-444"><a href="#delete_element-444"><span class="linenos">444</span></a>
-</span><span id="delete_element-445"><a href="#delete_element-445"><span class="linenos">445</span></a><span class="sd">    ```</span>
-</span><span id="delete_element-446"><a href="#delete_element-446"><span class="linenos">446</span></a>
-</span><span id="delete_element-447"><a href="#delete_element-447"><span class="linenos">447</span></a><span class="sd">    **Example result**:</span>
-</span><span id="delete_element-448"><a href="#delete_element-448"><span class="linenos">448</span></a><span class="sd">    `true`</span>
-</span><span id="delete_element-449"><a href="#delete_element-449"><span class="linenos">449</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="delete_element-450"><a href="#delete_element-450"><span class="linenos">450</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="delete_element-451"><a href="#delete_element-451"><span class="linenos">451</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
-</span><span id="delete_element-452"><a href="#delete_element-452"><span class="linenos">452</span></a>        <span class="s1">&#39;delete-element&#39;</span><span class="p">,</span>
-</span><span id="delete_element-453"><a href="#delete_element-453"><span class="linenos">453</span></a>        <span class="n">element_uuid</span><span class="p">,</span>
-</span><span id="delete_element-454"><a href="#delete_element-454"><span class="linenos">454</span></a>    <span class="p">]</span>
-</span><span id="delete_element-455"><a href="#delete_element-455"><span class="linenos">455</span></a>    <span class="k">if</span> <span class="n">delete_from_database</span><span class="p">:</span>
-</span><span id="delete_element-456"><a href="#delete_element-456"><span class="linenos">456</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--database&#39;</span><span class="p">]</span>
-</span><span id="delete_element-457"><a href="#delete_element-457"><span class="linenos">457</span></a>    <span class="k">if</span> <span class="n">delete_from_disk</span><span class="p">:</span>
-</span><span id="delete_element-458"><a href="#delete_element-458"><span class="linenos">458</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--disk&#39;</span><span class="p">]</span>
-</span><span id="delete_element-459"><a href="#delete_element-459"><span class="linenos">459</span></a>    <span class="k">if</span> <span class="n">library_path</span><span class="p">:</span>
-</span><span id="delete_element-460"><a href="#delete_element-460"><span class="linenos">460</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">)]</span>
-</span><span id="delete_element-461"><a href="#delete_element-461"><span class="linenos">461</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="delete_element-418"><a href="#delete_element-418"><span class="linenos">418</span></a><span class="k">def</span> <span class="nf">delete_element</span><span class="p">(</span><span class="n">element_uuid</span><span class="p">,</span>
+</span><span id="delete_element-419"><a href="#delete_element-419"><span class="linenos">419</span></a>                   <span class="n">delete_from_database</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="delete_element-420"><a href="#delete_element-420"><span class="linenos">420</span></a>                   <span class="n">delete_from_disk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="delete_element-421"><a href="#delete_element-421"><span class="linenos">421</span></a>                   <span class="n">library_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="delete_element-422"><a href="#delete_element-422"><span class="linenos">422</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="delete_element-423"><a href="#delete_element-423"><span class="linenos">423</span></a><span class="sd">    Deletes an element entity based on the **element UUID**.</span>
+</span><span id="delete_element-424"><a href="#delete_element-424"><span class="linenos">424</span></a><span class="sd">    The options are to delete the element data from the database, delete the element files on disk or delete from both the database and files on disk.</span>
+</span><span id="delete_element-425"><a href="#delete_element-425"><span class="linenos">425</span></a>
+</span><span id="delete_element-426"><a href="#delete_element-426"><span class="linenos">426</span></a><span class="sd">    **Args**:</span>
+</span><span id="delete_element-427"><a href="#delete_element-427"><span class="linenos">427</span></a><span class="sd">    &gt; - **element_uuid** (str): *Element UUID (unique ID) in the database*</span>
+</span><span id="delete_element-428"><a href="#delete_element-428"><span class="linenos">428</span></a><span class="sd">    &gt; - **delete_from_database** (bool): *[optional] delete data from the database*</span>
+</span><span id="delete_element-429"><a href="#delete_element-429"><span class="linenos">429</span></a><span class="sd">    &gt; - **delete_from_disk** (bool): *[optional] delete all element files from disk*</span>
+</span><span id="delete_element-430"><a href="#delete_element-430"><span class="linenos">430</span></a><span class="sd">    &gt; - **library_path** (str): *[optional] File path to the library file (.lib)*</span>
+</span><span id="delete_element-431"><a href="#delete_element-431"><span class="linenos">431</span></a>
+</span><span id="delete_element-432"><a href="#delete_element-432"><span class="linenos">432</span></a><span class="sd">    **Returns**:</span>
+</span><span id="delete_element-433"><a href="#delete_element-433"><span class="linenos">433</span></a><span class="sd">    &gt; - bool</span>
+</span><span id="delete_element-434"><a href="#delete_element-434"><span class="linenos">434</span></a>
+</span><span id="delete_element-435"><a href="#delete_element-435"><span class="linenos">435</span></a><span class="sd">    **Example code**:</span>
+</span><span id="delete_element-436"><a href="#delete_element-436"><span class="linenos">436</span></a><span class="sd">    ```</span>
+</span><span id="delete_element-437"><a href="#delete_element-437"><span class="linenos">437</span></a><span class="sd">    from daselement_api import api as de</span>
+</span><span id="delete_element-438"><a href="#delete_element-438"><span class="linenos">438</span></a>
+</span><span id="delete_element-439"><a href="#delete_element-439"><span class="linenos">439</span></a><span class="sd">    element_uuid = &#39;9947c549c6014a3ca831983275884051&#39;</span>
+</span><span id="delete_element-440"><a href="#delete_element-440"><span class="linenos">440</span></a><span class="sd">    delete_from_database = True</span>
+</span><span id="delete_element-441"><a href="#delete_element-441"><span class="linenos">441</span></a><span class="sd">    delete_from_disk = True</span>
+</span><span id="delete_element-442"><a href="#delete_element-442"><span class="linenos">442</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;  # optional</span>
+</span><span id="delete_element-443"><a href="#delete_element-443"><span class="linenos">443</span></a>
+</span><span id="delete_element-444"><a href="#delete_element-444"><span class="linenos">444</span></a><span class="sd">    de.delete_element(element_uuid, delete_from_database, delete_from_disk, library_path=library_path)</span>
+</span><span id="delete_element-445"><a href="#delete_element-445"><span class="linenos">445</span></a>
+</span><span id="delete_element-446"><a href="#delete_element-446"><span class="linenos">446</span></a><span class="sd">    ```</span>
+</span><span id="delete_element-447"><a href="#delete_element-447"><span class="linenos">447</span></a>
+</span><span id="delete_element-448"><a href="#delete_element-448"><span class="linenos">448</span></a><span class="sd">    **Example result**:</span>
+</span><span id="delete_element-449"><a href="#delete_element-449"><span class="linenos">449</span></a><span class="sd">    `true`</span>
+</span><span id="delete_element-450"><a href="#delete_element-450"><span class="linenos">450</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="delete_element-451"><a href="#delete_element-451"><span class="linenos">451</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="delete_element-452"><a href="#delete_element-452"><span class="linenos">452</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
+</span><span id="delete_element-453"><a href="#delete_element-453"><span class="linenos">453</span></a>        <span class="s1">&#39;delete-element&#39;</span><span class="p">,</span>
+</span><span id="delete_element-454"><a href="#delete_element-454"><span class="linenos">454</span></a>        <span class="n">element_uuid</span><span class="p">,</span>
+</span><span id="delete_element-455"><a href="#delete_element-455"><span class="linenos">455</span></a>    <span class="p">]</span>
+</span><span id="delete_element-456"><a href="#delete_element-456"><span class="linenos">456</span></a>    <span class="k">if</span> <span class="n">delete_from_database</span><span class="p">:</span>
+</span><span id="delete_element-457"><a href="#delete_element-457"><span class="linenos">457</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--database&#39;</span><span class="p">]</span>
+</span><span id="delete_element-458"><a href="#delete_element-458"><span class="linenos">458</span></a>    <span class="k">if</span> <span class="n">delete_from_disk</span><span class="p">:</span>
+</span><span id="delete_element-459"><a href="#delete_element-459"><span class="linenos">459</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--disk&#39;</span><span class="p">]</span>
+</span><span id="delete_element-460"><a href="#delete_element-460"><span class="linenos">460</span></a>    <span class="k">if</span> <span class="n">library_path</span><span class="p">:</span>
+</span><span id="delete_element-461"><a href="#delete_element-461"><span class="linenos">461</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">)]</span>
+</span><span id="delete_element-462"><a href="#delete_element-462"><span class="linenos">462</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1741,57 +1811,57 @@ de.delete_element(element_uuid, delete_from_database, delete_from_disk, library_
 
     </div>
     <a class="headerlink" href="#ingest"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="ingest-464"><a href="#ingest-464"><span class="linenos">464</span></a><span class="k">def</span> <span class="nf">ingest</span><span class="p">(</span><span class="n">library_path</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[]):</span>
-</span><span id="ingest-465"><a href="#ingest-465"><span class="linenos">465</span></a>    <span class="sd">&#39;&#39;&#39;</span>
-</span><span id="ingest-466"><a href="#ingest-466"><span class="linenos">466</span></a><span class="sd">    Ingest a new element to the library</span>
-</span><span id="ingest-467"><a href="#ingest-467"><span class="linenos">467</span></a>
-</span><span id="ingest-468"><a href="#ingest-468"><span class="linenos">468</span></a><span class="sd">    Ingesting a file sequence requires the path to be in a [fileseq.FileSequence notation](https://github.com/justinfx/fileseq#filesequence)  </span>
-</span><span id="ingest-469"><a href="#ingest-469"><span class="linenos">469</span></a><span class="sd">    Thank you to the developers of [fileseq](https://github.com/justinfx/fileseq)!</span>
-</span><span id="ingest-470"><a href="#ingest-470"><span class="linenos">470</span></a>
-</span><span id="ingest-471"><a href="#ingest-471"><span class="linenos">471</span></a><span class="sd">    Example: `/some/folder/files.1001-1099#.exr`</span>
-</span><span id="ingest-472"><a href="#ingest-472"><span class="linenos">472</span></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ingest-465"><a href="#ingest-465"><span class="linenos">465</span></a><span class="k">def</span> <span class="nf">ingest</span><span class="p">(</span><span class="n">library_path</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[]):</span>
+</span><span id="ingest-466"><a href="#ingest-466"><span class="linenos">466</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="ingest-467"><a href="#ingest-467"><span class="linenos">467</span></a><span class="sd">    Ingest a new element to the library</span>
+</span><span id="ingest-468"><a href="#ingest-468"><span class="linenos">468</span></a>
+</span><span id="ingest-469"><a href="#ingest-469"><span class="linenos">469</span></a><span class="sd">    Ingesting a file sequence requires the path to be in a [fileseq.FileSequence notation](https://github.com/justinfx/fileseq#filesequence)  </span>
+</span><span id="ingest-470"><a href="#ingest-470"><span class="linenos">470</span></a><span class="sd">    Thank you to the developers of [fileseq](https://github.com/justinfx/fileseq)!</span>
+</span><span id="ingest-471"><a href="#ingest-471"><span class="linenos">471</span></a>
+</span><span id="ingest-472"><a href="#ingest-472"><span class="linenos">472</span></a><span class="sd">    Example: `/some/folder/files.1001-1099#.exr`</span>
 </span><span id="ingest-473"><a href="#ingest-473"><span class="linenos">473</span></a>
-</span><span id="ingest-474"><a href="#ingest-474"><span class="linenos">474</span></a><span class="sd">    **Args**:</span>
-</span><span id="ingest-475"><a href="#ingest-475"><span class="linenos">475</span></a><span class="sd">    &gt; - **library_path** (str): *File path to the library file (.lib)*</span>
-</span><span id="ingest-476"><a href="#ingest-476"><span class="linenos">476</span></a><span class="sd">    &gt; - **mapping** (str): *Name of the transcoding mapping used to ingest*</span>
-</span><span id="ingest-477"><a href="#ingest-477"><span class="linenos">477</span></a><span class="sd">    &gt; - **path** (str): *File path to the new element*</span>
-</span><span id="ingest-478"><a href="#ingest-478"><span class="linenos">478</span></a><span class="sd">    &gt; - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*</span>
-</span><span id="ingest-479"><a href="#ingest-479"><span class="linenos">479</span></a><span class="sd">    &gt; - **tags** (List[str]): *[optional] List of tags*</span>
-</span><span id="ingest-480"><a href="#ingest-480"><span class="linenos">480</span></a>
-</span><span id="ingest-481"><a href="#ingest-481"><span class="linenos">481</span></a><span class="sd">    **Returns**:</span>
-</span><span id="ingest-482"><a href="#ingest-482"><span class="linenos">482</span></a><span class="sd">    &gt; - Dict: *Element entity for the newly created element*</span>
-</span><span id="ingest-483"><a href="#ingest-483"><span class="linenos">483</span></a>
-</span><span id="ingest-484"><a href="#ingest-484"><span class="linenos">484</span></a><span class="sd">    **Example code**:</span>
-</span><span id="ingest-485"><a href="#ingest-485"><span class="linenos">485</span></a><span class="sd">    ```</span>
-</span><span id="ingest-486"><a href="#ingest-486"><span class="linenos">486</span></a><span class="sd">    from daselement_api import api as de</span>
-</span><span id="ingest-487"><a href="#ingest-487"><span class="linenos">487</span></a>
-</span><span id="ingest-488"><a href="#ingest-488"><span class="linenos">488</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;</span>
-</span><span id="ingest-489"><a href="#ingest-489"><span class="linenos">489</span></a><span class="sd">    mapping = &#39;copy &amp; rename&#39;</span>
-</span><span id="ingest-490"><a href="#ingest-490"><span class="linenos">490</span></a><span class="sd">    path = &#39;/some/folder/files.1001-1099#.exr&#39;</span>
-</span><span id="ingest-491"><a href="#ingest-491"><span class="linenos">491</span></a><span class="sd">    category = &#39;Q235544&#39;  #  or: &#39;flame&#39;</span>
-</span><span id="ingest-492"><a href="#ingest-492"><span class="linenos">492</span></a><span class="sd">    tags = [&#39;Q3196&#39;, &#39;foo&#39;, &#39;bar&#39;]</span>
-</span><span id="ingest-493"><a href="#ingest-493"><span class="linenos">493</span></a>
-</span><span id="ingest-494"><a href="#ingest-494"><span class="linenos">494</span></a><span class="sd">    entity = de.ingest(library_path, mapping, path, category, tags)</span>
-</span><span id="ingest-495"><a href="#ingest-495"><span class="linenos">495</span></a><span class="sd">    print(entity)</span>
-</span><span id="ingest-496"><a href="#ingest-496"><span class="linenos">496</span></a><span class="sd">    print(entity.get(&#39;path&#39;))</span>
-</span><span id="ingest-497"><a href="#ingest-497"><span class="linenos">497</span></a><span class="sd">    ```</span>
-</span><span id="ingest-498"><a href="#ingest-498"><span class="linenos">498</span></a>
-</span><span id="ingest-499"><a href="#ingest-499"><span class="linenos">499</span></a><span class="sd">    **Example result**:</span>
-</span><span id="ingest-500"><a href="#ingest-500"><span class="linenos">500</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
-</span><span id="ingest-501"><a href="#ingest-501"><span class="linenos">501</span></a>
-</span><span id="ingest-502"><a href="#ingest-502"><span class="linenos">502</span></a><span class="sd">    **Example command line command**:</span>
-</span><span id="ingest-503"><a href="#ingest-503"><span class="linenos">503</span></a><span class="sd">    `das-element-cli ingest --library /mnt/library/das-element.lib --mapping &quot;copy &amp; rename&quot; --path /some/file/path.1001-1099#.exr --category Q235544 --tags Q3196,foo,bar`</span>
-</span><span id="ingest-504"><a href="#ingest-504"><span class="linenos">504</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="ingest-505"><a href="#ingest-505"><span class="linenos">505</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="ingest-506"><a href="#ingest-506"><span class="linenos">506</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
-</span><span id="ingest-507"><a href="#ingest-507"><span class="linenos">507</span></a>        <span class="s1">&#39;ingest&#39;</span><span class="p">,</span> <span class="s1">&#39;--library&#39;</span><span class="p">,</span>
-</span><span id="ingest-508"><a href="#ingest-508"><span class="linenos">508</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">),</span> <span class="s1">&#39;--mapping&#39;</span><span class="p">,</span>
-</span><span id="ingest-509"><a href="#ingest-509"><span class="linenos">509</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">mapping</span><span class="p">),</span> <span class="s1">&#39;--path&#39;</span><span class="p">,</span>
-</span><span id="ingest-510"><a href="#ingest-510"><span class="linenos">510</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="s1">&#39;--category&#39;</span><span class="p">,</span>
-</span><span id="ingest-511"><a href="#ingest-511"><span class="linenos">511</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">category</span><span class="p">),</span> <span class="s1">&#39;--tags&#39;</span><span class="p">,</span>
-</span><span id="ingest-512"><a href="#ingest-512"><span class="linenos">512</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">))</span>
-</span><span id="ingest-513"><a href="#ingest-513"><span class="linenos">513</span></a>    <span class="p">]</span>
-</span><span id="ingest-514"><a href="#ingest-514"><span class="linenos">514</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</span><span id="ingest-474"><a href="#ingest-474"><span class="linenos">474</span></a>
+</span><span id="ingest-475"><a href="#ingest-475"><span class="linenos">475</span></a><span class="sd">    **Args**:</span>
+</span><span id="ingest-476"><a href="#ingest-476"><span class="linenos">476</span></a><span class="sd">    &gt; - **library_path** (str): *File path to the library file (.lib)*</span>
+</span><span id="ingest-477"><a href="#ingest-477"><span class="linenos">477</span></a><span class="sd">    &gt; - **mapping** (str): *Name of the transcoding mapping used to ingest*</span>
+</span><span id="ingest-478"><a href="#ingest-478"><span class="linenos">478</span></a><span class="sd">    &gt; - **path** (str): *File path to the new element*</span>
+</span><span id="ingest-479"><a href="#ingest-479"><span class="linenos">479</span></a><span class="sd">    &gt; - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*</span>
+</span><span id="ingest-480"><a href="#ingest-480"><span class="linenos">480</span></a><span class="sd">    &gt; - **tags** (List[str]): *[optional] List of tags*</span>
+</span><span id="ingest-481"><a href="#ingest-481"><span class="linenos">481</span></a>
+</span><span id="ingest-482"><a href="#ingest-482"><span class="linenos">482</span></a><span class="sd">    **Returns**:</span>
+</span><span id="ingest-483"><a href="#ingest-483"><span class="linenos">483</span></a><span class="sd">    &gt; - Dict: *Element entity for the newly created element*</span>
+</span><span id="ingest-484"><a href="#ingest-484"><span class="linenos">484</span></a>
+</span><span id="ingest-485"><a href="#ingest-485"><span class="linenos">485</span></a><span class="sd">    **Example code**:</span>
+</span><span id="ingest-486"><a href="#ingest-486"><span class="linenos">486</span></a><span class="sd">    ```</span>
+</span><span id="ingest-487"><a href="#ingest-487"><span class="linenos">487</span></a><span class="sd">    from daselement_api import api as de</span>
+</span><span id="ingest-488"><a href="#ingest-488"><span class="linenos">488</span></a>
+</span><span id="ingest-489"><a href="#ingest-489"><span class="linenos">489</span></a><span class="sd">    library_path = &#39;/some/path/das-element.lib&#39;</span>
+</span><span id="ingest-490"><a href="#ingest-490"><span class="linenos">490</span></a><span class="sd">    mapping = &#39;copy &amp; rename&#39;</span>
+</span><span id="ingest-491"><a href="#ingest-491"><span class="linenos">491</span></a><span class="sd">    path = &#39;/some/folder/files.1001-1099#.exr&#39;</span>
+</span><span id="ingest-492"><a href="#ingest-492"><span class="linenos">492</span></a><span class="sd">    category = &#39;Q235544&#39;  #  or: &#39;flame&#39;</span>
+</span><span id="ingest-493"><a href="#ingest-493"><span class="linenos">493</span></a><span class="sd">    tags = [&#39;Q3196&#39;, &#39;foo&#39;, &#39;bar&#39;]</span>
+</span><span id="ingest-494"><a href="#ingest-494"><span class="linenos">494</span></a>
+</span><span id="ingest-495"><a href="#ingest-495"><span class="linenos">495</span></a><span class="sd">    entity = de.ingest(library_path, mapping, path, category, tags)</span>
+</span><span id="ingest-496"><a href="#ingest-496"><span class="linenos">496</span></a><span class="sd">    print(entity)</span>
+</span><span id="ingest-497"><a href="#ingest-497"><span class="linenos">497</span></a><span class="sd">    print(entity.get(&#39;path&#39;))</span>
+</span><span id="ingest-498"><a href="#ingest-498"><span class="linenos">498</span></a><span class="sd">    ```</span>
+</span><span id="ingest-499"><a href="#ingest-499"><span class="linenos">499</span></a>
+</span><span id="ingest-500"><a href="#ingest-500"><span class="linenos">500</span></a><span class="sd">    **Example result**:</span>
+</span><span id="ingest-501"><a href="#ingest-501"><span class="linenos">501</span></a><span class="sd">    `{&quot;category&quot;: {&quot;child_counter&quot;: 1,&quot;description&quot;: &quot;stick with a flaming end used as a source of light&quot;,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;},&quot;category_id&quot;: &quot;Q327954&quot;,&quot;channel&quot;: 3,&quot;colorspace&quot;: &quot;sRGB&quot;,&quot;colorspace_source&quot;: &quot;sRGB&quot;,&quot;created_at&quot;: &quot;2022-05-16T08:26:52.854774&quot;,&quot;feature_id&quot;: 1,&quot;frame_count&quot;: 1,&quot;frame_first&quot;: 1,&quot;frame_last&quot;: 1,&quot;frame_rate&quot;: &quot;&quot;,&quot;height&quot;: 5413,&quot;id&quot;: 1,&quot;media_type&quot;: &quot;image&quot;,&quot;name&quot;: &quot;fire_00001&quot;,&quot;number&quot;: &quot;00001&quot;,&quot;path&quot;: &quot;/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg&quot;,&quot;path_filmstrip&quot;: &quot;/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg&quot;,&quot;path_proxy&quot;: &quot;/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov&quot;,&quot;path_source&quot;: &quot;/mnt/source/lication/some-image.jpg&quot;,&quot;path_thumbnail&quot;: &quot;/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg&quot;,&quot;pixel_aspect&quot;: &quot;1&quot;,&quot;popularity&quot;: &quot;None&quot;,&quot;rating&quot;: &quot;None&quot;,&quot;tags&quot;: [{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q235544&quot;,&quot;name&quot;: &quot;flame&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 56,&quot;id&quot;: &quot;Q3196&quot;,&quot;name&quot;: &quot;fire&quot;,&quot;type&quot;: &quot;default&quot;},{&quot;elements_count&quot;: 3,&quot;id&quot;: &quot;Q327954&quot;,&quot;name&quot;: &quot;torch&quot;,&quot;type&quot;: &quot;default&quot;}],&quot;uuid&quot;: &quot;9947c549c6014a3ca831983275884051&quot;,&quot;width&quot;: 3342}`</span>
+</span><span id="ingest-502"><a href="#ingest-502"><span class="linenos">502</span></a>
+</span><span id="ingest-503"><a href="#ingest-503"><span class="linenos">503</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="ingest-504"><a href="#ingest-504"><span class="linenos">504</span></a><span class="sd">    `das-element-cli ingest --library /mnt/library/das-element.lib --mapping &quot;copy &amp; rename&quot; --path /some/file/path.1001-1099#.exr --category Q235544 --tags Q3196,foo,bar`</span>
+</span><span id="ingest-505"><a href="#ingest-505"><span class="linenos">505</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="ingest-506"><a href="#ingest-506"><span class="linenos">506</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">config</span><span class="p">]</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="ingest-507"><a href="#ingest-507"><span class="linenos">507</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span>
+</span><span id="ingest-508"><a href="#ingest-508"><span class="linenos">508</span></a>        <span class="s1">&#39;ingest&#39;</span><span class="p">,</span> <span class="s1">&#39;--library&#39;</span><span class="p">,</span>
+</span><span id="ingest-509"><a href="#ingest-509"><span class="linenos">509</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">library_path</span><span class="p">),</span> <span class="s1">&#39;--mapping&#39;</span><span class="p">,</span>
+</span><span id="ingest-510"><a href="#ingest-510"><span class="linenos">510</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">mapping</span><span class="p">),</span> <span class="s1">&#39;--path&#39;</span><span class="p">,</span>
+</span><span id="ingest-511"><a href="#ingest-511"><span class="linenos">511</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="s1">&#39;--category&#39;</span><span class="p">,</span>
+</span><span id="ingest-512"><a href="#ingest-512"><span class="linenos">512</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">category</span><span class="p">),</span> <span class="s1">&#39;--tags&#39;</span><span class="p">,</span>
+</span><span id="ingest-513"><a href="#ingest-513"><span class="linenos">513</span></a>        <span class="n">as_quoted_string</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tags</span><span class="p">))</span>
+</span><span id="ingest-514"><a href="#ingest-514"><span class="linenos">514</span></a>    <span class="p">]</span>
+</span><span id="ingest-515"><a href="#ingest-515"><span class="linenos">515</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1851,46 +1921,45 @@ print(entity.get('path'))
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">predict</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">model</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">top</span><span class="o">=</span><span class="mi">2</span>, </span><span class="param"><span class="n">filmstrip_frames</span><span class="o">=</span><span class="mi">36</span></span>)</span>
+        <span class="name">predict</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">path</span>, </span><span class="param"><span class="n">model</span>, </span><span class="param"><span class="n">top</span><span class="o">=</span><span class="mi">2</span>, </span><span class="param"><span class="n">filmstrip_frames</span><span class="o">=</span><span class="mi">36</span></span>)</span>
 
                 <label class="view-source-button" for="predict-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#predict"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="predict-517"><a href="#predict-517"><span class="linenos">517</span></a><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="o">=</span><span class="mi">36</span><span class="p">):</span>
-</span><span id="predict-518"><a href="#predict-518"><span class="linenos">518</span></a>    <span class="sd">&#39;&#39;&#39;</span>
-</span><span id="predict-519"><a href="#predict-519"><span class="linenos">519</span></a><span class="sd">    Predict the category for a give file path.</span>
-</span><span id="predict-520"><a href="#predict-520"><span class="linenos">520</span></a>
-</span><span id="predict-521"><a href="#predict-521"><span class="linenos">521</span></a><span class="sd">    The give path can be a file or a directory.  </span>
-</span><span id="predict-522"><a href="#predict-522"><span class="linenos">522</span></a><span class="sd">    If a directory is provided, all sub-directories will be searched for files and sequences.</span>
-</span><span id="predict-523"><a href="#predict-523"><span class="linenos">523</span></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="predict-518"><a href="#predict-518"><span class="linenos">518</span></a><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="o">=</span><span class="mi">36</span><span class="p">):</span>
+</span><span id="predict-519"><a href="#predict-519"><span class="linenos">519</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="predict-520"><a href="#predict-520"><span class="linenos">520</span></a><span class="sd">    Predict the category for a give file path.</span>
+</span><span id="predict-521"><a href="#predict-521"><span class="linenos">521</span></a>
+</span><span id="predict-522"><a href="#predict-522"><span class="linenos">522</span></a><span class="sd">    The give path can be a file or a directory.  </span>
+</span><span id="predict-523"><a href="#predict-523"><span class="linenos">523</span></a><span class="sd">    If a directory is provided, all sub-directories will be searched for files and sequences.</span>
 </span><span id="predict-524"><a href="#predict-524"><span class="linenos">524</span></a>
-</span><span id="predict-525"><a href="#predict-525"><span class="linenos">525</span></a><span class="sd">    **Args**:</span>
-</span><span id="predict-526"><a href="#predict-526"><span class="linenos">526</span></a>
-</span><span id="predict-527"><a href="#predict-527"><span class="linenos">527</span></a><span class="sd">    &gt; - **model** (str): [optional] *Define a custom model file path (.wit)*</span>
-</span><span id="predict-528"><a href="#predict-528"><span class="linenos">528</span></a><span class="sd">    &gt; - **filmstrip_frames** (int): [optional] *Number of frames to validated for a movie file or sequence. The higher the number, the better the result might be, but it also takes longer*</span>
-</span><span id="predict-529"><a href="#predict-529"><span class="linenos">529</span></a><span class="sd">    &gt; - **top** (int): [optional] *Return the top X predictions*</span>
-</span><span id="predict-530"><a href="#predict-530"><span class="linenos">530</span></a>
+</span><span id="predict-525"><a href="#predict-525"><span class="linenos">525</span></a>
+</span><span id="predict-526"><a href="#predict-526"><span class="linenos">526</span></a><span class="sd">    **Args**:</span>
+</span><span id="predict-527"><a href="#predict-527"><span class="linenos">527</span></a>
+</span><span id="predict-528"><a href="#predict-528"><span class="linenos">528</span></a><span class="sd">    &gt; - **model** (str): *Define a custom model file path (.wit)*</span>
+</span><span id="predict-529"><a href="#predict-529"><span class="linenos">529</span></a><span class="sd">    &gt; - **filmstrip_frames** (int): [optional] *Number of frames to validated for a movie file or sequence. The higher the number, the better the result might be, but it also takes longer*</span>
+</span><span id="predict-530"><a href="#predict-530"><span class="linenos">530</span></a><span class="sd">    &gt; - **top** (int): [optional] *Return the top X predictions*</span>
 </span><span id="predict-531"><a href="#predict-531"><span class="linenos">531</span></a>
-</span><span id="predict-532"><a href="#predict-532"><span class="linenos">532</span></a><span class="sd">    **Returns**:</span>
-</span><span id="predict-533"><a href="#predict-533"><span class="linenos">533</span></a><span class="sd">    &gt; - Dict[str, List[Dict]]: *Key is the file path. The value a list of predicted categories*</span>
-</span><span id="predict-534"><a href="#predict-534"><span class="linenos">534</span></a>
+</span><span id="predict-532"><a href="#predict-532"><span class="linenos">532</span></a>
+</span><span id="predict-533"><a href="#predict-533"><span class="linenos">533</span></a><span class="sd">    **Returns**:</span>
+</span><span id="predict-534"><a href="#predict-534"><span class="linenos">534</span></a><span class="sd">    &gt; - Dict[str, List[Dict]]: *Key is the file path. The value a list of predicted categories*</span>
 </span><span id="predict-535"><a href="#predict-535"><span class="linenos">535</span></a>
-</span><span id="predict-536"><a href="#predict-536"><span class="linenos">536</span></a><span class="sd">    **Example result**:</span>
-</span><span id="predict-537"><a href="#predict-537"><span class="linenos">537</span></a><span class="sd">    `{&quot;/some/file/path.1001-1099#.exr&quot;: [{&quot;tag&quot;: &quot;flame&quot;, &quot;description&quot;: &quot;visible, gaseous part of a fire&quot;, &quot;id&quot;: &quot;Q235544&quot;, &quot;value&quot;: &quot;Q235544&quot;, &quot;parents&quot;: [{&quot;description&quot;: &quot;rapid oxidation of a material; phenomenon that emits light and heat&quot;, &quot;id&quot;: &quot;Q3196&quot;, &quot;name&quot;: &quot;fire&quot;, &quot;synonyms&quot;: [{&quot;language&quot;: &quot;en&quot;, &quot;value&quot;: &quot;fire&quot;}, {&quot;language&quot;: &quot;en&quot;, &quot;value&quot;: &quot;fires&quot;}}]}]}`</span>
-</span><span id="predict-538"><a href="#predict-538"><span class="linenos">538</span></a>
+</span><span id="predict-536"><a href="#predict-536"><span class="linenos">536</span></a>
+</span><span id="predict-537"><a href="#predict-537"><span class="linenos">537</span></a><span class="sd">    **Example result**:</span>
+</span><span id="predict-538"><a href="#predict-538"><span class="linenos">538</span></a><span class="sd">    `{&quot;/some/file/path.1001-1099#.exr&quot;: [{&quot;tag&quot;: &quot;flame&quot;, &quot;description&quot;: &quot;visible, gaseous part of a fire&quot;, &quot;id&quot;: &quot;Q235544&quot;, &quot;value&quot;: &quot;Q235544&quot;, &quot;parents&quot;: [{&quot;description&quot;: &quot;rapid oxidation of a material; phenomenon that emits light and heat&quot;, &quot;id&quot;: &quot;Q3196&quot;, &quot;name&quot;: &quot;fire&quot;, &quot;synonyms&quot;: [{&quot;language&quot;: &quot;en&quot;, &quot;value&quot;: &quot;fire&quot;}, {&quot;language&quot;: &quot;en&quot;, &quot;value&quot;: &quot;fires&quot;}}]}]}`</span>
 </span><span id="predict-539"><a href="#predict-539"><span class="linenos">539</span></a>
-</span><span id="predict-540"><a href="#predict-540"><span class="linenos">540</span></a><span class="sd">    **Example command line command**:</span>
-</span><span id="predict-541"><a href="#predict-541"><span class="linenos">541</span></a><span class="sd">    `das-element-cli predict --top=2 /some/file/path`</span>
-</span><span id="predict-542"><a href="#predict-542"><span class="linenos">542</span></a>
-</span><span id="predict-543"><a href="#predict-543"><span class="linenos">543</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="predict-544"><a href="#predict-544"><span class="linenos">544</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">,</span> <span class="s1">&#39;--top&#39;</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="s1">&#39;--filmstrip_frames&#39;</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="p">]</span>
-</span><span id="predict-545"><a href="#predict-545"><span class="linenos">545</span></a>
-</span><span id="predict-546"><a href="#predict-546"><span class="linenos">546</span></a>    <span class="k">if</span> <span class="n">model</span><span class="p">:</span>
-</span><span id="predict-547"><a href="#predict-547"><span class="linenos">547</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--model&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">model</span><span class="p">)]</span>
-</span><span id="predict-548"><a href="#predict-548"><span class="linenos">548</span></a>
-</span><span id="predict-549"><a href="#predict-549"><span class="linenos">549</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span>
-</span><span id="predict-550"><a href="#predict-550"><span class="linenos">550</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</span><span id="predict-540"><a href="#predict-540"><span class="linenos">540</span></a>
+</span><span id="predict-541"><a href="#predict-541"><span class="linenos">541</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="predict-542"><a href="#predict-542"><span class="linenos">542</span></a><span class="sd">    `das-element-cli predict --top=2 /some/file/path`</span>
+</span><span id="predict-543"><a href="#predict-543"><span class="linenos">543</span></a>
+</span><span id="predict-544"><a href="#predict-544"><span class="linenos">544</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="predict-545"><a href="#predict-545"><span class="linenos">545</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">,</span> <span class="s1">&#39;--top&#39;</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="s1">&#39;--filmstrip_frames&#39;</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="p">]</span>
+</span><span id="predict-546"><a href="#predict-546"><span class="linenos">546</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--model&#39;</span><span class="p">,</span> <span class="n">as_quoted_string</span><span class="p">(</span><span class="n">model</span><span class="p">)]</span>
+</span><span id="predict-547"><a href="#predict-547"><span class="linenos">547</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--filmstrip_frames&#39;</span><span class="p">,</span> <span class="n">filmstrip_frames</span><span class="p">]</span>
+</span><span id="predict-548"><a href="#predict-548"><span class="linenos">548</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--top&#39;</span><span class="p">,</span> <span class="n">top</span><span class="p">]</span>
+</span><span id="predict-549"><a href="#predict-549"><span class="linenos">549</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">as_quoted_string</span><span class="p">(</span><span class="n">path</span><span class="p">)]</span>
+</span><span id="predict-550"><a href="#predict-550"><span class="linenos">550</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1903,7 +1972,7 @@ If a directory is provided, all sub-directories will be searched for files and s
 
 <blockquote>
   <ul>
-  <li><strong>model</strong> (str): [optional] <em>Define a custom model file path (.wit)</em></li>
+  <li><strong>model</strong> (str): <em>Define a custom model file path (.wit)</em></li>
   <li><strong>filmstrip_frames</strong> (int): [optional] <em>Number of frames to validated for a movie file or sequence. The higher the number, the better the result might be, but it also takes longer</em></li>
   <li><strong>top</strong> (int): [optional] <em>Return the top X predictions</em></li>
   </ul>
@@ -1970,7 +2039,7 @@ If a directory is provided, all sub-directories will be searched for files and s
 </span><span id="get_paths_from_disk-583"><a href="#get_paths_from_disk-583"><span class="linenos">583</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--as_single_files&#39;</span><span class="p">]</span>
 </span><span id="get_paths_from_disk-584"><a href="#get_paths_from_disk-584"><span class="linenos">584</span></a>
 </span><span id="get_paths_from_disk-585"><a href="#get_paths_from_disk-585"><span class="linenos">585</span></a>    <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span>
-</span><span id="get_paths_from_disk-586"><a href="#get_paths_from_disk-586"><span class="linenos">586</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</span><span id="get_paths_from_disk-586"><a href="#get_paths_from_disk-586"><span class="linenos">586</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -2000,6 +2069,154 @@ If a directory is provided, all sub-directories will be searched for files and s
 
 <p><strong>Example command line command</strong>:
 <code>das-element-cli get-paths-from-disk --as_sequence /some/file/path</code></p>
+</div>
+
+
+                </section>
+                <section id="get_meaningful_frame">
+                            <input id="get_meaningful_frame-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_meaningful_frame</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">path</span></span>)</span>
+
+                <label class="view-source-button" for="get_meaningful_frame-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#get_meaningful_frame"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_meaningful_frame-589"><a href="#get_meaningful_frame-589"><span class="linenos">589</span></a><span class="k">def</span> <span class="nf">get_meaningful_frame</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+</span><span id="get_meaningful_frame-590"><a href="#get_meaningful_frame-590"><span class="linenos">590</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="get_meaningful_frame-591"><a href="#get_meaningful_frame-591"><span class="linenos">591</span></a><span class="sd">    Validate meaningful thumbnail frame number for movie file or image sequence</span>
+</span><span id="get_meaningful_frame-592"><a href="#get_meaningful_frame-592"><span class="linenos">592</span></a>
+</span><span id="get_meaningful_frame-593"><a href="#get_meaningful_frame-593"><span class="linenos">593</span></a>
+</span><span id="get_meaningful_frame-594"><a href="#get_meaningful_frame-594"><span class="linenos">594</span></a><span class="sd">    **Args**:</span>
+</span><span id="get_meaningful_frame-595"><a href="#get_meaningful_frame-595"><span class="linenos">595</span></a>
+</span><span id="get_meaningful_frame-596"><a href="#get_meaningful_frame-596"><span class="linenos">596</span></a><span class="sd">    &gt; - **path** (str): *file path to movie file or image sequence - single frame of a file sequence can be provided*</span>
+</span><span id="get_meaningful_frame-597"><a href="#get_meaningful_frame-597"><span class="linenos">597</span></a>
+</span><span id="get_meaningful_frame-598"><a href="#get_meaningful_frame-598"><span class="linenos">598</span></a>
+</span><span id="get_meaningful_frame-599"><a href="#get_meaningful_frame-599"><span class="linenos">599</span></a><span class="sd">    **Returns**:</span>
+</span><span id="get_meaningful_frame-600"><a href="#get_meaningful_frame-600"><span class="linenos">600</span></a><span class="sd">    &gt; - int: *Returns frame number of meaningful thumbnail frame*</span>
+</span><span id="get_meaningful_frame-601"><a href="#get_meaningful_frame-601"><span class="linenos">601</span></a>
+</span><span id="get_meaningful_frame-602"><a href="#get_meaningful_frame-602"><span class="linenos">602</span></a>
+</span><span id="get_meaningful_frame-603"><a href="#get_meaningful_frame-603"><span class="linenos">603</span></a><span class="sd">    **Example result**:</span>
+</span><span id="get_meaningful_frame-604"><a href="#get_meaningful_frame-604"><span class="linenos">604</span></a><span class="sd">    `1042`</span>
+</span><span id="get_meaningful_frame-605"><a href="#get_meaningful_frame-605"><span class="linenos">605</span></a>
+</span><span id="get_meaningful_frame-606"><a href="#get_meaningful_frame-606"><span class="linenos">606</span></a>
+</span><span id="get_meaningful_frame-607"><a href="#get_meaningful_frame-607"><span class="linenos">607</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="get_meaningful_frame-608"><a href="#get_meaningful_frame-608"><span class="linenos">608</span></a><span class="sd">    `das-element-cli get-meaningful-frame /folder/some_file.mov`</span>
+</span><span id="get_meaningful_frame-609"><a href="#get_meaningful_frame-609"><span class="linenos">609</span></a><span class="sd">    `das-element-cli get-meaningful-frame /folder/frame_sequence.1001.exr`</span>
+</span><span id="get_meaningful_frame-610"><a href="#get_meaningful_frame-610"><span class="linenos">610</span></a><span class="sd">    `das-element-cli get-meaningful-frame /folder/frame_sequence.####.exr`</span>
+</span><span id="get_meaningful_frame-611"><a href="#get_meaningful_frame-611"><span class="linenos">611</span></a><span class="sd">    `das-element-cli get-meaningful-frame /folder/frame_sequence.%04d.exr`</span>
+</span><span id="get_meaningful_frame-612"><a href="#get_meaningful_frame-612"><span class="linenos">612</span></a>
+</span><span id="get_meaningful_frame-613"><a href="#get_meaningful_frame-613"><span class="linenos">613</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="get_meaningful_frame-614"><a href="#get_meaningful_frame-614"><span class="linenos">614</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;get-meaningful-frame&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">]</span>
+</span><span id="get_meaningful_frame-615"><a href="#get_meaningful_frame-615"><span class="linenos">615</span></a>
+</span><span id="get_meaningful_frame-616"><a href="#get_meaningful_frame-616"><span class="linenos">616</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Validate meaningful thumbnail frame number for movie file or image sequence</p>
+
+<p><strong>Args</strong>:</p>
+
+<blockquote>
+  <ul>
+  <li><strong>path</strong> (str): <em>file path to movie file or image sequence - single frame of a file sequence can be provided</em></li>
+  </ul>
+</blockquote>
+
+<p><strong>Returns</strong>:</p>
+
+<blockquote>
+  <ul>
+  <li>int: <em>Returns frame number of meaningful thumbnail frame</em></li>
+  </ul>
+</blockquote>
+
+<p><strong>Example result</strong>:
+<code>1042</code></p>
+
+<p><strong>Example command line command</strong>:
+<code>das-element-cli get-meaningful-frame /folder/some_file.mov</code>
+<code>das-element-cli get-meaningful-frame /folder/frame_sequence.1001.exr</code>
+<code>das-element-cli get-meaningful-frame /folder/frame_sequence.####.exr</code>
+<code>das-element-cli get-meaningful-frame /folder/frame_sequence.%04d.exr</code></p>
+</div>
+
+
+                </section>
+                <section id="render_element_proxies">
+                            <input id="render_element_proxies-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">render_element_proxies</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">element_uuid</span>, </span><span class="param"><span class="n">mapping</span>, </span><span class="param"><span class="n">library_path</span><span class="o">=</span><span class="kc">None</span></span>)</span>
+
+                <label class="view-source-button" for="render_element_proxies-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#render_element_proxies"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="render_element_proxies-619"><a href="#render_element_proxies-619"><span class="linenos">619</span></a><span class="k">def</span> <span class="nf">render_element_proxies</span><span class="p">(</span><span class="n">element_uuid</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">library_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="render_element_proxies-620"><a href="#render_element_proxies-620"><span class="linenos">620</span></a>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span id="render_element_proxies-621"><a href="#render_element_proxies-621"><span class="linenos">621</span></a><span class="sd">    Render the proxy files for an element based on a template mapping</span>
+</span><span id="render_element_proxies-622"><a href="#render_element_proxies-622"><span class="linenos">622</span></a>
+</span><span id="render_element_proxies-623"><a href="#render_element_proxies-623"><span class="linenos">623</span></a><span class="sd">    If the library is provided it will directly try to get to element for that library.</span>
+</span><span id="render_element_proxies-624"><a href="#render_element_proxies-624"><span class="linenos">624</span></a><span class="sd">    Otherwise it tries to get the entity each library that&#39;s defined in the config.</span>
+</span><span id="render_element_proxies-625"><a href="#render_element_proxies-625"><span class="linenos">625</span></a>
+</span><span id="render_element_proxies-626"><a href="#render_element_proxies-626"><span class="linenos">626</span></a><span class="sd">    **Args**:</span>
+</span><span id="render_element_proxies-627"><a href="#render_element_proxies-627"><span class="linenos">627</span></a><span class="sd">    &gt; - **element_uuid** (str): *Element UUID (unique ID) in the database*</span>
+</span><span id="render_element_proxies-628"><a href="#render_element_proxies-628"><span class="linenos">628</span></a><span class="sd">    &gt; - **mapping** (str): *name of the template mapping that gets rendered*</span>
+</span><span id="render_element_proxies-629"><a href="#render_element_proxies-629"><span class="linenos">629</span></a><span class="sd">    &gt; - **library_path** (str): *[optional] File path to the library file (.lib)*</span>
+</span><span id="render_element_proxies-630"><a href="#render_element_proxies-630"><span class="linenos">630</span></a>
+</span><span id="render_element_proxies-631"><a href="#render_element_proxies-631"><span class="linenos">631</span></a><span class="sd">    **Returns**:</span>
+</span><span id="render_element_proxies-632"><a href="#render_element_proxies-632"><span class="linenos">632</span></a><span class="sd">    &gt; - bool: *Result of render jobs*</span>
+</span><span id="render_element_proxies-633"><a href="#render_element_proxies-633"><span class="linenos">633</span></a>
+</span><span id="render_element_proxies-634"><a href="#render_element_proxies-634"><span class="linenos">634</span></a>
+</span><span id="render_element_proxies-635"><a href="#render_element_proxies-635"><span class="linenos">635</span></a><span class="sd">    **Example result**:</span>
+</span><span id="render_element_proxies-636"><a href="#render_element_proxies-636"><span class="linenos">636</span></a><span class="sd">    `true`</span>
+</span><span id="render_element_proxies-637"><a href="#render_element_proxies-637"><span class="linenos">637</span></a>
+</span><span id="render_element_proxies-638"><a href="#render_element_proxies-638"><span class="linenos">638</span></a>
+</span><span id="render_element_proxies-639"><a href="#render_element_proxies-639"><span class="linenos">639</span></a><span class="sd">    **Example command line command**:</span>
+</span><span id="render_element_proxies-640"><a href="#render_element_proxies-640"><span class="linenos">640</span></a><span class="sd">    `das-element-cli render-element-proxies 9947c549c6014a3ca831983275884051 &quot;render proxies&quot; --library /some/path/das-element.lib`</span>
+</span><span id="render_element_proxies-641"><a href="#render_element_proxies-641"><span class="linenos">641</span></a>
+</span><span id="render_element_proxies-642"><a href="#render_element_proxies-642"><span class="linenos">642</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="render_element_proxies-643"><a href="#render_element_proxies-643"><span class="linenos">643</span></a>    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;render-element-proxies&#39;</span><span class="p">,</span> <span class="n">element_uuid</span><span class="p">,</span> <span class="n">mapping</span><span class="p">]</span>
+</span><span id="render_element_proxies-644"><a href="#render_element_proxies-644"><span class="linenos">644</span></a>
+</span><span id="render_element_proxies-645"><a href="#render_element_proxies-645"><span class="linenos">645</span></a>    <span class="k">if</span> <span class="n">library_path</span><span class="p">:</span>
+</span><span id="render_element_proxies-646"><a href="#render_element_proxies-646"><span class="linenos">646</span></a>        <span class="n">command</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;--library&#39;</span><span class="p">,</span> <span class="n">library_path</span><span class="p">]</span>
+</span><span id="render_element_proxies-647"><a href="#render_element_proxies-647"><span class="linenos">647</span></a>
+</span><span id="render_element_proxies-648"><a href="#render_element_proxies-648"><span class="linenos">648</span></a>    <span class="k">return</span> <span class="n">execute_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cli_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Render the proxy files for an element based on a template mapping</p>
+
+<p>If the library is provided it will directly try to get to element for that library.
+Otherwise it tries to get the entity each library that's defined in the config.</p>
+
+<p><strong>Args</strong>:</p>
+
+<blockquote>
+  <ul>
+  <li><strong>element_uuid</strong> (str): <em>Element UUID (unique ID) in the database</em></li>
+  <li><strong>mapping</strong> (str): <em>name of the template mapping that gets rendered</em></li>
+  <li><strong>library_path</strong> (str): <em>[optional] File path to the library file (.lib)</em></li>
+  </ul>
+</blockquote>
+
+<p><strong>Returns</strong>:</p>
+
+<blockquote>
+  <ul>
+  <li>bool: <em>Result of render jobs</em></li>
+  </ul>
+</blockquote>
+
+<p><strong>Example result</strong>:
+<code>true</code></p>
+
+<p><strong>Example command line command</strong>:
+<code>das-element-cli render-element-proxies 9947c549c6014a3ca831983275884051 "render proxies" --library /some/path/das-element.lib</code></p>
 </div>
 
 
