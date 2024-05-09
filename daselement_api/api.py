@@ -461,7 +461,13 @@ def delete_element(element_uuid,
     return execute_command(command, cli_full=True)
 
 
-def ingest(library_path, mapping, path, category, tags=[]):
+def ingest(library_path,
+           mapping,
+           path,
+           category,
+           path_thumbnail='',
+           path_proxy='',
+           tags=[]):
     '''
     Ingest a new element to the library
 
@@ -475,6 +481,8 @@ def ingest(library_path, mapping, path, category, tags=[]):
     > - **library_path** (str): *File path to the library file (.lib)*
     > - **mapping** (str): *Name of the transcoding mapping used to ingest*
     > - **path** (str): *File path to the new element*
+    > - **path_thumbnail** (str): *[optional] File path to custom thumbnail*
+    > - **path_proxy** (str): *[optional] File path to custom proxy. Movie file, OBJ or FBX*
     > - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*
     > - **tags** (List[str]): *[optional] List of tags*
 
@@ -488,10 +496,12 @@ def ingest(library_path, mapping, path, category, tags=[]):
     library_path = '/some/path/das-element.lib'
     mapping = 'copy & rename'
     path = '/some/folder/files.1001-1099#.exr'
+    path_thumbnail = '/some/folder/custom_thumbnail.jpg'
+    path_proxy = '/some/folder/custom_proxy.mov'
     category = 'Q235544'  #  or: 'flame'
     tags = ['Q3196', 'foo', 'bar']
 
-    entity = de.ingest(library_path, mapping, path, category, tags)
+    entity = de.ingest(library_path, mapping, path, category, path_thumbnail=path_thumbnail, path_proxy=path_proxy, tags=tags)
     print(entity)
     print(entity.get('path'))
     ```
@@ -500,14 +510,16 @@ def ingest(library_path, mapping, path, category, tags=[]):
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","popularity": "None","rating": "None","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
 
     **Example command line command**:
-    `das-element-cli ingest --library /mnt/library/das-element.lib --mapping "copy & rename" --path /some/file/path.1001-1099#.exr --category Q235544 --tags Q3196,foo,bar`
+    `das-element-cli ingest --library /mnt/library/das-element.lib --mapping "copy & rename" --path /some/file/path.1001-1099#.exr --path_thumbnail /some/file/custom_thumbnail.jpg --path_proxy /some/file/custom_proxy.mov --category Q235544 --tags Q3196,foo,bar`
     '''
     command = ['--config', config] if config else []
     command += [
         'ingest', '--library',
         as_quoted_string(library_path), '--mapping',
         as_quoted_string(mapping), '--path',
-        as_quoted_string(path), '--category',
+        as_quoted_string(path), '--path_thumbnail',
+        as_quoted_string(path_thumbnail), '--path_proxy',
+        as_quoted_string(path_proxy), '--category',
         as_quoted_string(category), '--tags',
         as_quoted_string(','.join(tags))
     ]
