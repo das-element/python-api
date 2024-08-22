@@ -493,7 +493,7 @@ def ingest(library_path,
     > - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*
     > - **tags** (List[str]): *[optional] List of tags*
     > - **media_type** (str): *[optional] Media type of element. Valid options: image, sequence, movie, sphere, pdf, project-file, 3d-model, 3d-scene, generic*
-    > - **metadata** (Dict[str, str]): *[optional] List of metadata as key:value*
+    > - **metadata** (Dict[str, str]): *[optional] List of metadata as: {key:value}*
     > - **additionals** (List[Dict[str, str]]): *[optional] List of additionals. Provide additional as: /path type name*
 
     **Returns**:

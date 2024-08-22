@@ -630,7 +630,7 @@ Either defined in the <code>~/.das-element/setup.ini</code> file or by the envir
 </span><span id="L-493"><a href="#L-493"><span class="linenos">493</span></a><span class="sd">    &gt; - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*</span>
 </span><span id="L-494"><a href="#L-494"><span class="linenos">494</span></a><span class="sd">    &gt; - **tags** (List[str]): *[optional] List of tags*</span>
 </span><span id="L-495"><a href="#L-495"><span class="linenos">495</span></a><span class="sd">    &gt; - **media_type** (str): *[optional] Media type of element. Valid options: image, sequence, movie, sphere, pdf, project-file, 3d-model, 3d-scene, generic*</span>
-</span><span id="L-496"><a href="#L-496"><span class="linenos">496</span></a><span class="sd">    &gt; - **metadata** (Dict[str, str]): *[optional] List of metadata as key:value*</span>
+</span><span id="L-496"><a href="#L-496"><span class="linenos">496</span></a><span class="sd">    &gt; - **metadata** (Dict[str, str]): *[optional] List of metadata as: {key:value}*</span>
 </span><span id="L-497"><a href="#L-497"><span class="linenos">497</span></a><span class="sd">    &gt; - **additionals** (List[Dict[str, str]]): *[optional] List of additionals. Provide additional as: /path type name*</span>
 </span><span id="L-498"><a href="#L-498"><span class="linenos">498</span></a>
 </span><span id="L-499"><a href="#L-499"><span class="linenos">499</span></a><span class="sd">    **Returns**:</span>
@@ -1882,7 +1882,7 @@ de.delete_element(element_uuid, delete_from_database, delete_from_disk, library_
 </span><span id="ingest-494"><a href="#ingest-494"><span class="linenos">494</span></a><span class="sd">    &gt; - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*</span>
 </span><span id="ingest-495"><a href="#ingest-495"><span class="linenos">495</span></a><span class="sd">    &gt; - **tags** (List[str]): *[optional] List of tags*</span>
 </span><span id="ingest-496"><a href="#ingest-496"><span class="linenos">496</span></a><span class="sd">    &gt; - **media_type** (str): *[optional] Media type of element. Valid options: image, sequence, movie, sphere, pdf, project-file, 3d-model, 3d-scene, generic*</span>
-</span><span id="ingest-497"><a href="#ingest-497"><span class="linenos">497</span></a><span class="sd">    &gt; - **metadata** (Dict[str, str]): *[optional] List of metadata as key:value*</span>
+</span><span id="ingest-497"><a href="#ingest-497"><span class="linenos">497</span></a><span class="sd">    &gt; - **metadata** (Dict[str, str]): *[optional] List of metadata as: {key:value}*</span>
 </span><span id="ingest-498"><a href="#ingest-498"><span class="linenos">498</span></a><span class="sd">    &gt; - **additionals** (List[Dict[str, str]]): *[optional] List of additionals. Provide additional as: /path type name*</span>
 </span><span id="ingest-499"><a href="#ingest-499"><span class="linenos">499</span></a>
 </span><span id="ingest-500"><a href="#ingest-500"><span class="linenos">500</span></a><span class="sd">    **Returns**:</span>
@@ -1962,7 +1962,7 @@ Thank you to the developers of <a href="https://github.com/justinfx/fileseq">fil
   <li><strong>category</strong> (str): <em>Category name of new element (can be WikiData-ID or human-readable text)</em></li>
   <li><strong>tags</strong> (List[str]): <em>[optional] List of tags</em></li>
   <li><strong>media_type</strong> (str): <em>[optional] Media type of element. Valid options: image, sequence, movie, sphere, pdf, project-file, 3d-model, 3d-scene, generic</em></li>
-  <li><strong>metadata</strong> (Dict[str, str]): <em>[optional] List of metadata as key:value</em></li>
+  <li><strong>metadata</strong> (Dict[str, str]): <em>[optional] List of metadata as: {key:value}</em></li>
   <li><strong>additionals</strong> (List[Dict[str, str]]): <em>[optional] List of additionals. Provide additional as: /path type name</em></li>
   </ul>
 </blockquote>
