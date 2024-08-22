@@ -472,7 +472,9 @@ def ingest(library_path,
            path_thumbnail='',
            path_proxy='',
            tags=[],
-           media_type=''):
+           media_type='',
+           metadata={},
+           additionals=[]):
     '''
     Ingest a new element to the library
 
@@ -491,6 +493,8 @@ def ingest(library_path,
     > - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*
     > - **tags** (List[str]): *[optional] List of tags*
     > - **media_type** (str): *[optional] Media type of element. Valid options: image, sequence, movie, sphere, pdf, project-file, 3d-model, 3d-scene, generic*
+    > - **metadata** (Dict[str, str]): *[optional] List of metadata as key:value*
+    > - **additionals** (List[Dict[str, str]]): *[optional] List of additionals. Provide additional as: /path type name*
 
     **Returns**:
     > - Dict: *Element entity for the newly created element*
@@ -507,6 +511,8 @@ def ingest(library_path,
     category = 'Q235544'  #  or: 'flame'
     tags = ['Q3196', 'foo', 'bar']
     media_type = 'sequence'
+    metadata = {'foo': 'bar', 'bar': 'buz huz'}
+    additionals = [{'path': '/file/additional.exr', 'type': 'texture', 'name': 'alpha'}]
 
     entity = de.ingest(library_path, mapping, path, category, path_thumbnail=path_thumbnail, path_proxy=path_proxy, tags=tags, media_type=media_type)
     print(entity)
@@ -530,7 +536,20 @@ def ingest(library_path,
         as_quoted_string(category), '--tags',
         as_quoted_string(','.join(tags)), '--media_type',
         as_quoted_string(media_type)
+    ] + [
+        item for key_value in metadata.items() for item in
+        ['-m',
+         as_quoted_string(key_value[0]),
+         as_quoted_string(key_value[1])]
+    ] + [
+        item for additional in additionals for item in [
+            '-a',
+            as_quoted_string(additional.get('path', '')),
+            as_quoted_string(additional.get('type', '')),
+            as_quoted_string(additional.get('name', ''))
+        ]
     ]
+
     return execute_command(command, cli_full=True)
 
 
