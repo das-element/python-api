@@ -13,16 +13,19 @@ Make sure to link the correct executable 'das-element-cli' in the manager.py
 import subprocess
 import json
 import sys
+import os
 
 # This feature is available since version 1.1.6
 
-EXECUTABLE_CLI = '/path/to/das-element-cli_2.0.3_lin'
+# EXECUTABLE_CLI = '/path/to/das-element-cli_2.0.3_lin'
 # EXECUTABLE_CLI = '/path/to/das-element-cli_2.0.3_mac'
 # EXECUTABLE_CLI = '/path/to/das-element-cli_2.0.3_win.exe'
+EXECUTABLE_CLI = os.getenv('DASELEMENT_CLI')
 
-EXECUTABLE_CLI_FULL = '/path/to/das-element-cli-full_2.0.3_lin'
+# EXECUTABLE_CLI_FULL = '/path/to/das-element-cli-full_2.0.3_lin'
 # EXECUTABLE_CLI_FULL = '/path/to/das-element-cli-full_2.0.3_mac'
 # EXECUTABLE_CLI_FULL = '/path/to/das-element-cli-full_2.0.3_win.exe'
+EXECUTABLE_CLI_FULL = os.getenv('DASELEMENT_CLI_FULL')
 
 
 def as_quoted_string(value):
