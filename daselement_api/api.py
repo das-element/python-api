@@ -469,6 +469,7 @@ def ingest(library_path,
            mapping,
            path,
            category,
+           colorspace='',
            path_thumbnail='',
            path_proxy='',
            tags=[],
@@ -491,6 +492,7 @@ def ingest(library_path,
     > - **path_thumbnail** (str): *[optional] File path to custom thumbnail*
     > - **path_proxy** (str): *[optional] File path to custom proxy. Movie file, OBJ or FBX*
     > - **category** (str): *Category name of new element (can be WikiData-ID or human-readable text)*
+    > - **colorspace** (str): *[optional] Colorspace name*
     > - **tags** (List[str]): *[optional] List of tags*
     > - **media_type** (str): *[optional] Media type of element. Valid options: image, sequence, movie, sphere, pdf, project-file, 3d-model, 3d-scene, generic*
     > - **metadata** (Dict[str, str]): *[optional] List of metadata as: {key:value}*
@@ -509,12 +511,13 @@ def ingest(library_path,
     path_thumbnail = '/some/folder/custom_thumbnail.jpg'
     path_proxy = '/some/folder/custom_proxy.mov'
     category = 'Q235544'  #  or: 'flame'
+    colorspace = 'ACES2065-1'
     tags = ['Q3196', 'foo', 'bar']
     media_type = 'sequence'
     metadata = {'foo': 'bar', 'bar': 'buz huz'}
     additionals = [{'path': '/file/additional.exr', 'type': 'texture', 'name': 'alpha'}]
 
-    entity = de.ingest(library_path, mapping, path, category, path_thumbnail=path_thumbnail, path_proxy=path_proxy, tags=tags, media_type=media_type)
+    entity = de.ingest(library_path, mapping, path, category, colorspace=colorspace, path_thumbnail=path_thumbnail, path_proxy=path_proxy, tags=tags, media_type=media_type)
     print(entity)
     print(entity.get('path'))
     ```
@@ -533,7 +536,8 @@ def ingest(library_path,
         as_quoted_string(path), '--path_thumbnail',
         as_quoted_string(path_thumbnail), '--path_proxy',
         as_quoted_string(path_proxy), '--category',
-        as_quoted_string(category), '--tags',
+        as_quoted_string(category), '--colorspace',
+        as_quoted_string(colorspace), '--tags',
         as_quoted_string(','.join(tags)), '--media_type',
         as_quoted_string(media_type)
     ] + [
