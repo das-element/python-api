@@ -51,6 +51,48 @@ Variabel to define a custom config file path (.conf)
 '''
 
 
+def create_config(config_path, preset_key='blank', preset_path=None):
+    '''
+    Create a new config file. Provide the preset key or file path to a config preset.
+
+    **Args**:
+    > - **config_path** (str): *File path to the config .conf file*
+    > - **preset_key** (str): *[optional] Default preset key. Options: blank | preserve_structure | restructure_comprehensive | restructure_selective*
+    > - **preset_path** (str): *[optional] File path to config preset file*
+
+    **Returns**:
+    > - bool: *Result of config creation*
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    config_path = '/some/path/my-config.conf'
+    preset_key = 'blank'  # or 'preserve_structure', 'restructure_comprehensive', 'restructure_selective'
+    preset_path = '/some/path/preset.conf'  # optional
+
+    result = de.create_config(config_path, preset_key=preset_key)
+
+    # with custom preset file
+    result = de.create_config(config_path, preset_path=preset_path)
+    ```
+
+    **Example result**:
+    `true`
+
+    **Example command line command**:
+    `das-element-cli create-config /some/path/my-config.conf --preset_key blank`
+    `das-element-cli create-config /some/path/my-config.conf --preset_path /some/path/preset.conf`
+    '''
+    command = ['create-config', as_quoted_string(config_path)]
+    command += ['--preset_key', as_quoted_string(preset_key)]
+
+    if preset_path:
+        command += ['--preset_path', as_quoted_string(preset_path)]
+
+    return execute_command(command, cli_full=True)
+
+
 def get_libraries():
     '''
     Get all libraries data for current config.
