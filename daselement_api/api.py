@@ -93,6 +93,32 @@ def create_config(config_path, preset_key='blank', preset_path=None):
     return execute_command(command, cli_full=True)
 
 
+def get_config_presets():
+    '''
+    Get all available config presets.
+
+    **Returns**:
+    > - List[Dict]: *List of available config presets*
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    presets = de.get_config_presets()
+    for preset in presets:
+        print(preset)
+    ```
+
+    **Example result**:
+    `[{'key': 'blank', 'name': 'Blank Config', 'description': 'Creates a blank configuration file'}, {'key': 'preserve_structure', 'name': 'Preserve Structure', 'description': 'Preserves existing folder structure'}, {'key': 'restructure_comprehensive', 'name': 'Comprehensive Restructure', 'description': 'Complete restructuring of the library'}, {'key': 'restructure_selective', 'name': 'Selective Restructure', 'description': 'Selective restructuring based on criteria'}]`
+
+    **Example command line command**:
+    `das-element-cli get-config-presets`
+    '''
+    command = ['get-config-presets']
+    return execute_command(command, cli_full=True)
+
+
 def get_libraries():
     '''
     Get all libraries data for current config.
