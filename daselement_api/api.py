@@ -119,6 +119,32 @@ def get_config_presets():
     return execute_command(command, cli_full=True)
 
 
+def get_library_presets():
+    '''
+    Get all available library presets.
+
+    **Returns**:
+    > - List[Dict]: *List of available library presets*
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    presets = de.get_library_presets()
+    for preset in presets:
+        print(preset)
+    ```
+
+    **Example result**:
+    `[{'key': 'basic', 'name': 'Basic Library', 'description': 'Basic library setup with standard templates'}, {'key': 'advanced', 'name': 'Advanced Library', 'description': 'Advanced library setup with comprehensive templates'}, {'key': 'custom', 'name': 'Custom Library', 'description': 'Custom library setup for specific workflows'}]`
+
+    **Example command line command**:
+    `das-element-cli get-library-presets`
+    '''
+    command = ['get-library-presets']
+    return execute_command(command, cli_full=True)
+
+
 def get_libraries():
     '''
     Get all libraries data for current config.
