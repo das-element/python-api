@@ -145,6 +145,236 @@ def get_library_presets():
     return execute_command(command, cli_full=True)
 
 
+def create_library(library_path,
+                   name=None,
+                   path_lin=None,
+                   path_mac=None,
+                   path_win=None,
+                   root=None,
+                   root_lin=None,
+                   root_mac=None,
+                   root_win=None,
+                   preset_key='blank',
+                   preset_path=None,
+                   create_defaults=True,
+                   db_type=None,
+                   db_path=None,
+                   db_path_lin=None,
+                   db_path_mac=None,
+                   db_path_win=None,
+                   db_user=None,
+                   db_password=None,
+                   db_uri=None,
+                   db_port=None,
+                   db_name=None,
+                   db_sslmode='disable',
+                   db_sslcert=None,
+                   db_sslcert_lin=None,
+                   db_sslcert_mac=None,
+                   db_sslcert_win=None,
+                   db_sslkey=None,
+                   db_sslkey_lin=None,
+                   db_sslkey_mac=None,
+                   db_sslkey_win=None,
+                   db_sslrootcert=None,
+                   db_sslrootcert_lin=None,
+                   db_sslrootcert_mac=None,
+                   db_sslrootcert_win=None,
+                   db_sslca=None,
+                   db_sslca_lin=None,
+                   db_sslca_mac=None,
+                   db_sslca_win=None):
+    '''
+    Create a new library and database.
+
+    **Args**:
+    > - **library_path** (str): *File path to library (.lib) file for current OS*
+    > - **name** (str): *[optional] Library name*
+    > - **path_lin** (str): *[optional] File path to library (.lib) file for Linux*
+    > - **path_mac** (str): *[optional] File path to library (.lib) file for MacOS*
+    > - **path_win** (str): *[optional] File path to library (.lib) file for Windows*
+    > - **root** (str): *[optional] Library root path for current OS*
+    > - **root_lin** (str): *[optional] Library root path for Linux*
+    > - **root_mac** (str): *[optional] Library root path for MacOS*
+    > - **root_win** (str): *[optional] Library root path for Windows*
+    > - **preset_key** (str): *[optional] Default preset key. Options: blank | preserve_structure | restructure_comprehensive | restructure_selective*
+    > - **preset_path** (str): *[optional] File path to library preset file*
+    > - **create_defaults** (bool): *[optional] Create default tags and categories*
+    > - **db_type** (str): *Type of database. Options: sqlite | postgres | mysql*
+    > - **db_path** (str): *[optional] SQLite only: Database path for current OS*
+    > - **db_path_lin** (str): *[optional] SQLite only: Database path for Linux*
+    > - **db_path_mac** (str): *[optional] SQLite only: Database path for MacOS*
+    > - **db_path_win** (str): *[optional] SQLite only: Database path for Windows*
+    > - **db_user** (str): *[optional] Server-side database: Database user name*
+    > - **db_password** (str): *[optional] Server-side database: Database user password*
+    > - **db_uri** (str): *[optional] Server-side database: Database host URI*
+    > - **db_port** (int): *[optional] Server-side database: Database host port*
+    > - **db_name** (str): *[optional] Server-side database: Database name of library*
+    > - **db_sslmode** (str): *[optional] SSL encryption mode*
+    > - **db_sslcert** (str): *[optional] Client certificate/public key for current OS*
+    > - **db_sslcert_lin** (str): *[optional] Client certificate/public key for Linux*
+    > - **db_sslcert_mac** (str): *[optional] Client certificate/public key for MacOS*
+    > - **db_sslcert_win** (str): *[optional] Client certificate/public key for Windows*
+    > - **db_sslkey** (str): *[optional] Client certificate key/private key for current OS*
+    > - **db_sslkey_lin** (str): *[optional] Client certificate key/private key for Linux*
+    > - **db_sslkey_mac** (str): *[optional] Client certificate key/private key for MacOS*
+    > - **db_sslkey_win** (str): *[optional] Client certificate key/private key for Windows*
+    > - **db_sslrootcert** (str): *[optional] PostgreSQL only: Root certificate file for current OS*
+    > - **db_sslrootcert_lin** (str): *[optional] PostgreSQL only: Root certificate file for Linux*
+    > - **db_sslrootcert_mac** (str): *[optional] PostgreSQL only: Root certificate file for MacOS*
+    > - **db_sslrootcert_win** (str): *[optional] PostgreSQL only: Root certificate file for Windows*
+    > - **db_sslca** (str): *[optional] MySQL/MariaDB only: Certificate Authority file for current OS*
+    > - **db_sslca_lin** (str): *[optional] MySQL/MariaDB only: Certificate Authority file for Linux*
+    > - **db_sslca_mac** (str): *[optional] MySQL/MariaDB only: Certificate Authority file for MacOS*
+    > - **db_sslca_win** (str): *[optional] MySQL/MariaDB only: Certificate Authority file for Windows*
+
+    **Returns**:
+    > - bool: *Result of library creation*
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    # SQLite example
+    result = de.create_library(
+        library_path='/mnt/library/das-element.lib',
+        name='My Library',
+        root='/mnt/library',
+        db_type='sqlite',
+        db_path='/mnt/library/das-element.db',
+        preset_key='preserve_structure'
+    )
+
+    # PostgreSQL example
+    result = de.create_library(
+        library_path='/mnt/library/das-element.lib',
+        name='My Library',
+        root='/mnt/library',
+        db_type='postgres',
+        db_user='user',
+        db_password='password',
+        db_uri='my-database',
+        db_port=5432,
+        db_name='my_library'
+    )
+    ```
+
+    **Example result**:
+    `true`
+
+    **Example command line command**:
+    `das-element-cli create-library --path /mnt/library/das-element.lib --root /mnt/library --db_type sqlite --db_path /mnt/library/das-element.db --preset_key preserve_structure`
+    '''
+    command = ['create-library']
+
+    if name:
+        command += ['--name', as_quoted_string(name)]
+
+    command += ['--path', as_quoted_string(library_path)]
+
+    if path_lin:
+        command += ['--path_lin', as_quoted_string(path_lin)]
+    if path_mac:
+        command += ['--path_mac', as_quoted_string(path_mac)]
+    if path_win:
+        command += ['--path_win', as_quoted_string(path_win)]
+
+    if root:
+        command += ['--root', as_quoted_string(root)]
+    if root_lin:
+        command += ['--root_lin', as_quoted_string(root_lin)]
+    if root_mac:
+        command += ['--root_mac', as_quoted_string(root_mac)]
+    if root_win:
+        command += ['--root_win', as_quoted_string(root_win)]
+
+    command += ['--preset_key', as_quoted_string(preset_key)]
+
+    if preset_path:
+        command += ['--preset_path', as_quoted_string(preset_path)]
+
+    if create_defaults is not None:
+        command += ['--create_defaults', str(create_defaults).lower()]
+
+    if db_type:
+        command += ['--db_type', as_quoted_string(db_type)]
+
+    # SQLite database options
+    if db_path:
+        command += ['--db_path', as_quoted_string(db_path)]
+    if db_path_lin:
+        command += ['--db_path_lin', as_quoted_string(db_path_lin)]
+    if db_path_mac:
+        command += ['--db_path_mac', as_quoted_string(db_path_mac)]
+    if db_path_win:
+        command += ['--db_path_win', as_quoted_string(db_path_win)]
+
+    # Server-side database options
+    if db_user:
+        command += ['--db_user', as_quoted_string(db_user)]
+    if db_password:
+        command += ['--db_password', as_quoted_string(db_password)]
+    if db_uri:
+        command += ['--db_uri', as_quoted_string(db_uri)]
+    if db_port:
+        command += ['--db_port', str(db_port)]
+    if db_name:
+        command += ['--db_name', as_quoted_string(db_name)]
+
+    # SSL options
+    if db_sslmode:
+        command += ['--db_sslmode', as_quoted_string(db_sslmode)]
+
+    if db_sslcert:
+        command += ['--db_sslcert', as_quoted_string(db_sslcert)]
+    if db_sslcert_lin:
+        command += ['--db_sslcert_lin', as_quoted_string(db_sslcert_lin)]
+    if db_sslcert_mac:
+        command += ['--db_sslcert_mac', as_quoted_string(db_sslcert_mac)]
+    if db_sslcert_win:
+        command += ['--db_sslcert_win', as_quoted_string(db_sslcert_win)]
+
+    if db_sslkey:
+        command += ['--db_sslkey', as_quoted_string(db_sslkey)]
+    if db_sslkey_lin:
+        command += ['--db_sslkey_lin', as_quoted_string(db_sslkey_lin)]
+    if db_sslkey_mac:
+        command += ['--db_sslkey_mac', as_quoted_string(db_sslkey_mac)]
+    if db_sslkey_win:
+        command += ['--db_sslkey_win', as_quoted_string(db_sslkey_win)]
+
+    # PostgreSQL SSL options
+    if db_sslrootcert:
+        command += ['--db_sslrootcert', as_quoted_string(db_sslrootcert)]
+    if db_sslrootcert_lin:
+        command += [
+            '--db_sslrootcert_lin',
+            as_quoted_string(db_sslrootcert_lin)
+        ]
+    if db_sslrootcert_mac:
+        command += [
+            '--db_sslrootcert_mac',
+            as_quoted_string(db_sslrootcert_mac)
+        ]
+    if db_sslrootcert_win:
+        command += [
+            '--db_sslrootcert_win',
+            as_quoted_string(db_sslrootcert_win)
+        ]
+
+    # MySQL/MariaDB SSL options
+    if db_sslca:
+        command += ['--db_sslca', as_quoted_string(db_sslca)]
+    if db_sslca_lin:
+        command += ['--db_sslca_lin', as_quoted_string(db_sslca_lin)]
+    if db_sslca_mac:
+        command += ['--db_sslca_mac', as_quoted_string(db_sslca_mac)]
+    if db_sslca_win:
+        command += ['--db_sslca_win', as_quoted_string(db_sslca_win)]
+
+    return execute_command(command, cli_full=True)
+
+
 def get_libraries():
     '''
     Get all libraries data for current config.
