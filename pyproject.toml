@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "daselement-api"
+dynamic = ["version"]
+description = "Das Element Python API"
+authors = [
+    {name = "Das Element", email = "tech@das-element.com"}
+]
+maintainers = [
+    {name = "Das Element", email = "tech@das-element.com"}
+]
+readme = "README.md"
+license = "MIT"
+requires-python = ">=2.7"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["das-element", "api", "asset-management"]
+
+[project.urls]
+Homepage = "https://github.com/das-element/python-api"
+Repository = "https://github.com/das-element/python-api"
+Documentation = "http://docu.api.das-element.com"
+"Bug Reports" = "http://support.das-element.com"
+
+[tool.setuptools]
+packages = ["daselement_api"]
+
+[tool.setuptools.dynamic]
+version = {attr = "daselement_api._version.__version__"}
+
+[tool.setuptools.package-data]
+daselement_api = ["*.py"]

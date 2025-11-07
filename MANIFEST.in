@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include daselement_api *.py
+exclude create_docs.sh
+recursive-exclude docs *
+recursive-exclude examples *
+prune daselement_api/__pycache__
+global-exclude *.pyc
+global-exclude __pycache__
