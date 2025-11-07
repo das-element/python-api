@@ -6,27 +6,35 @@
 #
 #                  Copyright (c) 2025 das element
 '''
-## Documentation for the API
+## Das Element Python API
 
 API works for both Python 2 & 3
 
 
 ---
-
+<br/>
 ### Install
 
-[Download](https://github.com/das-element/python-api) folder: `daselement_api`
+In your Python environment run the command:
 
-In the background the CLI version of _das element_ is exectued.  
-Please link the correct executable **das-element-cli** in the file **daselement_api/manager.py**
+```bash
+pip install daselement-api
+```
 
-or set the environment variables to point to the CLI files:
+<br/>
+
+### Configuration
+
+In the background the CLI version of Das Element is executed.  
+Set the environment variables to point to the CLI executable files:
 <br/><br/>
 `DASELEMENT_CLI` (for the small CLI version)  
 `DASELEMENT_CLI_FULL` (for the full CLI version)  
 <br/><br/>
 
-```
+### Usage
+
+```python
 from daselement_api import api as de
 libraries = de.get_libraries()
 for library, library_config_data in libraries.items():
@@ -34,6 +42,7 @@ for library, library_config_data in libraries.items():
    print(library_config_data)
 ```
 
+<br/>
 ---
 
 The library information is taken from the config file that is set for the current workstation.  

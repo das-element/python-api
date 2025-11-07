@@ -33,8 +33,7 @@ export DASELEMENT_CLI_FULL=/path/to/das-element-full
 
 ### Alternative Configuration
 
-You can also hardcode the paths directly in  
-`daselement_api/manager.py` by modifying these lines:
+You can also hardcode the paths directly in `daselement_api/manager.py` by modifying these values:
 
 ```python
 EXECUTABLE_CLI = "path/to/das-element"
