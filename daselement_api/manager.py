@@ -41,6 +41,11 @@ def execute_command(arguments, cli_full=False):
     executable = EXECUTABLE_CLI_FULL if cli_full else EXECUTABLE_CLI
     command = [executable] + [str(argument) for argument in arguments]
 
+    if not executable or not os.path.isfile(executable):
+        raise Exception(
+            'Please define path to Das Element CLI executable by setting the environment variables DASELEMENT_CLI and DASELEMENT_CLI_FULL'
+        )
+
     if sys.version_info <= (3, 4):
         process = subprocess.Popen(command,
                                    stdout=subprocess.PIPE,
@@ -66,6 +71,6 @@ def execute_command(arguments, cli_full=False):
         print(output)
         print(error)
         print()
-        raise Exception("Oh no ... something went wrong!")
+        raise Exception('Oh no ... something went wrong!')
 
     return json.loads(output)
