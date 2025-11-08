@@ -93,11 +93,13 @@ def create_config(config_path, preset_key='blank', preset_path=None):
     `das-element-cli create-config /some/path/my-config.conf --preset_key blank`
     `das-element-cli create-config /some/path/my-config.conf --preset_path /some/path/preset.conf`
     '''
-    command = ['create-config', as_quoted_string(config_path)]
+    command = ['create-config']
     command += ['--preset_key', as_quoted_string(preset_key)]
 
     if preset_path:
         command += ['--preset_path', as_quoted_string(preset_path)]
+
+    command = [as_quoted_string(config_path)]
 
     return execute_command(command, cli_full=True)
 
