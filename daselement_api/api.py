@@ -99,7 +99,7 @@ def create_config(config_path, preset_key='blank', preset_path=None):
     if preset_path:
         command += ['--preset_path', as_quoted_string(preset_path)]
 
-    command = [as_quoted_string(config_path)]
+    command += [as_quoted_string(config_path)]
 
     return execute_command(command, cli_full=True)
 
