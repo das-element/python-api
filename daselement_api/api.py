@@ -332,8 +332,8 @@ def create_library(library_path,
     if db_name:
         command += ['--db_name', as_quoted_string(db_name)]
 
-    # SSL options
-    if db_sslmode:
+    # SSL options / ignore for SQLite
+    if db_sslmode and db_type.lower() != 'sqlite':
         command += ['--db_sslmode', as_quoted_string(db_sslmode)]
 
     if db_sslcert:
