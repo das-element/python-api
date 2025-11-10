@@ -809,6 +809,7 @@ def ingest(library_path,
            path_proxy='',
            tags=[],
            media_type='',
+           permission='111',
            metadata={},
            additionals=[]):
     '''
@@ -830,6 +831,7 @@ def ingest(library_path,
     > - **colorspace** (str): *[optional] Colorspace name*
     > - **tags** (List[str]): *[optional] List of tags*
     > - **media_type** (str): *[optional] Media type of element. Valid options: image, sequence, movie, sphere, pdf, project-file, 3d-model, 3d-scene, generic*
+    > - **permission** (str): *[optional] Permission flag*
     > - **metadata** (Dict[str, str]): *[optional] List of metadata as: {key:value}*
     > - **additionals** (List[Dict[str, str]]): *[optional] List of additionals. Provide additional as: /path type name*
 
@@ -849,16 +851,17 @@ def ingest(library_path,
     colorspace = 'ACES2065-1'
     tags = ['Q3196', 'foo', 'bar']
     media_type = 'sequence'
+    permission = '110'
     metadata = {'foo': 'bar', 'bar': 'buz huz'}
     additionals = [{'path': '/file/additional.exr', 'type': 'texture', 'name': 'alpha'}]
 
-    entity = de.ingest(library_path, mapping, path, category, colorspace=colorspace, path_thumbnail=path_thumbnail, path_proxy=path_proxy, tags=tags, media_type=media_type)
+    entity = de.ingest(library_path, mapping, path, category, colorspace=colorspace, path_thumbnail=path_thumbnail, path_proxy=path_proxy, tags=tags, media_type=media_type, permission=permission, metadata=metadata, additionals=additionals)
     print(entity)
     print(entity.get('path'))
     ```
 
     **Example result**:
-    `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","rating": "3","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
+    `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","rating": "3","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051", "permission": "110", "width": 3342}`
 
     **Example command line command**:
     `das-element-cli ingest --library /mnt/library/das-element.lib --mapping "copy & rename" --path /some/file/path.%04d.exr --category Q3196 --tags foo,bar,baz --colorspace ACES2065-1 --media_type sequence --metadata foo bar -m lens "70 mm" --path_thumbnail /file/path/thumbnail.jpg --path_proxy /file/path/proxy.mov --additional /path/additional.exr texture alpha`
@@ -874,7 +877,8 @@ def ingest(library_path,
         as_quoted_string(category), '--colorspace',
         as_quoted_string(colorspace), '--tags',
         as_quoted_string(','.join(tags)), '--media_type',
-        as_quoted_string(media_type)
+        as_quoted_string(media_type), '--permission',
+        as_quoted_string(permission)
     ] + [
         item for key_value in metadata.items() for item in
         ['-m',
