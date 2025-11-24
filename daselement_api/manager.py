@@ -10,10 +10,11 @@ Documentation for the API for das element
 Make sure to link the correct executable 'das-element-cli' in the manager.py
 '''
 
-import subprocess
 import json
-import sys
 import os
+import shutil
+import subprocess
+import sys
 
 # This feature is available since version 1.1.6
 
@@ -41,7 +42,7 @@ def execute_command(arguments, cli_full=False):
     executable = EXECUTABLE_CLI_FULL if cli_full else EXECUTABLE_CLI
     command = [executable] + [str(argument) for argument in arguments]
 
-    if not executable or not os.path.isfile(executable):
+    if not executable or not shutil.which(executable):
         raise Exception(
             'Please define path to Das Element CLI executable by setting the environment variables DASELEMENT_CLI and DASELEMENT_CLI_FULL'
         )
