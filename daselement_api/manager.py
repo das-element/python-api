@@ -16,6 +16,9 @@ import shutil
 import subprocess
 import sys
 
+# Suppress traceback printing for cleaner CLI error messages
+sys.tracebacklimit = 0
+
 # This feature is available since version 1.1.6
 
 # EXECUTABLE_CLI = '/path/to/das-element-cli_2.0.3_lin'

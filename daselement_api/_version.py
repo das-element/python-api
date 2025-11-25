@@ -6,4 +6,4 @@
 #
 #                  Copyright (c) 2025 das element
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
