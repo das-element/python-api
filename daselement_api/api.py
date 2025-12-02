@@ -805,6 +805,56 @@ def delete_element(element_uuid,
     return execute_command(command, cli_full=True)
 
 
+def delete_elements(element_uuids,
+                    delete_from_database=False,
+                    delete_from_disk=False,
+                    delete_proxy=False,
+                    library_path=None):
+    '''
+    Deletes multiple element entities based on a list of **element UUIDs**.
+    The options define what gets deleted. Either the database record, main and/or proxy files on disk, or both.
+
+    **Args**:
+    > - **element_uuids** (List[str]): *List of Element UUIDs (unique IDs) in the database*
+    > - **delete_from_database** (bool): *[optional] delete data from the database*
+    > - **delete_from_disk** (bool): *[optional] delete all element files from disk*
+    > - **delete_proxy** (bool): *[optional] delete only element proxy files from disk*
+    > - **library_path** (str): *[optional] File path to the library file (.lib)*
+
+    **Returns**:
+    > - bool
+
+    **Example code**:
+    ```
+    from daselement_api import api as de
+
+    element_uuids = ['8747c549ab344a3798405135ca831288', '9947c549c6014a3ca831983275884051']
+    delete_from_database = True
+    delete_from_disk = True
+    delete_proxy = True
+    library_path = '/some/path/das-element.lib'  # optional
+
+    de.delete_elements(element_uuids, delete_from_database, delete_from_disk, delete_proxy, library_path=library_path)
+
+    ```
+
+    **Example result**:
+    `true`
+    '''
+    command = ['--config', config] if config else []
+    command += ['delete-elements']
+    if delete_from_database:
+        command += ['--database']
+    if delete_from_disk:
+        command += ['--disk']
+    if delete_proxy:
+        command += ['--proxy']
+    if library_path:
+        command += ['--library', as_quoted_string(library_path)]
+    command += [as_quoted_string(','.join(element_uuids))]
+    return execute_command(command, cli_full=True)
+
+
 def ingest(library_path,
            mapping,
            path,
