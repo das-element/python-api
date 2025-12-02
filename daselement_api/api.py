@@ -756,15 +756,17 @@ def update(library_path, entity_type, entity_id, data):
 def delete_element(element_uuid,
                    delete_from_database=False,
                    delete_from_disk=False,
+                   delete_proxy=False,
                    library_path=None):
     '''
     Deletes an element entity based on the **element UUID**.
-    The options are to delete the element data from the database, delete the element files on disk or delete from both the database and files on disk.
+    The options define what gets deleted. Either the database record, main and/or proxy files on disk, or both.
 
     **Args**:
     > - **element_uuid** (str): *Element UUID (unique ID) in the database*
     > - **delete_from_database** (bool): *[optional] delete data from the database*
     > - **delete_from_disk** (bool): *[optional] delete all element files from disk*
+    > - **delete_proxy** (bool): *[optional] delete only element proxy files from disk*
     > - **library_path** (str): *[optional] File path to the library file (.lib)*
 
     **Returns**:
@@ -777,9 +779,10 @@ def delete_element(element_uuid,
     element_uuid = '9947c549c6014a3ca831983275884051'
     delete_from_database = True
     delete_from_disk = True
+    delete_proxy = True
     library_path = '/some/path/das-element.lib'  # optional
 
-    de.delete_element(element_uuid, delete_from_database, delete_from_disk, library_path=library_path)
+    de.delete_element(element_uuid, delete_from_database, delete_from_disk, delete_proxy, library_path=library_path)
 
     ```
 
@@ -795,6 +798,8 @@ def delete_element(element_uuid,
         command += ['--database']
     if delete_from_disk:
         command += ['--disk']
+    if delete_proxy:
+        command += ['--proxy']
     if library_path:
         command += ['--library', as_quoted_string(library_path)]
     return execute_command(command, cli_full=True)
