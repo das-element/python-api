@@ -33,11 +33,14 @@ export DASELEMENT_CLI_FULL=/path/to/das-element-full
 
 ### Alternative Configuration
 
-You can also hardcode the paths directly in `daselement_api/manager.py` by modifying these values:
+Directly define the executable paths in your Python script.
+Overwrite the values of `daselement_api/manager.py` like this:
 
 ```python
-EXECUTABLE_CLI = "path/to/das-element"
-EXECUTABLE_CLI_FULL = "path/to/das-element-full"
+from daselement_api import manager as de_manager
+
+de_manager.EXECUTABLE_CLI = '/path/to/das-element-cli_2.2.2_lin'
+de_manager.EXECUTABLE_CLI_FULL = '/path/to/das-element-cli-full_2.2.2_lin'
 ```
 
 ---
