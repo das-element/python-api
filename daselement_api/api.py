@@ -440,6 +440,68 @@ def get_library_template_mappings(library_path):
     return execute_command(command)
 
 
+def add_library(library_path, os_platform=None):
+    '''
+    Add an existing library to the current config.
+
+    **Args**:
+    > - **library_path** (str): *File path to the library file (.lib)*
+    > - **os_platform** (str): *[optional] Operating system (Default: current OS). Options: ['lin', 'mac', 'win']*
+
+    **Returns**:
+    > - bool: *Result of adding the library to the config*
+
+    **Example code to add library for the current operating system**:
+    ```
+    from daselement_api import api as de
+
+    library_path = '/some/path/das-element.lib'
+
+    result = de.add_library(library_path)
+    ```
+
+    **Example result**:
+    `true`
+    '''
+    command = ['--config', config] if config else []
+    command += ['add-library']
+    if os_platform is not None:
+        command += ['--os', as_quoted_string(os_platform)]
+    command += [as_quoted_string(library_path)]
+    return execute_command(command)
+
+
+def remove_library(library_path, os_platform=None):
+    '''
+    Remove an existing library to the current config.
+
+    **Args**:
+    > - **library_path** (str): *File path to the library file (.lib)*
+    > - **os_platform** (str): *[optional] Operating system (Default: current OS). Options: ['lin', 'mac', 'win']*
+
+    **Returns**:
+    > - bool: *Result of removing the library to the config*
+
+    **Example code to remove library for the current operating system**:
+    ```
+    from daselement_api import api as de
+
+    library_path = '/some/path/das-element.lib'
+
+    result = de.remove_library(library_path)
+    ```
+
+    **Example result**:
+    `true`
+    '''
+    command = ['--config', config] if config else []
+    command += ['remove-library']
+    if os_platform is not None:
+        command += ['--os', as_quoted_string(os_platform)]
+    command += [as_quoted_string(library_path)]
+    return execute_command(command)
+
+
 def get_categories(library_path):
     '''
     Get all categories from the database for the library.
