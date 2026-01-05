@@ -1,0 +1,101 @@
+/* Theme toggle container - position after Content section */
+.theme-toggle-container {
+    padding: 1rem 0 0.5rem 0;
+    border-bottom: 1px solid var(--accent2-bg, #ddd);
+    margin-bottom: 1rem;
+}
+
+/* Toggle switch label container */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    gap: 10px;
+}
+
+/* Hide the default checkbox */
+.theme-toggle input[type="checkbox"] {
+    display: none;
+}
+
+/* Toggle slider */
+.toggle-slider {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 26px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* Checked state */
+.theme-toggle input[type="checkbox"]:checked + .toggle-slider {
+    background-color: #2196F3;
+}
+
+.theme-toggle input[type="checkbox"]:checked + .toggle-slider::before {
+    transform: translateX(24px);
+}
+
+/* Dark mode adjustments */
+:root[data-theme="dark"] .toggle-slider {
+    background-color: #555;
+}
+
+:root[data-theme="dark"] .toggle-slider::before {
+    background-color: #f0f0f0;
+}
+
+:root[data-theme="dark"] .theme-toggle input[type="checkbox"]:checked + .toggle-slider {
+    background-color: #4CAF50;
+}
+
+/* Toggle label text */
+.toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text, #333);
+}
+
+/* Hover effect */
+.theme-toggle:hover .toggle-slider {
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .theme-toggle-container {
+        padding: 0.75rem 0 0.5rem 0;
+    }
+    
+    .toggle-label {
+        font-size: 13px;
+    }
+    
+    .toggle-slider {
+        width: 44px;
+        height: 22px;
+    }
+    
+    .toggle-slider::before {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .theme-toggle input[type="checkbox"]:checked + .toggle-slider::before {
+        transform: translateX(22px);
+    }
+}

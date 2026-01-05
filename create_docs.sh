@@ -1,3 +1,5 @@
 . venv/bin/activate
 mkdir -p docs
-pdoc daselement_api/api.py --logo "https://github.com/das-element/python-api/raw/main/das-element_logo_docu_api.png" -o docs
+cp docs_template/das-element_logo_docu_api_b.png docs/
+cp docs_template/das-element_logo_docu_api_w.png docs/
+pdoc daselement_api/api.py --logo "das-element_logo_docu_api_b.png" -t docs_template -o docs

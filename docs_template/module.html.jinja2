@@ -1,0 +1,249 @@
+{% extends "default/module.html.jinja2" %}
+
+{% block head %}
+{{ super() }}
+<style>
+/* Dark mode color scheme */
+:root[data-theme="dark"] {
+    --text: #ddd;
+    --muted: #aaa;
+    --link: #7ec0ee;
+    --link-hover: #9dd6ff;
+    --code: #e8ebe8;
+    --active: #fff;
+    --annotation: #aaa;
+    
+    --default-bg: #1e1e1e;
+    --accent-bg: #2a2a2a;
+    --accent2-bg: #353535;
+    
+    --pdoc-background: #1e1e1e;
+    --accent: #2a2a2a;
+    --accent2: #353535;
+}
+
+:root[data-theme="dark"] .pdoc {
+    --text: #ddd;
+    --muted: #aaa;
+    --link: #7ec0ee;
+    --link-hover: #9dd6ff;
+    --code: #2a2a2a;
+    --active: #444;
+    --accent: #2a2a2a;
+    --accent2: #353535;
+}
+
+/* Dark mode syntax highlighting */
+:root[data-theme="dark"] .highlight,
+:root[data-theme="dark"] .pdoc-code {
+    background: var(--accent);
+}
+
+:root[data-theme="dark"] .highlight .hll { background-color: #49483e }
+:root[data-theme="dark"] .highlight .c { color: #75715e }
+:root[data-theme="dark"] .highlight .k { color: #66d9ef }
+:root[data-theme="dark"] .highlight .l { color: #ae81ff }
+:root[data-theme="dark"] .highlight .n { color: #f8f8f2 }
+:root[data-theme="dark"] .highlight .o { color: #f92672 }
+:root[data-theme="dark"] .highlight .p { color: #f8f8f2 }
+:root[data-theme="dark"] .highlight .cm { color: #75715e }
+:root[data-theme="dark"] .highlight .cp { color: #75715e }
+:root[data-theme="dark"] .highlight .c1 { color: #75715e }
+:root[data-theme="dark"] .highlight .cs { color: #75715e }
+:root[data-theme="dark"] .highlight .kc { color: #66d9ef }
+:root[data-theme="dark"] .highlight .kd { color: #66d9ef }
+:root[data-theme="dark"] .highlight .kn { color: #f92672 }
+:root[data-theme="dark"] .highlight .kp { color: #66d9ef }
+:root[data-theme="dark"] .highlight .kr { color: #66d9ef }
+:root[data-theme="dark"] .highlight .kt { color: #66d9ef }
+:root[data-theme="dark"] .highlight .m { color: #ae81ff }
+:root[data-theme="dark"] .highlight .s { color: #e6db74 }
+:root[data-theme="dark"] .highlight .na { color: #a6e22e }
+:root[data-theme="dark"] .highlight .nb { color: #f8f8f2 }
+:root[data-theme="dark"] .highlight .nc { color: #a6e22e }
+:root[data-theme="dark"] .highlight .no { color: #66d9ef }
+:root[data-theme="dark"] .highlight .nd { color: #a6e22e }
+:root[data-theme="dark"] .highlight .nf { color: #a6e22e }
+:root[data-theme="dark"] .highlight .nn { color: #f8f8f2 }
+:root[data-theme="dark"] .highlight .nt { color: #f92672 }
+:root[data-theme="dark"] .highlight .nv { color: #f8f8f2 }
+:root[data-theme="dark"] .highlight .s2 { color: #e6db74 }
+:root[data-theme="dark"] .highlight .mi { color: #ae81ff }
+
+/* Theme toggle container - fixed position at top right */
+.theme-toggle-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+    background: var(--accent);
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="dark"] .theme-toggle-container {
+    background: var(--accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Toggle switch label container */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    gap: 10px;
+}
+
+/* Hide the default checkbox */
+.theme-toggle input[type="checkbox"] {
+    display: none;
+}
+
+/* Toggle slider */
+.toggle-slider {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 26px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* Checked state */
+.theme-toggle input[type="checkbox"]:checked + .toggle-slider {
+    background-color: #2196F3;
+}
+
+.theme-toggle input[type="checkbox"]:checked + .toggle-slider::before {
+    transform: translateX(24px);
+}
+
+/* Dark mode adjustments */
+:root[data-theme="dark"] .toggle-slider {
+    background-color: #555;
+}
+
+:root[data-theme="dark"] .toggle-slider::before {
+    background-color: #f0f0f0;
+}
+
+:root[data-theme="dark"] .theme-toggle input[type="checkbox"]:checked + .toggle-slider {
+    background-color: #4CAF50;
+}
+
+/* Toggle label text */
+.toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+/* Hover effect */
+.theme-toggle:hover .toggle-slider {
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .theme-toggle-container {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.4rem;
+    }
+    
+    .toggle-label {
+        font-size: 13px;
+    }
+    
+    .toggle-slider {
+        width: 44px;
+        height: 22px;
+    }
+    
+    .toggle-slider::before {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .theme-toggle input[type="checkbox"]:checked + .toggle-slider::before {
+        transform: translateX(22px);
+    }
+}
+</style>
+<script>
+    // Logo URLs for light and dark mode
+    const LOGO_LIGHT = '../das-element_logo_docu_api_b.png';
+    const LOGO_DARK = '../das-element_logo_docu_api_w.png';
+    
+    // Function to update logo based on theme
+    function updateLogo(theme) {
+        const logo = document.querySelector('nav.pdoc .logo');
+        if (logo) {
+            logo.src = theme === 'dark' ? LOGO_DARK : LOGO_LIGHT;
+        }
+    }
+    
+    // Initialize theme from localStorage or default to dark
+    (function() {
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+    
+    // Define toggleTheme function globally
+    function toggleTheme() {
+        const root = document.documentElement;
+        const currentTheme = root.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update toggle checkbox state
+        const toggle = document.getElementById('theme-toggle-checkbox');
+        if (toggle) {
+            toggle.checked = newTheme === 'dark';
+        }
+        
+        // Update logo
+        updateLogo(newTheme);
+    }
+    
+    // Initialize toggle state when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.getElementById('theme-toggle-checkbox');
+        if (toggle) {
+            const theme = localStorage.getItem('theme') || 'dark';
+            toggle.checked = theme === 'dark';
+        }
+        
+        // Initialize logo on page load
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        updateLogo(currentTheme);
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="theme-toggle-container">
+    <label class="theme-toggle">
+        <input type="checkbox" id="theme-toggle-checkbox" onchange="toggleTheme()" aria-label="Toggle dark mode">
+        <span class="toggle-slider"></span>
+        <span class="toggle-label">Dark Mode</span>
+    </label>
+</div>
+{{ super() }}
+{% endblock %}
