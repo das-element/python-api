@@ -4,7 +4,7 @@
 #    / /_/ / /_/ (__  )  /  __/ /  __/ / / / / /  __/ / / / /_
 #    \__,_/\__,_/____/   \___/_/\___/_/ /_/ /_/\___/_/ /_/\__/
 #
-#                  Copyright (c) 2025 das element
+#                  Copyright (c) 2026 das element
 
 from ._version import __version__
 from . import api
