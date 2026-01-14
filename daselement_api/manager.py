@@ -12,9 +12,27 @@ Make sure to link the correct executable 'das-element-cli' in the manager.py
 
 import json
 import os
-import shutil
 import subprocess
 import sys
+
+try:
+    from shutil import which as _which  # Python 3
+except Exception:  # pragma: no cover
+    # Python 2 fallback (distutils is not available in modern Python envs).
+    def _which(cmd):
+        if not cmd:
+            return None
+
+        if os.path.isabs(cmd) or os.path.dirname(cmd):
+            return cmd if os.path.isfile(cmd) and os.access(cmd,
+                                                            os.X_OK) else None
+
+        for folder in os.environ.get('PATH', '').split(os.pathsep):
+            candidate = os.path.join(folder, cmd)
+            if os.path.isfile(candidate) and os.access(candidate, os.X_OK):
+                return candidate
+        return None
+
 
 # Suppress traceback printing for cleaner CLI error messages
 sys.tracebacklimit = 0
@@ -41,14 +59,35 @@ def as_quoted_dict(value):
     return json.dumps(value)
 
 
-def execute_command(arguments, cli_full=False):
-    executable = EXECUTABLE_CLI_FULL if cli_full else EXECUTABLE_CLI
-    command = [executable] + [str(argument) for argument in arguments]
+def strip_outer_quotes(value):
+    value = str(value).strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
+        return value[1:-1]
+    return value
 
-    if not executable or not shutil.which(executable):
+
+def resolve_executable(executable):
+    if executable is None:
+        return None
+
+    value = strip_outer_quotes(executable).strip()
+    if not value:
+        return None
+
+    value = os.path.expandvars(os.path.expanduser(value))
+    return value if os.path.isfile(value) else _which(value)
+
+
+def execute_command(arguments, cli_full=False):
+    executable_raw = EXECUTABLE_CLI_FULL if cli_full else EXECUTABLE_CLI
+    executable = resolve_executable(executable_raw)
+    if not executable:
         raise Exception(
-            'Please define path to Das Element CLI executable by setting the environment variables DASELEMENT_CLI and DASELEMENT_CLI_FULL'
+            'Please define path to Das Element CLI executable by setting the environment variables DASELEMENT_CLI and DASELEMENT_CLI_FULL, or by overriding daselement_api.manager.EXECUTABLE_CLI / EXECUTABLE_CLI_FULL.'
         )
+
+    command = [executable
+               ] + [strip_outer_quotes(argument) for argument in arguments]
 
     if sys.version_info <= (3, 4):
         process = subprocess.Popen(command,
