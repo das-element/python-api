@@ -114,6 +114,9 @@ def execute_command(arguments, cli_full=False):
         print(output)
         print(error)
         print()
-        raise Exception('Oh no ... something went wrong!')
-
+        error_lines = [line for line in error.splitlines() if line.strip()]
+        last_error_line = error_lines[-1] if error_lines else "Unknown error"
+        raise Exception(
+            f"Command failed with exit code {returncode}: {last_error_line}"
+        )
     return json.loads(output)
