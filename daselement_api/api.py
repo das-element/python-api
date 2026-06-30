@@ -5,7 +5,7 @@
 #    \__,_/\__,_/____/   \___/_/\___/_/ /_/ /_/\___/_/ /_/\__/
 #
 #                  Copyright (c) 2026 das element
-'''
+"""
 ## Das Element Python API
 
 API works for both Python 2 & 3
@@ -25,11 +25,11 @@ pip install daselement-api
 
 ### Configuration
 
-In the background the CLI version of Das Element is executed.  
+In the background the CLI version of Das Element is executed.
 Set the environment variables to point to the CLI executable files:
 <br/><br/>
-`DASELEMENT_CLI` (for the small CLI version)  
-`DASELEMENT_CLI_FULL` (for the full CLI version)  
+`DASELEMENT_CLI` (for the small CLI version)
+`DASELEMENT_CLI_FULL` (for the full CLI version)
 <br/><br/>
 
 ### Usage
@@ -45,23 +45,23 @@ for library, library_config_data in libraries.items():
 <br/>
 ---
 
-The library information is taken from the config file that is set for the current workstation.  
+The library information is taken from the config file that is set for the current workstation.
 Either defined in the `~/.das-element/setup.ini` file or by the environment variable `DASELEMENT_CONFIG_PATH`
 
-'''
+"""
 
 from .manager import execute_command, as_quoted_string, as_quoted_dict
 
 config = None
-'''
+"""
 Variabel to define a custom config file path (.conf)
 
 ---
-'''
+"""
 
 
-def create_config(config_path, preset_key='blank', preset_path=None):
-    '''
+def create_config(config_path, preset_key="blank", preset_path=None):
+    """
     Create a new config file. Provide the preset key or file path to a config preset.
 
     **Args**:
@@ -92,12 +92,12 @@ def create_config(config_path, preset_key='blank', preset_path=None):
     **Example command line command**:
     `das-element-cli create-config /some/path/my-config.conf --preset_key blank`
     `das-element-cli create-config /some/path/my-config.conf --preset_path /some/path/preset.conf`
-    '''
-    command = ['create-config']
-    command += ['--preset_key', as_quoted_string(preset_key)]
+    """
+    command = ["create-config"]
+    command += ["--preset_key", as_quoted_string(preset_key)]
 
     if preset_path:
-        command += ['--preset_path', as_quoted_string(preset_path)]
+        command += ["--preset_path", as_quoted_string(preset_path)]
 
     command += [as_quoted_string(config_path)]
 
@@ -105,7 +105,7 @@ def create_config(config_path, preset_key='blank', preset_path=None):
 
 
 def get_config_presets():
-    '''
+    """
     Get all available config presets.
 
     **Returns**:
@@ -125,13 +125,13 @@ def get_config_presets():
 
     **Example command line command**:
     `das-element-cli get-config-presets`
-    '''
-    command = ['get-config-presets']
+    """
+    command = ["get-config-presets"]
     return execute_command(command, cli_full=True)
 
 
 def get_library_presets():
-    '''
+    """
     Get all available library presets.
 
     **Returns**:
@@ -151,51 +151,53 @@ def get_library_presets():
 
     **Example command line command**:
     `das-element-cli get-library-presets`
-    '''
-    command = ['get-library-presets']
+    """
+    command = ["get-library-presets"]
     return execute_command(command, cli_full=True)
 
 
-def create_library(library_path,
-                   name=None,
-                   path_lin=None,
-                   path_mac=None,
-                   path_win=None,
-                   root=None,
-                   root_lin=None,
-                   root_mac=None,
-                   root_win=None,
-                   preset_key='blank',
-                   preset_path=None,
-                   create_defaults=True,
-                   db_type=None,
-                   db_path=None,
-                   db_path_lin=None,
-                   db_path_mac=None,
-                   db_path_win=None,
-                   db_user=None,
-                   db_password=None,
-                   db_uri=None,
-                   db_port=None,
-                   db_name=None,
-                   db_sslmode='disable',
-                   db_sslcert=None,
-                   db_sslcert_lin=None,
-                   db_sslcert_mac=None,
-                   db_sslcert_win=None,
-                   db_sslkey=None,
-                   db_sslkey_lin=None,
-                   db_sslkey_mac=None,
-                   db_sslkey_win=None,
-                   db_sslrootcert=None,
-                   db_sslrootcert_lin=None,
-                   db_sslrootcert_mac=None,
-                   db_sslrootcert_win=None,
-                   db_sslca=None,
-                   db_sslca_lin=None,
-                   db_sslca_mac=None,
-                   db_sslca_win=None):
-    '''
+def create_library(
+    library_path,
+    name=None,
+    path_lin=None,
+    path_mac=None,
+    path_win=None,
+    root=None,
+    root_lin=None,
+    root_mac=None,
+    root_win=None,
+    preset_key="blank",
+    preset_path=None,
+    create_defaults=True,
+    db_type=None,
+    db_path=None,
+    db_path_lin=None,
+    db_path_mac=None,
+    db_path_win=None,
+    db_user=None,
+    db_password=None,
+    db_uri=None,
+    db_port=None,
+    db_name=None,
+    db_sslmode="disable",
+    db_sslcert=None,
+    db_sslcert_lin=None,
+    db_sslcert_mac=None,
+    db_sslcert_win=None,
+    db_sslkey=None,
+    db_sslkey_lin=None,
+    db_sslkey_mac=None,
+    db_sslkey_win=None,
+    db_sslrootcert=None,
+    db_sslrootcert_lin=None,
+    db_sslrootcert_mac=None,
+    db_sslrootcert_win=None,
+    db_sslca=None,
+    db_sslca_lin=None,
+    db_sslca_mac=None,
+    db_sslca_win=None,
+):
+    """
     Create a new library and database.
 
     **Args**:
@@ -275,119 +277,110 @@ def create_library(library_path,
 
     **Example command line command**:
     `das-element-cli create-library --path /mnt/library/das-element.lib --root /mnt/library --db_type sqlite --db_path /mnt/library/das-element.db --preset_key preserve_structure`
-    '''
-    command = ['create-library']
+    """
+    command = ["create-library"]
 
     if name:
-        command += ['--name', as_quoted_string(name)]
+        command += ["--name", as_quoted_string(name)]
 
-    command += ['--path', as_quoted_string(library_path)]
+    command += ["--path", as_quoted_string(library_path)]
 
     if path_lin:
-        command += ['--path_lin', as_quoted_string(path_lin)]
+        command += ["--path_lin", as_quoted_string(path_lin)]
     if path_mac:
-        command += ['--path_mac', as_quoted_string(path_mac)]
+        command += ["--path_mac", as_quoted_string(path_mac)]
     if path_win:
-        command += ['--path_win', as_quoted_string(path_win)]
+        command += ["--path_win", as_quoted_string(path_win)]
 
     if root:
-        command += ['--root', as_quoted_string(root)]
+        command += ["--root", as_quoted_string(root)]
     if root_lin:
-        command += ['--root_lin', as_quoted_string(root_lin)]
+        command += ["--root_lin", as_quoted_string(root_lin)]
     if root_mac:
-        command += ['--root_mac', as_quoted_string(root_mac)]
+        command += ["--root_mac", as_quoted_string(root_mac)]
     if root_win:
-        command += ['--root_win', as_quoted_string(root_win)]
+        command += ["--root_win", as_quoted_string(root_win)]
 
-    command += ['--preset_key', as_quoted_string(preset_key)]
+    command += ["--preset_key", as_quoted_string(preset_key)]
 
     if preset_path:
-        command += ['--preset_path', as_quoted_string(preset_path)]
+        command += ["--preset_path", as_quoted_string(preset_path)]
 
     if create_defaults is not None:
-        command += ['--create_defaults', str(create_defaults).lower()]
+        command += ["--create_defaults", str(create_defaults).lower()]
 
     if db_type:
-        command += ['--db_type', as_quoted_string(db_type)]
+        command += ["--db_type", as_quoted_string(db_type)]
 
     # SQLite database options
     if db_path:
-        command += ['--db_path', as_quoted_string(db_path)]
+        command += ["--db_path", as_quoted_string(db_path)]
     if db_path_lin:
-        command += ['--db_path_lin', as_quoted_string(db_path_lin)]
+        command += ["--db_path_lin", as_quoted_string(db_path_lin)]
     if db_path_mac:
-        command += ['--db_path_mac', as_quoted_string(db_path_mac)]
+        command += ["--db_path_mac", as_quoted_string(db_path_mac)]
     if db_path_win:
-        command += ['--db_path_win', as_quoted_string(db_path_win)]
+        command += ["--db_path_win", as_quoted_string(db_path_win)]
 
     # Server-side database options
     if db_user:
-        command += ['--db_user', as_quoted_string(db_user)]
+        command += ["--db_user", as_quoted_string(db_user)]
     if db_password:
-        command += ['--db_password', as_quoted_string(db_password)]
+        command += ["--db_password", as_quoted_string(db_password)]
     if db_uri:
-        command += ['--db_uri', as_quoted_string(db_uri)]
+        command += ["--db_uri", as_quoted_string(db_uri)]
     if db_port:
-        command += ['--db_port', str(db_port)]
+        command += ["--db_port", str(db_port)]
     if db_name:
-        command += ['--db_name', as_quoted_string(db_name)]
+        command += ["--db_name", as_quoted_string(db_name)]
 
     # SSL options / ignore for SQLite
-    if db_sslmode and db_type.lower() != 'sqlite':
-        command += ['--db_sslmode', as_quoted_string(db_sslmode)]
+    if db_sslmode and db_type.lower() != "sqlite":
+        command += ["--db_sslmode", as_quoted_string(db_sslmode)]
 
     if db_sslcert:
-        command += ['--db_sslcert', as_quoted_string(db_sslcert)]
+        command += ["--db_sslcert", as_quoted_string(db_sslcert)]
     if db_sslcert_lin:
-        command += ['--db_sslcert_lin', as_quoted_string(db_sslcert_lin)]
+        command += ["--db_sslcert_lin", as_quoted_string(db_sslcert_lin)]
     if db_sslcert_mac:
-        command += ['--db_sslcert_mac', as_quoted_string(db_sslcert_mac)]
+        command += ["--db_sslcert_mac", as_quoted_string(db_sslcert_mac)]
     if db_sslcert_win:
-        command += ['--db_sslcert_win', as_quoted_string(db_sslcert_win)]
+        command += ["--db_sslcert_win", as_quoted_string(db_sslcert_win)]
 
     if db_sslkey:
-        command += ['--db_sslkey', as_quoted_string(db_sslkey)]
+        command += ["--db_sslkey", as_quoted_string(db_sslkey)]
     if db_sslkey_lin:
-        command += ['--db_sslkey_lin', as_quoted_string(db_sslkey_lin)]
+        command += ["--db_sslkey_lin", as_quoted_string(db_sslkey_lin)]
     if db_sslkey_mac:
-        command += ['--db_sslkey_mac', as_quoted_string(db_sslkey_mac)]
+        command += ["--db_sslkey_mac", as_quoted_string(db_sslkey_mac)]
     if db_sslkey_win:
-        command += ['--db_sslkey_win', as_quoted_string(db_sslkey_win)]
+        command += ["--db_sslkey_win", as_quoted_string(db_sslkey_win)]
 
     # PostgreSQL SSL options
     if db_sslrootcert:
-        command += ['--db_sslrootcert', as_quoted_string(db_sslrootcert)]
+        command += ["--db_sslrootcert", as_quoted_string(db_sslrootcert)]
     if db_sslrootcert_lin:
-        command += [
-            '--db_sslrootcert_lin',
-            as_quoted_string(db_sslrootcert_lin)
-        ]
+        command += ["--db_sslrootcert_lin", as_quoted_string(db_sslrootcert_lin)]
     if db_sslrootcert_mac:
-        command += [
-            '--db_sslrootcert_mac',
-            as_quoted_string(db_sslrootcert_mac)
-        ]
+        command += ["--db_sslrootcert_mac", as_quoted_string(db_sslrootcert_mac)]
     if db_sslrootcert_win:
-        command += [
-            '--db_sslrootcert_win',
-            as_quoted_string(db_sslrootcert_win)
-        ]
+        command += ["--db_sslrootcert_win", as_quoted_string(db_sslrootcert_win)]
 
     # MySQL/MariaDB SSL options
     if db_sslca:
-        command += ['--db_sslca', as_quoted_string(db_sslca)]
+        command += ["--db_sslca", as_quoted_string(db_sslca)]
     if db_sslca_lin:
-        command += ['--db_sslca_lin', as_quoted_string(db_sslca_lin)]
+        command += ["--db_sslca_lin", as_quoted_string(db_sslca_lin)]
     if db_sslca_mac:
-        command += ['--db_sslca_mac', as_quoted_string(db_sslca_mac)]
+        command += ["--db_sslca_mac", as_quoted_string(db_sslca_mac)]
     if db_sslca_win:
-        command += ['--db_sslca_win', as_quoted_string(db_sslca_win)]
+        command += ["--db_sslca_win", as_quoted_string(db_sslca_win)]
 
     return execute_command(command, cli_full=True)
 
 
 def get_libraries():
-    '''
+    """
     Get all libraries data for current config.
 
     **Returns**:
@@ -402,14 +395,14 @@ def get_libraries():
         print(library)
         print(library_config_data)
     ```
-    '''
-    command = ['--config', config] if config else []
-    command += ['get-libraries']
+    """
+    command = ["--config", config] if config else []
+    command += ["get-libraries"]
     return execute_command(command)
 
 
 def get_library_template_mappings(library_path):
-    '''
+    """
     Get all template mappings data for library.
 
     **Args**:
@@ -431,17 +424,14 @@ def get_library_template_mappings(library_path):
 
     **Example result**:
     `[{'key': 'copy & rename', 'value': {'extra': ['extra-job'], 'filmstrip': 'filmstrip', 'main': 'main', 'proxy': 'proxy mov', 'thumbnail': 'thumbnail'}}]`
-    '''
-    command = ['--config', config] if config else []
-    command += [
-        'get-library-template-mappings',
-        as_quoted_string(library_path)
-    ]
+    """
+    command = ["--config", config] if config else []
+    command += ["get-library-template-mappings", as_quoted_string(library_path)]
     return execute_command(command)
 
 
 def add_library(library_path, os_platform=None):
-    '''
+    """
     Add an existing library to the current config.
 
     **Args**:
@@ -462,17 +452,17 @@ def add_library(library_path, os_platform=None):
 
     **Example result**:
     `true`
-    '''
-    command = ['--config', config] if config else []
-    command += ['add-library']
+    """
+    command = ["--config", config] if config else []
+    command += ["add-library"]
     if os_platform is not None:
-        command += ['--os', as_quoted_string(os_platform)]
+        command += ["--os", as_quoted_string(os_platform)]
     command += [as_quoted_string(library_path)]
     return execute_command(command)
 
 
 def remove_library(library_path, os_platform=None):
-    '''
+    """
     Remove an existing library to the current config.
 
     **Args**:
@@ -493,17 +483,17 @@ def remove_library(library_path, os_platform=None):
 
     **Example result**:
     `true`
-    '''
-    command = ['--config', config] if config else []
-    command += ['remove-library']
+    """
+    command = ["--config", config] if config else []
+    command += ["remove-library"]
     if os_platform is not None:
-        command += ['--os', as_quoted_string(os_platform)]
+        command += ["--os", as_quoted_string(os_platform)]
     command += [as_quoted_string(library_path)]
     return execute_command(command)
 
 
 def get_categories(library_path):
-    '''
+    """
     Get all categories from the database for the library.
 
     **Args**:
@@ -525,14 +515,14 @@ def get_categories(library_path):
 
     **Example result**:
     `[{'id': 'Q235544', 'type': 'default', 'name': 'flame', 'child_count': 5, 'child_counter': 5, 'parents': [{'description': 'rapid oxidation of a material; phenomenon that emits light and heat', 'id': 'Q3196', 'name': 'fire', 'synonyms': [{'language': 'en', 'value': 'fire'}, {'language': 'en', 'value': 'fires'}], 'type': 'default'}], 'children': [{'id': 'Q327954', 'name': 'torch'}], 'synonyms': [{'language': 'en', 'value': 'flame'}]}]`
-    '''
-    command = ['--config', config] if config else []
-    command += ['get-categories', as_quoted_string(library_path)]
+    """
+    command = ["--config", config] if config else []
+    command += ["get-categories", as_quoted_string(library_path)]
     return execute_command(command)
 
 
 def get_category(library_path, category_value):
-    '''
+    """
     Get category entity from the database for the library.
 
     **Args**:
@@ -556,18 +546,18 @@ def get_category(library_path, category_value):
 
     **Example result**:
     `{"id": "Q3196", "type": "default", "name": "fire", "child_count": 130, "child_counter": 135}`
-    '''
-    command = ['--config', config] if config else []
+    """
+    command = ["--config", config] if config else []
     command += [
-        'get-category',
+        "get-category",
         as_quoted_string(library_path),
-        as_quoted_string(category_value)
+        as_quoted_string(category_value),
     ]
     return execute_command(command)
 
 
 def get_tags(library_path):
-    '''
+    """
     Get all tags from the database for the library.
 
     **Args**:
@@ -589,14 +579,14 @@ def get_tags(library_path):
 
     **Example result**:
     `[{'id': 'Q235544', 'name': 'flame', 'type': 'default', 'elements_count': 3, 'synonyms': [{'language': 'en', 'value': 'flame'}]}]`
-    '''
-    command = ['--config', config] if config else []
-    command += ['get-tags', as_quoted_string(library_path)]
+    """
+    command = ["--config", config] if config else []
+    command += ["get-tags", as_quoted_string(library_path)]
     return execute_command(command)
 
 
 def get_tag(library_path, tag_value):
-    '''
+    """
     Get tag entity from the database for the library.
 
     **Args**:
@@ -618,18 +608,14 @@ def get_tag(library_path, tag_value):
 
     **Example result**:
     `{"id": "Q3196", "name": "fire", "type": "default", "elements_count": 130}`
-    '''
-    command = ['--config', config] if config else []
-    command += [
-        'get-tag',
-        as_quoted_string(library_path),
-        as_quoted_string(tag_value)
-    ]
+    """
+    command = ["--config", config] if config else []
+    command += ["get-tag", as_quoted_string(library_path), as_quoted_string(tag_value)]
     return execute_command(command)
 
 
 def get_elements(library_path):
-    '''
+    """
     Get all elements from the database for the library.
 
     **Args**:
@@ -652,14 +638,14 @@ def get_elements(library_path):
 
     **Example result**:
     `[{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","rating": "3","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}]`
-    '''
-    command = ['--config', config] if config else []
-    command += ['get-elements', as_quoted_string(library_path)]
+    """
+    command = ["--config", config] if config else []
+    command += ["get-elements", as_quoted_string(library_path)]
     return execute_command(command)
 
 
 def get_element_by_id(library_path, element_id):
-    '''
+    """
     Get element entity based on the **element ID** from the database for the library.
 
     **Args**:
@@ -683,17 +669,14 @@ def get_element_by_id(library_path, element_id):
 
     **Example result**:
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","rating": "3","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
-    '''
-    command = ['--config', config] if config else []
-    command += [
-        'get-element-by-id',
-        as_quoted_string(library_path), element_id
-    ]
+    """
+    command = ["--config", config] if config else []
+    command += ["get-element-by-id", as_quoted_string(library_path), element_id]
     return execute_command(command)
 
 
 def get_element_by_uuid(element_uuid, library_path=None):
-    '''
+    """
     Get element entity based on the **element UUID** from the database for the library.
     If no library path is provided, all libraries of the current config will be searched.
 
@@ -722,16 +705,16 @@ def get_element_by_uuid(element_uuid, library_path=None):
 
     **Example result**:
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","rating": "3","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
-    '''
-    command = ['--config', config] if config else []
-    command += ['get-element-by-uuid', element_uuid]
+    """
+    command = ["--config", config] if config else []
+    command += ["get-element-by-uuid", element_uuid]
     if library_path:
-        command += ['--library', as_quoted_string(library_path)]
+        command += ["--library", as_quoted_string(library_path)]
     return execute_command(command)
 
 
 def get_element_by_name(library_path, element_name):
-    '''
+    """
     Get element entity based on the **element name** from the database for the library.
 
     **Args**:
@@ -755,17 +738,14 @@ def get_element_by_name(library_path, element_name):
 
     **Example result**:
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","rating": "3","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
-    '''
-    command = ['--config', config] if config else []
-    command += [
-        'get-element-by-name',
-        as_quoted_string(library_path), element_name
-    ]
+    """
+    command = ["--config", config] if config else []
+    command += ["get-element-by-name", as_quoted_string(library_path), element_name]
     return execute_command(command)
 
 
 def update(library_path, entity_type, entity_id, data):
-    '''
+    """
     Updates database entity with new data
 
 
@@ -773,7 +753,7 @@ def update(library_path, entity_type, entity_id, data):
     > - **library_path** (str): *File path to the library file (.lib)*
     > - **entity_type** (str): *Type of entity to update. Options: [Category, Element, Tag]*
     > - **entity_id** (Union[str, int]): *the ID of the entity to update in the database*
-    > - **data** (Dict): *data to update. Dictionary with key/value pairs formated as JSON.*  
+    > - **data** (Dict): *data to update. Dictionary with key/value pairs formatted as JSON.*
         *Example:* `"{\\\"rating\\\": 3}"`
 
     **Returns**:
@@ -798,29 +778,31 @@ def update(library_path, entity_type, entity_id, data):
     **Example result**:
     `{"category": {"child_counter": 1,"description": "stick with a flaming end used as a source of light","id": "Q327954","name": "torch","type": "default"},"category_id": "Q327954","channel": 3,"colorspace": "sRGB","colorspace_source": "sRGB","created_at": "2022-05-16T08:26:52.854774","feature_id": 1,"frame_count": 1,"frame_first": 1,"frame_last": 1,"frame_rate": "","height": 5413,"id": 1,"media_type": "image","name": "fire_00001","number": "00001","path": "/mnt/library/fire/fire_00001/main_3342x5413_source/fire_00001.jpg","path_filmstrip": "/mnt/library/fire/fire_00001/filmstrip_11520x270_srgb/fire_00001.jpg","path_proxy": "/mnt/library/fire/fire_00001/proxy_1920x1080_srgb/fire_00001.mov","path_source": "/mnt/source/lication/some-image.jpg","path_thumbnail": "/mnt/library/fire/fire_00001/thumb_960x540_srgb/fire_00001.jpg","pixel_aspect": "1","rating": "3","tags": [{"elements_count": 3,"id": "Q235544","name": "flame","type": "default"},{"elements_count": 56,"id": "Q3196","name": "fire","type": "default"},{"elements_count": 3,"id": "Q327954","name": "torch","type": "default"}, {"id": "something","name": "something custom tag", "type": "custom", "elements_count": 1}],"uuid": "9947c549c6014a3ca831983275884051","width": 3342}`
 
-    **Example command line command**:  
-    ##### Windows  
-    `das-element-cli.exe update C:\\mnt\\library\\das-element.lib element 1 "{\\\"rating\\\": 3}"`  
-    ##### Linux/MacOS  
+    **Example command line command**:
+    ##### Windows
+    `das-element-cli.exe update C:\\mnt\\library\\das-element.lib element 1 "{\\\"rating\\\": 3}"`
+    ##### Linux/MacOS
     `das-element-cli update /mnt/library/das-element.lib element 1 '{\"rating\": 3}'`
-    '''
-    command = ['--config', config] if config else []
+    """
+    command = ["--config", config] if config else []
     command += [
-        'update',
+        "update",
         as_quoted_string(library_path),
         as_quoted_string(entity_type),
         as_quoted_string(entity_id),
-        as_quoted_dict(data)
+        as_quoted_dict(data),
     ]
     return execute_command(command)
 
 
-def delete_element(element_uuid,
-                   delete_from_database=False,
-                   delete_from_disk=False,
-                   delete_proxy=False,
-                   library_path=None):
-    '''
+def delete_element(
+    element_uuid,
+    delete_from_database=False,
+    delete_from_disk=False,
+    delete_proxy=False,
+    library_path=None,
+):
+    """
     Deletes an element entity based on the **element UUID**.
     The options define what gets deleted. Either the database record, main and/or proxy files on disk, or both.
 
@@ -850,29 +832,31 @@ def delete_element(element_uuid,
 
     **Example result**:
     `true`
-    '''
-    command = ['--config', config] if config else []
+    """
+    command = ["--config", config] if config else []
     command += [
-        'delete-element',
+        "delete-element",
         element_uuid,
     ]
     if delete_from_database:
-        command += ['--database']
+        command += ["--database"]
     if delete_from_disk:
-        command += ['--disk']
+        command += ["--disk"]
     if delete_proxy:
-        command += ['--proxy']
+        command += ["--proxy"]
     if library_path:
-        command += ['--library', as_quoted_string(library_path)]
+        command += ["--library", as_quoted_string(library_path)]
     return execute_command(command, cli_full=True)
 
 
-def delete_elements(element_uuids,
-                    delete_from_database=False,
-                    delete_from_disk=False,
-                    delete_proxy=False,
-                    library_path=None):
-    '''
+def delete_elements(
+    element_uuids,
+    delete_from_database=False,
+    delete_from_disk=False,
+    delete_proxy=False,
+    library_path=None,
+):
+    """
     Deletes multiple element entities based on a list of **element UUIDs**.
     The options define what gets deleted. Either the database record, main and/or proxy files on disk, or both.
 
@@ -902,37 +886,39 @@ def delete_elements(element_uuids,
 
     **Example result**:
     `true`
-    '''
-    command = ['--config', config] if config else []
-    command += ['delete-elements']
+    """
+    command = ["--config", config] if config else []
+    command += ["delete-elements"]
     if delete_from_database:
-        command += ['--database']
+        command += ["--database"]
     if delete_from_disk:
-        command += ['--disk']
+        command += ["--disk"]
     if delete_proxy:
-        command += ['--proxy']
+        command += ["--proxy"]
     if library_path:
-        command += ['--library', as_quoted_string(library_path)]
-    command += [as_quoted_string(','.join(element_uuids))]
+        command += ["--library", as_quoted_string(library_path)]
+    command += [as_quoted_string(",".join(element_uuids))]
     return execute_command(command, cli_full=True)
 
 
-def ingest(library_path,
-           mapping,
-           path,
-           category,
-           colorspace='',
-           path_thumbnail='',
-           path_proxy='',
-           tags=[],
-           media_type='',
-           permission='111',
-           metadata={},
-           additionals=[]):
-    '''
+def ingest(
+    library_path,
+    mapping,
+    path,
+    category,
+    colorspace="",
+    path_thumbnail="",
+    path_proxy="",
+    tags=[],
+    media_type="",
+    permission="111",
+    metadata={},
+    additionals=[],
+):
+    """
     Ingest a new element to the library
 
-    Ingesting a file sequence requires the path to be in a [fileseq.FileSequence notation](https://github.com/justinfx/fileseq#filesequence)  
+    Ingesting a file sequence requires the path to be in a [fileseq.FileSequence notation](https://github.com/justinfx/fileseq#filesequence)
     Thank you to the developers of [fileseq](https://github.com/justinfx/fileseq)!
 
     Example: `/some/folder/files.1001-1099#.exr`
@@ -982,49 +968,69 @@ def ingest(library_path,
 
     **Example command line command**:
     `das-element-cli ingest --library /mnt/library/das-element.lib --mapping "copy & rename" --path /some/file/path.%04d.exr --category Q3196 --tags foo,bar,baz --colorspace ACES2065-1 --media_type sequence --metadata foo bar -m lens "70 mm" --path_thumbnail /file/path/thumbnail.jpg --path_proxy /file/path/proxy.mov --additional /path/additional.exr texture alpha`
-    '''
-    command = ['--config', config] if config else []
-    command += [
-        'ingest', '--library',
-        as_quoted_string(library_path), '--mapping',
-        as_quoted_string(mapping), '--path',
-        as_quoted_string(path), '--path_thumbnail',
-        as_quoted_string(path_thumbnail), '--path_proxy',
-        as_quoted_string(path_proxy), '--category',
-        as_quoted_string(category), '--colorspace',
-        as_quoted_string(colorspace), '--tags',
-        as_quoted_string(','.join(tags)), '--media_type',
-        as_quoted_string(media_type), '--permission',
-        as_quoted_string(permission)
-    ] + [
-        item for key_value in metadata.items() for item in
-        ['-m',
-         as_quoted_string(key_value[0]),
-         as_quoted_string(key_value[1])]
-    ] + [
-        item for additional in additionals for item in [
-            '-a',
-            as_quoted_string(additional.get('path', '')),
-            as_quoted_string(additional.get('type', '')),
-            as_quoted_string(additional.get('name', ''))
+    """
+    command = ["--config", config] if config else []
+    command += (
+        [
+            "ingest",
+            "--library",
+            as_quoted_string(library_path),
+            "--mapping",
+            as_quoted_string(mapping),
+            "--path",
+            as_quoted_string(path),
+            "--path_thumbnail",
+            as_quoted_string(path_thumbnail),
+            "--path_proxy",
+            as_quoted_string(path_proxy),
+            "--category",
+            as_quoted_string(category),
+            "--colorspace",
+            as_quoted_string(colorspace),
+            "--tags",
+            as_quoted_string(",".join(tags)),
+            "--media_type",
+            as_quoted_string(media_type),
+            "--permission",
+            as_quoted_string(permission),
         ]
-    ]
+        + [
+            item
+            for key_value in metadata.items()
+            for item in [
+                "-m",
+                as_quoted_string(key_value[0]),
+                as_quoted_string(key_value[1]),
+            ]
+        ]
+        + [
+            item
+            for additional in additionals
+            for item in [
+                "-a",
+                as_quoted_string(additional.get("path", "")),
+                as_quoted_string(additional.get("type", "")),
+                as_quoted_string(additional.get("name", "")),
+            ]
+        ]
+    )
 
     return execute_command(command, cli_full=True)
 
 
 def predict(path, model, top=2, filmstrip_frames=36):
-    '''
-    Predict the category for a give file path.
+    """
+    Predict the category for a given file path.
 
-    The give path can be a file or a directory.  
+    The given path can be a file or a directory.
     If a directory is provided, all sub-directories will be searched for files and sequences.
 
 
     **Args**:
 
+    > - **path** (str): *file path to a movie file, image sequence or a directory*
     > - **model** (str): *Define a custom model file path (.wit)*
-    > - **filmstrip_frames** (int): [optional] *Number of frames to validated for a movie file or sequence. The higher the number, the better the result might be, but it also takes longer*
+    > - **filmstrip_frames** (int): [optional] *Number of frames to validate for a movie file or sequence. The higher the number, the better the result might be, but it also takes longer*
     > - **top** (int): [optional] *Return the top X predictions*
 
 
@@ -1039,30 +1045,31 @@ def predict(path, model, top=2, filmstrip_frames=36):
     **Example command line command**:
     `das-element-cli predict --top=2 /some/file/path`
 
-    '''
-    command = ['predict', '--top', top, '--filmstrip_frames', filmstrip_frames]
-    command += ['--model', as_quoted_string(model)]
-    command += ['--filmstrip_frames', filmstrip_frames]
-    command += ['--top', top]
+    """
+    command = ["predict", "--top", top, "--filmstrip_frames", filmstrip_frames]
+    command += ["--model", as_quoted_string(model)]
+    command += ["--filmstrip_frames", filmstrip_frames]
+    command += ["--top", top]
     command += [as_quoted_string(path)]
     return execute_command(command, cli_full=True)
 
 
 def get_paths_from_disk(path, as_sequence=True):
-    '''
-    Recursivly searches for files and sequences in a given directory. Since version 1.2.5
+    """
+    Recursively searches for files and sequences in a given directory. Since version 1.2.5
 
-    The give path can be a file or a directory.  
+    The given path can be a file or a directory.
     If a directory is provided, all sub-directories will be searched for files and sequences.
 
 
     **Args**:
 
+    > - **path** (str): *file path to a file or a directory to search*
     > - **as_sequence / as_single_files** (bool): [optional] defines if files with a sequential naming should be detected as a file sequence or individual files
 
 
     **Returns**:
-    > - List[str]: *List of file paths found in the give directory*
+    > - List[str]: *List of file paths found in the given directory*
 
 
     **Example result**:
@@ -1072,20 +1079,20 @@ def get_paths_from_disk(path, as_sequence=True):
     **Example command line command**:
     `das-element-cli get-paths-from-disk --as_sequence /some/file/path`
 
-    '''
-    command = ['get-paths-from-disk']
+    """
+    command = ["get-paths-from-disk"]
 
     if as_sequence:
-        command += ['--as_sequence']
+        command += ["--as_sequence"]
     else:
-        command += ['--as_single_files']
+        command += ["--as_single_files"]
 
     command += [path]
     return execute_command(command, cli_full=True)
 
 
 def get_meaningful_frame(path):
-    '''
+    """
     Validate meaningful thumbnail frame number for movie file or image sequence
 
 
@@ -1108,14 +1115,14 @@ def get_meaningful_frame(path):
     `das-element-cli get-meaningful-frame /folder/frame_sequence.####.exr`
     `das-element-cli get-meaningful-frame /folder/frame_sequence.%04d.exr`
 
-    '''
-    command = ['get-meaningful-frame', path]
+    """
+    command = ["get-meaningful-frame", path]
 
     return execute_command(command, cli_full=True)
 
 
 def render_element_proxies(element_uuid, mapping, library_path=None):
-    '''
+    """
     Render the proxy files for an element based on a template mapping
 
     If the library is provided it will directly try to get to element for that library.
@@ -1137,10 +1144,10 @@ def render_element_proxies(element_uuid, mapping, library_path=None):
     **Example command line command**:
     `das-element-cli render-element-proxies 9947c549c6014a3ca831983275884051 "render proxies" --library /some/path/das-element.lib`
 
-    '''
-    command = ['render-element-proxies', element_uuid, mapping]
+    """
+    command = ["render-element-proxies", element_uuid, mapping]
 
     if library_path:
-        command += ['--library', library_path]
+        command += ["--library", library_path]
 
     return execute_command(command, cli_full=True)
